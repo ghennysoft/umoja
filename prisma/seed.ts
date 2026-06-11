@@ -2,8 +2,6 @@ import { Role } from '@/app/generated/prisma/enums';
 import prisma from '@/app/lib/db';
 import bcrypt from 'bcryptjs';
 
-// const prisma = new PrismaClient();
-
 async function main() {
   // Créer admin
   const adminPassword = await bcrypt.hash('admin123', 10);
@@ -11,14 +9,15 @@ async function main() {
     where: { email: 'admin@gmail.com' },
     update: {},
     create: {
+      name: 'Administrateur',
       email: 'admin@gmail.com',
       password: adminPassword,
       role: Role.Admin,
     },
   });
 
-  // Créer caissier
-  const cashierPassword = await bcrypt.hash('cashier123', 10);
+  // Créer agent
+  const cashierPassword = await bcrypt.hash('agent123', 10);
   await prisma.user.upsert({
     where: { email: 'agent@gmail.com' },
     update: {},

@@ -41,7 +41,7 @@ model Agent {
   firstname   String
   lastname    String
   nickname    String
-  email       String? @unique
+  email       String?
   phoneNumber String
   gender      Gender
 
@@ -64,7 +64,7 @@ model Agent {
 model Member {
   id      String @id @default(uuid())
   // number      String   @default(increment())
-  agentId String
+  memberId String
 
   firstname   String
   lastname    String

@@ -6,40 +6,40 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/lib/auth';
 
 
-export async function getAgents() {
-  const agents = await prisma.agent.findMany({
+export async function getMembers() {
+  const members = await prisma.member.findMany({
     // include: { category: true },
     // orderBy: { name: 'asc' },
   });
-  return agents;
+  return members;
 }
 
-export async function createAgent(data: any) {
+export async function createMember(data: any) {
   // const session = await getServerSession(authOptions);
   // if (session?.user?.role !== 'Admin') throw new Error('Non autorisé');
   
-  const agent = await prisma.agent.create({
+  const member = await prisma.member.create({
     data: data,
   });
   
   // await prisma.auditLog.create({
   //   data: {
   //     userId: session.user.id,
-  //     action: 'CREATE_AGENT',
-  //     entity: 'Agent',
-  //     entityId: agent.id,
+  //     action: 'CREATE_member',
+  //     entity: 'member',
+  //     entityId: member.id,
   //   },
   // });
   
-  revalidatePath('/dashboard/agents');
-  return agent;
+  revalidatePath('/dashboard/members');
+  return member;
 }
 
-// export async function updateagent(id: string, data: any) {
+// export async function updatemember(id: string, data: any) {
 //   const session = await getServerSession(authOptions);
 //   if (session?.user?.role !== 'ADMIN') throw new Error('Non autorisé');
   
-//   const agent = await prisma.agent.update({
+//   const member = await prisma.member.update({
 //     where: { id },
 //     data: {
 //       name: data.name,
@@ -54,25 +54,25 @@ export async function createAgent(data: any) {
 //   await prisma.auditLog.create({
 //     data: {
 //       userId: session.user.id,
-//       action: 'UPDATE_agent',
-//       entity: 'agent',
+//       action: 'UPDATE_member',
+//       entity: 'member',
 //       entityId: id,
 //     },
 //   });
 //   revalidatePath('/admin/produits');
-//   return agent;
+//   return member;
 // }
 
-// export async function deleteagent(id: string) {
+// export async function deletemember(id: string) {
 //   const session = await getServerSession(authOptions);
 //   if (session?.user?.role !== 'ADMIN') throw new Error('Non autorisé');
   
-//   await prisma.agent.delete({ where: { id } });
+//   await prisma.member.delete({ where: { id } });
 //   await prisma.auditLog.create({
 //     data: {
 //       userId: session.user.id,
-//       action: 'DELETE_agent',
-//       entity: 'agent',
+//       action: 'DELETE_member',
+//       entity: 'member',
 //       entityId: id,
 //     },
 //   });

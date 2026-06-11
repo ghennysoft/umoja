@@ -2,7 +2,7 @@
 
 import { GoBackBtn } from "@/components/goback";
 import axios from "axios";
-// import { Plus, User } from "lucide-react";
+import { Plus, User } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -112,10 +112,10 @@ export default function Page() {
         <div className="flex justify-between items-center p-2">
           <div className="flex justify-between items-center">
             <GoBackBtn />
-            <h1 className="text-lg"><b>AGENTS</b></h1>
+            <h1 className="text-lg"><b>UTILISATEURS</b></h1>
           </div>
-          <Link href={"/members/add"} className="border border-gray-500 rounded-md px-4 py-2 text-sm flex items-center hover:bg-blue-800 hover:text-white transition-colors justify-center">
-            {/* <Plus /> */}
+          <Link href={"/users/add"} className="border border-gray-500 rounded-md px-4 py-2 text-sm flex items-center hover:bg-blue-800 hover:text-white transition-colors justify-center">
+            <Plus />
             <span>Ajouter</span>
           </Link>
         </div>
@@ -136,7 +136,7 @@ export default function Page() {
                 <div className="container p-5">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-20 h-20 rounded-full bg-indigo-100 text-indigo-400 flex justify-center items-center mb-4">
-                      {/* <User size={50} /> */}
+                      <User size={50} />
                     </div>
                   </div>
                   <div className="text-2xl font-display font-bold text-foreground">{user?.firstname}  {user?.lastname}</div>

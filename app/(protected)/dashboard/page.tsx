@@ -46,6 +46,7 @@ const colors = [
 
 const Dashboard = () => {
   const { data: session } = useSession();
+  console.log(session);
   
   // const [categories, setCategories] = useState<[]>([]);
   // useEffect(()=>{

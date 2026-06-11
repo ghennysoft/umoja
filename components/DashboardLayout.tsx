@@ -26,7 +26,7 @@ const DashboardLayout = ({ children, dash }: { children: React.ReactNode, dash: 
           {/* <DollarSign size={15} /> */}
           <span>Cotisations</span>
         </Link>
-        <Link href={'/'} className="flex items-center gap-2 mb-2 hover:bg-blue-950 p-2">
+        <Link href={'/users'} className="flex items-center gap-2 mb-2 hover:bg-blue-950 p-2">
           {/* <UsersRound size={15} /> */}
           <span>Utilisateurs</span>
         </Link>

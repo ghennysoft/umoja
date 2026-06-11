@@ -87,7 +87,7 @@ export default function LoginPage() {
               </button>
             : <button 
                 type="submit"
-                className="block p-2 my-4 rounded-xl w-full bg-red-400 text-white cursor-pointer"
+                className="block p-2 my-4 rounded-xl w-full  bg-blue-800 hover:bg-blue-950 text-white cursor-pointer"
               >
                 Créer un utilisateur
               </button>

@@ -1,25 +1,17 @@
 "use client"
 
-import { createAgent, getAgents } from "@/app/lib/actions/agents";
+import { createAgent } from "@/app/lib/actions/agents";
 import { GoBackBtn } from "@/components/goback";
 import { useSession } from "next-auth/react";
-// import { Plus, User } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Plus, User } from "lucide-react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const {data: session} = useSession();
   const [loading, setLoading] = useState(false);
-  // const [agentId, setAgentId] = useState(false);
-  const [agents, setAgents] = useState([]);
 
-  const load = async () => {
-    const data = await getAgents();
-    setAgents(data.agents);
-  };
-
-  useEffect(() => {
-    load();
-  }, []);
+  const router = useRouter()
 
   const initialData = {
     agentId   : Math.random().toString().slice(2,7),
@@ -45,19 +37,21 @@ export default function Page() {
   }
 
   const [form, setForm] = useState(initialData)
-  console.log(form);
   
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     try {
         await createAgent(form);
         // toast.success('Produit créé');
       setForm(initialData);
       // setEditing(null);
-      load();
+      router.push('/agents')
     } catch (error) {
       console.log(error);
       // toast.error('Erreur');   
+    } finally {
+      setLoading(false);
     }
   }
 
