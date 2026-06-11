@@ -10,9 +10,12 @@ import { useRouter } from 'next/navigation';
 export default function Page() {
   const {data: session} = useSession();
   const [loading, setLoading] = useState(false);
+  const [memberId] = useState(() =>
+    Math.random().toString().slice(2, 7)
+  );
 
   const initialData = {
-    memberId   : Math.random().toString().slice(2,7),
+    memberId   : memberId,
 
     firstname   : "",
     lastname    : "",

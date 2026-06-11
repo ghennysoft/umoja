@@ -39,7 +39,7 @@ export default function Page() {
   const {data: session} = useSession();
   console.log(session);
 
-  const [agents, setAgents] = useState<Agent[] | null>(null);
+  const [agents, setAgents] = useState<any[]>([]);
   const load = async () => {
     const data = await getAgents();
     setAgents(data);
