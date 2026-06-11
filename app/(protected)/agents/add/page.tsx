@@ -33,7 +33,7 @@ export default function Page() {
     quarter     : "",
     township    : "",
     city        : "",
-    createdBy   : session?.user?.id,
+    // createdBy   : session?.user?.id,
   }
 
   const [form, setForm] = useState(initialData)
