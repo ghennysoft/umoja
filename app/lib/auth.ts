@@ -3,6 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import prisma from './db';
 import { z } from 'zod';
+import { Role } from '../generated/prisma/enums';
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -33,7 +34,7 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           name: user.name,
           email: user.email,
-          role: user.role,
+          role: user.role as Role,
         };
       },
     }),
