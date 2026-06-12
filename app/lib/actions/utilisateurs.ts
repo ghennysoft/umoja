@@ -7,8 +7,8 @@ import { revalidatePath } from 'next/cache';
 import bcrypt from 'bcryptjs';
 
 export async function getUsers() {
-  const session = await getServerSession(authOptions);
-  if (session?.user?.role !== 'Admin') throw new Error('Non autorisé');
+ // const session = await getServerSession(authOptions);
+ // if (session?.user?.role !== 'Admin') throw new Error('Non autorisé');
   
   return prisma.user.findMany({
     orderBy: { createdAt: 'desc' },
@@ -21,8 +21,8 @@ export async function createUser(data: {
   password: string;
   role: string;
 }) {
-  const session = await getServerSession(authOptions);
-  if (session?.user?.role !== 'Admin') throw new Error('Non autorisé');
+ // const session = await getServerSession(authOptions);
+ // if (session?.user?.role !== 'Admin') throw new Error('Non autorisé');
   
   const existing = await prisma.user.findUnique({
     where: { email: data.email },
