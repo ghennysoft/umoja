@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <SessionProvider>
       <DashboardLayout dash={true}>
         {children}
-    </DashboardLayout>
+      </DashboardLayout>
     </SessionProvider>
   );
 }

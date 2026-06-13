@@ -1,7 +1,7 @@
 "use client"
 
 import { signOut, useSession } from "next-auth/react";
-// import { Bell, LayoutDashboard, LogOut, User2, Wallet } from "lucide-react";
+import { Bell, LayoutDashboard, User2} from "lucide-react";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -12,27 +12,27 @@ export default function Navbar() {
     location.href="/"
   }
   return (
-      <header>
+      <header className="w-full">
         <div className="container mx-auto px-4 py-3">
             <nav className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                  {/* <LayoutDashboard /> */}
-                  <span className="text-xl font-bold">Administraion</span>
+                <LayoutDashboard className="hidden" />
+                <span className="text-xl font-bold">Administration</span>
               </div>
               <div className="flex items-center space-x-4">
-                  <button 
-                    className="py-2 rounded-lg font-medium transition cursor-pointer"
-                    onClick={()=>setLogoutModal(!logoutModal)}
-                  >
-                    {/* <Bell size={20} /> */}
-                    </button>
-                  <button 
-                    className="py-2 rounded-lg font-medium transition cursor-pointer"
-                    onClick={()=>setLogoutModal(!logoutModal)}
-                  >
-                    {/* <User2 size={20} /> */}
-                    </button>
-                    <span className="text-sm text-gray-600 hidden sm:inline">{session?.user?.name}</span>
+                <button 
+                  className="py-2 rounded-lg font-medium transition cursor-pointer"
+                  onClick={()=>setLogoutModal(!logoutModal)}
+                >
+                  <Bell size={20} />
+                </button>
+                <button 
+                  className="py-2 rounded-lg font-medium transition cursor-pointer"
+                  onClick={()=>setLogoutModal(!logoutModal)}
+                >
+                  <User2 size={20} />
+                </button>
+                <span className="text-sm text-gray-600 hidden sm:inline">{session?.user?.name}</span>
               </div>
             </nav>
         </div>

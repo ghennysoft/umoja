@@ -33,9 +33,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className='p-3'>
+    <div className='bg-white p-3'>
       <div className="flex justify-center mb-3">
-        <img src="/logo.jpg" width={150} alt="logo delka" />
+        <img src="/logo.png" width={150} alt="logo umoja" />
       </div>
       <div>
         <h4 className="text-center text-2xl">Connexion</h4>
@@ -71,7 +71,7 @@ export default function LoginPage() {
               </button>
             : <button 
                 type="submit"
-                className="block p-2 my-4 rounded-xl w-full bg-red-400 text-white cursor-pointer"
+                className="block p-2 my-4 rounded-xl w-full bg-blue-600 text-white cursor-pointer"
               >
                 Se connecter
               </button>

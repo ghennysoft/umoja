@@ -37,7 +37,6 @@ interface Agent {
 
 export default function Page() {
   const {data: session} = useSession();
-  console.log(session);
 
   const [agents, setAgents] = useState<any[]>([]);
   const load = async () => {
@@ -109,7 +108,7 @@ export default function Page() {
                     </div>
                   </div>
                   <div className="text-2xl font-display font-bold text-foreground">{user?.firstname}  {user?.lastname}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{user?.phoneNumber} - {user?.gender}</div>
+                  <div className="text-xs text-muted-foreground mt-1">ID : {user?.agentId}</div>
                   
                  {/* <span className="text-lg font-semibold text-center">{user?.firstname} {user?.lastname}</span>
                  <span className="text-sm text-center">{user?.phoneNumber}</span>

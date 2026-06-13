@@ -41,7 +41,7 @@ export default function LoginPage() {
   return (
     <div className='p-3'>
       <div className="flex justify-center mb-3">
-        <img src="/logo.jpg" width={150} alt="logo delka" />
+        <img src="/logo.png" width={150} alt="logo umoja" />
       </div>
       <div>
         <h4 className="text-center text-2xl">Register</h4>

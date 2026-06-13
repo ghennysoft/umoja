@@ -6,7 +6,6 @@ import bcrypt from 'bcryptjs';
 export async function GET() {
     try {
         const user = await prisma.user.findMany();
-        console.error(user);
       return NextResponse.json(user, {status: 200});
     } catch (error) {
         console.error(error);

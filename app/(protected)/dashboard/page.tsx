@@ -1,13 +1,6 @@
 "use client"
 
-// import DashboardLayout from "../../../componnents/DashboardLayout";
-// import { DollarSign, CreditCard, ArrowUpRight, ArrowDownRight, SlidersVertical, UserCog2 } from "lucide-react";
-// import { Package, Settings, QrCode } from "lucide-react";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-// import axios from "@/lib/axios";
 
 const stats = [
   { title: "Cotisation du jour", value: "0 CDF", change: "0%", up: false, 
@@ -22,41 +15,7 @@ const stats = [
   // { title: "Taux de conversion", value: "94.2%", change: "-0.8%", up: false, icon: TrendingUp },
 ];
 
-const icones = [
-  { name: "fas fa-store" },
-  { name: "fas fa-utensils" },
-  { name: "fas fa-bus" },
-  // { name: "fas fa-briefcase" },
-  { name: "fas fa-calendar" },
-  { name: "fas fa-graduation-cap" },
-  { name: "fas fa-hands-helping" },
-  { name: "fas fa-concierge-bell" },
-]
-
-const colors = [
-  { fg: "#4F46E5", bg: "#E0E7FF" },
-  { fg: "#DC2626", bg: "#FEE2E2" },
-  { fg: "#2563EB", bg: "#DBEAFE" },
-  // { fg: "#9333EA", bg: "#F3E8FF" },
-  { fg: "#16A34A", bg: "#DCFCE7" },
-  { fg: "#CA8A04", bg: "#FEF9E3" },
-  { fg: "#DB2777", bg: "#FCE7F3" },
-  { fg: "#0D9488", bg: "#CCFBF1" },
-]
-
 const Dashboard = () => {
-  const { data: session } = useSession();
-  console.log(session);
-  
-  // const [categories, setCategories] = useState<[]>([]);
-  // useEffect(()=>{
-  //   const getCategories = async ()=>{
-  //     const res = await axios.get('/shops/category/');
-  //     setCategories(res.data);
-  //   }
-  //   getCategories();
-  // }, [])
-
   return (
     <>
       <h1 className="text-3xl font-bold py-5 px-7">Tableau de bord</h1>
