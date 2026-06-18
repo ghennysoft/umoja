@@ -53,7 +53,9 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Agent: 'Agent',
-  Member: 'Member'
+  Mission: 'Mission',
+  Activity: 'Activity',
+  Report: 'Report'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -74,10 +76,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   email: 'email',
   password: 'password',
+  name: 'name',
   role: 'role',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -88,22 +91,32 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const AgentScalarFieldEnum = {
   id: 'id',
   agentId: 'agentId',
-  firstname: 'firstname',
-  lastname: 'lastname',
-  nickname: 'nickname',
-  email: 'email',
-  phoneNumber: 'phoneNumber',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  postName: 'postName',
+  photo: 'photo',
+  birthDate: 'birthDate',
+  birthPlace: 'birthPlace',
   gender: 'gender',
-  placeOfBirth: 'placeOfBirth',
-  dateOfBirth: 'dateOfBirth',
   nationality: 'nationality',
+  provinceOrigin: 'provinceOrigin',
+  maritalStatus: 'maritalStatus',
   country: 'country',
-  state: 'state',
   city: 'city',
-  township: 'township',
-  quarter: 'quarter',
+  commune: 'commune',
   address: 'address',
-  createdBy: 'createdBy',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  email: 'email',
+  hasId: 'hasId',
+  idType: 'idType',
+  idNumber: 'idNumber',
+  idExpirationDate: 'idExpirationDate',
+  idPhoto: 'idPhoto',
+  function: 'function',
+  zone: 'zone',
+  startDate: 'startDate',
+  supervisor: 'supervisor',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -111,30 +124,48 @@ export const AgentScalarFieldEnum = {
 export type AgentScalarFieldEnum = (typeof AgentScalarFieldEnum)[keyof typeof AgentScalarFieldEnum]
 
 
-export const MemberScalarFieldEnum = {
+export const MissionScalarFieldEnum = {
   id: 'id',
-  memberId: 'memberId',
-  firstname: 'firstname',
-  lastname: 'lastname',
-  nickname: 'nickname',
-  email: 'email',
-  phoneNumber: 'phoneNumber',
-  gender: 'gender',
-  placeOfBirth: 'placeOfBirth',
-  dateOfBirth: 'dateOfBirth',
-  address: 'address',
-  nationality: 'nationality',
-  state: 'state',
-  country: 'country',
-  quarter: 'quarter',
-  township: 'township',
-  city: 'city',
-  createdBy: 'createdBy',
+  agentId: 'agentId',
+  zone: 'zone',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
+  notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
+export type MissionScalarFieldEnum = (typeof MissionScalarFieldEnum)[keyof typeof MissionScalarFieldEnum]
+
+
+export const ActivityScalarFieldEnum = {
+  id: 'id',
+  agentId: 'agentId',
+  type: 'type',
+  description: 'description',
+  date: 'date',
+  location: 'location',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ActivityScalarFieldEnum = (typeof ActivityScalarFieldEnum)[keyof typeof ActivityScalarFieldEnum]
+
+
+export const ReportScalarFieldEnum = {
+  id: 'id',
+  agentId: 'agentId',
+  title: 'title',
+  content: 'content',
+  date: 'date',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
 
 
 export const SortOrder = {

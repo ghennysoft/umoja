@@ -1,5 +1,5 @@
 import { Role } from '@/app/generated/prisma/enums';
-import prisma from '@/app/lib/db';
+import prisma from '@/app/lib/prisma';
 import bcrypt from 'bcryptjs';
 
 async function main() {
@@ -12,19 +12,7 @@ async function main() {
       name: 'Administrateur',
       email: 'admin@gmail.com',
       password: adminPassword,
-      role: Role.Admin,
-    },
-  });
-
-  // Créer agent
-  const cashierPassword = await bcrypt.hash('agent123', 10);
-  await prisma.user.upsert({
-    where: { email: 'agent@gmail.com' },
-    update: {},
-    create: {
-      email: 'agent@gmail.com',
-      password: cashierPassword,
-      role: Role.Agent,
+      role: 'ADMIN',
     },
   });
 

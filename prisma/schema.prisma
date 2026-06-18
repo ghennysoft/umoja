@@ -12,79 +12,148 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Role {
-  Client
-  Agent
-  Admin
-}
-
-enum Gender {
-  Homme
-  Femme
-}
 
 model User {
-  id        String   @id @default(uuid())
-  name     String?   
-  email     String   @unique
-  password  String
-  role Role @default(Client)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String
+  role          UserRole  @default(MEMBER)
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt            @default(now())
 }
 
 model Agent {
-  id      String @id @default(uuid())
-  // number      String   @default(increment())
-  agentId String
+  id                String   @id @default(cuid())
+  agentId           String   @unique
+  firstName         String
+  lastName          String
+  postName          String?
+  photo             String?
+  birthDate         DateTime
+  birthPlace        String
+  gender            Gender
+  nationality       String
+  provinceOrigin    String
+  maritalStatus     MaritalStatus
+  country           String
+  city              String
+  commune           String
+  address           String
+  phone             String
+  whatsapp          String?
+  email             String?
 
-  firstname   String
-  lastname    String
-  nickname    String
-  email       String?
-  phoneNumber String
-  gender      Gender
+  // Identification
+  hasId             Boolean  @default(false)
+  idType            IdType?
+  idNumber          String?
+  idExpirationDate  DateTime?
+  idPhoto           String?
 
-  placeOfBirth String
-  dateOfBirth  String
+  // Function
+  function          String
+  zone              String
+  startDate         DateTime
+  supervisor        String?
 
-  nationality String
-  country     String
-  state       String
-  city        String
-  township    String
-  quarter     String
-  address     String
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  createdBy String?
+  // Relations
+  missions          Mission[]
+  activities        Activity[]
+  reports           Report[]
+}
+
+model Mission {
+  id        String   @id @default(cuid())
+  agentId   String
+  agent     Agent    @relation(fields: [agentId], references: [id])
+  zone      String
+  startDate DateTime
+  endDate   DateTime?
+  status    MissionStatus @default(ACTIVE)
+  notes     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Member {
-  id      String @id @default(uuid())
-  // number      String   @default(increment())
-  memberId String
+model Activity {
+  id          String   @id @default(cuid())
+  agentId     String
+  agent       Agent    @relation(fields: [agentId], references: [id])
+  type        ActivityType
+  description String
+  date        DateTime @default(now())
+  location    String?
+  status      ActivityStatus @default(PENDING)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
 
-  firstname   String
-  lastname    String
-  nickname    String
-  email       String? @unique
-  phoneNumber String
-  gender      String
+model Report {
+  id          String   @id @default(cuid())
+  agentId     String
+  agent       Agent    @relation(fields: [agentId], references: [id])
+  title       String
+  content     String
+  date        DateTime @default(now())
+  status      ReportStatus @default(DRAFT)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
 
-  placeOfBirth String
-  dateOfBirth  String
+enum UserRole {
+  ADMIN
+  AGENT
+  MEMBER
+}
+enum Gender {
+  MALE
+  FEMALE
+}
 
-  address     String
-  nationality String
-  state       String
-  country     String
-  quarter     String
-  township    String
-  city        String
+enum MaritalStatus {
+  MARRIED
+  SINGLE
+  WIDOWED
+  DIVORCED
+}
 
-  createdBy String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+enum IdType {
+  NATIONAL_ID
+  PASSPORT
+  DRIVER_LICENSE
+  OTHER
+}
+
+enum MissionStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum ActivityType {
+  FIELD_VISIT
+  MEETING
+  TRAINING
+  DISTRIBUTION
+  OTHER
+}
+
+enum ActivityStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum ReportStatus {
+  DRAFT
+  SUBMITTED
+  APPROVED
+  REJECTED
 }

@@ -1,124 +1,204 @@
-"use client";
+// "use client"
 
-import { GoBackBtn } from "@/components/goback";
-import { getAgents } from "@/app/lib/actions/agents";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Gender } from "@/app/generated/prisma/enums";
-import { useSession } from "next-auth/react";
-import { Plus, User } from "lucide-react";
+// import AgentsTable from '@/components/agents/AgentsTable'
+// import AgentsMap from '@/components/agents/AgentsMap'
+// import AgentsActivities from '@/components/agents/AgentsActivities'
 
-interface Agent {
-  id      : string,
-  agentId : string,
-  firstname   : string,
-  lastname    : string,
-  nickname    : string,
-  email       : string,
-  phoneNumber : string,
-  gender      : Gender,
+'use client'
 
-  placeOfBirth : string,
-  dateOfBirth  : string,
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
+import AgentsStats from '@/components/agents/AgentsStats'
+import { Agent } from '@prisma/client'
+import { CirclePlus, MapPin, Eye } from 'lucide-react'
 
-  nationality : string,
-  country     : string,
-  state       : string,
-  city        : string,
-  township    : string,
-  quarter     : string,
-  address     : string,
-
-  createdBy? : string,
-  createdAt : string,
-  updatedAt : string,
-}
-
-
-export default function Page() {
-  const {data: session} = useSession();
-
-  const [agents, setAgents] = useState<any[]>([]);
-  const load = async () => {
-    const data = await getAgents();
-    setAgents(data);
-  };
+export default function DashboardPage() {  
+  const [agents, setAgents] = useState<Agent[]>([])
+  const [loading, setLoading] = useState(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [search, setSearch] = useState('')
+  const [zone, setZone] = useState('')
+  const [status, setStatus] = useState('')
+  const router = useRouter()
 
   useEffect(() => {
-    load();
-  }, []);
+    fetchAgents()
+  }, [search, zone, status])
 
-  const [term, setTerm] = useState("");
-  // let usersData = null;
-  // if(session.user?.role && agents) {
-  //   if(term){
-  //     if(session.user?.role === "Agent") {
-  //       usersData = agents?.filter(data => data?.role === "Client")?.filter(user =>
-  //         user?.firstname?.toLowerCase()?.includes(term?.toLowerCase()) ||
-  //         user?.lastname?.toLowerCase()?.includes(term?.toLowerCase())
-  //       );
-  //     } else {
-  //       usersData = agents?.filter(user =>
-  //         user?.firstname?.toLowerCase()?.includes(term?.toLowerCase()) ||
-  //         user?.lastname?.toLowerCase()?.includes(term?.toLowerCase())
-  //       );
-  //     }
-  //   } else {
-  //     const agentData = agents?.filter(data => data?.role === "Client");
-  //     if(user?.role === "Agent") {
-  //       usersData = agentData;
-  //     } else {
-  //       usersData = users;
-  //     }
-  //   }
-  // } 
+  const fetchAgents = async () => {
+    setLoading(true)
+    try {
+      const params = new URLSearchParams()
+      if (search) params.append('search', search)
+      if (zone) params.append('zone', zone)
+      if (status) params.append('status', status)
+
+      const response = await axios.get(`/api/agents?${params.toString()}`)
+      if (response.data.success) {
+        setAgents(response.data.data)
+      }
+    } catch (error) {
+      console.error('Error fetching agents:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleDelete = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete this agent?')) {
+      try {
+        await axios.delete(`/api/agents/${id}`)
+        fetchAgents()
+      } catch (error) {
+        console.error('Error deleting agent:', error)
+        alert('Failed to delete agent')
+      }
+    }
+  }
 
   return (
-    <div className="">
-      <main className="p-2 mb-10">
-        <div className="flex justify-between items-center p-2">
-          <div className="flex justify-between items-center">
-            <GoBackBtn />
-            <h1 className="text-lg"><b>AGENTS</b></h1>
+    <>
+      <div className="max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-headline-lg font-bold text-on-surface">Agents</h1>
+            <p className="text-body-md text-on-surface-variant">Gestion d'agents</p>
           </div>
-          <Link href={"/agents/add"} className="border border-gray-500 rounded-md px-4 py-2 text-sm flex items-center hover:bg-blue-800 hover:text-white transition-colors justify-center">
-            <Plus />
-            <span>Ajouter</span>
+          <Link
+            href="/agents/new"
+            className="flex items-center gap-2 bg-secondary text-on-secondary px-5 py-2.5 rounded-lg font-medium hover:bg-secondary/90 transition-colors shadow-sm whitespace-nowrap"
+          >
+            <CirclePlus />
+            Add Agent
           </Link>
         </div>
 
-        <div className="flex justify-between my-4">
+        {/* Stats */}
+        <AgentsStats agents={agents} />
+
+        {/* Filters */}
+        <div className="flex flex-wrap gap-3 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/20">
+          <div className="flex-1 min-w-[200px]">
             <input
               type="text"
-              placeholder="Tapez le nom du membre..."
-              className="border rounded-md px-4 py-2 text-md flex-1" 
-              onChange={(e) => setTerm(e.target.value)}
-            />                
+              placeholder="Recherche..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
+          </div>
+          {/* <select
+            value={zone}
+            onChange={(e) => setZone(e.target.value)}
+            className="px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+          >
+            <option value="">Toute Zone</option>
+            <option value="Goma">Goma</option>
+            <option value="Bukavu">Bukavu</option>
+            <option value="Kinshasa">Kinshasa</option>
+            <option value="Lubumbashi">Lubumbashi</option>
+          </select> */}
+          {/* <button
+            onClick={() => { setSearch(''); setZone(''); setStatus('') }}
+            className="px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors"
+          >
+            Clear
+          </button> */}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-          {
-            agents?.map((user) => (
-              <Link href={`/agents`} key={user?.id} className="border border-slate-300 cursor-pointer bg-slate-100 hover:bg-slate-200 rounded-md">
-              {/* <Link href={`/agents/${user?.id}`} key={user?.id} className="border border-slate-300 cursor-pointer bg-slate-100 hover:bg-slate-200 rounded-md"> */}
-                <div className="container p-5">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-20 h-20 rounded-full bg-indigo-100 text-indigo-400 flex justify-center items-center mb-4">
-                      <User size={50} />
-                    </div>
-                  </div>
-                  <div className="text-2xl font-display font-bold text-foreground">{user?.firstname}  {user?.lastname}</div>
-                  <div className="text-xs text-muted-foreground mt-1">ID : {user?.agentId}</div>
-                  
-                 {/* <span className="text-lg font-semibold text-center">{user?.firstname} {user?.lastname}</span>
-                 <span className="text-sm text-center">{user?.phoneNumber}</span>
-                 <span className="text-sm text-center">{user?.gender}</span> */}
-                </div>
-              </Link>
-            ))
-          }
+        {/* Table */}
+        <div className="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/20 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[700px]">
+              <thead>
+                <tr className="bg-surface-container-low border-b border-outline-variant/20">
+                  <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider">Agent</th>
+                  <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider hidden md:table-cell">Zone</th>
+                  <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider hidden sm:table-cell">Status</th>
+                  {/* <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider hidden lg:table-cell">Performance</th> */}
+                  <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-outline-variant/10">
+                {loading ? (
+                  <tr>
+                    <td colSpan={5} className="text-center py-8 text-on-surface-variant">Loading...</td>
+                  </tr>
+                ) : agents.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="text-center py-8 text-on-surface-variant">No agents found</td>
+                  </tr>
+                ) : (
+                  agents.map((agent) => (
+                    <tr key={agent.id} className="hover:bg-surface-container-low/50 transition-colors group">
+                      <td className="px-4 md:px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          {agent.photo ? (
+                            <img src={agent.photo} alt={agent.firstName} className="w-10 h-10 rounded-full object-cover" />
+                          ) : (
+                            <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm shrink-0">
+                              {agent.firstName[0]}{agent.lastName[0]}
+                            </div>
+                          )}
+                          <div>
+                            <div className="font-medium text-on-surface">{agent.firstName} {agent.lastName}</div>
+                            <div className="text-xs text-on-surface-variant">{agent.agentId}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 md:px-6 py-4 hidden md:table-cell">
+                        <div className="flex items-center gap-1 text-on-surface-variant">
+                          <MapPin />
+                          <span>{agent.zone}</span>
+                        </div>
+                      </td>
+                      <td className="px-4 md:px-6 py-4 hidden sm:table-cell">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
+                          <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                          Active
+                        </span>
+                      </td>
+                      {/* <td className="px-4 md:px-6 py-4 hidden lg:table-cell">
+                        <div className="flex items-center gap-2">
+                          <div className="w-full bg-surface-variant rounded-full h-1.5 max-w-[80px]">
+                            <div className="bg-secondary h-1.5 rounded-full" style={{ width: '85%' }}></div>
+                          </div>
+                          <span className="text-xs font-medium">85%</span>
+                        </div>
+                      </td> */}
+                      <td className="px-4 md:px-6 py-4 text-right">
+                        <div className="flex items-center justify-end gap-1">
+                          <Link
+                            href={`/agents/${agent.id}`}
+                            className="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-surface-container-high transition-colors"
+                          >
+                            <Eye />
+                          </Link>
+                          {/* <Link
+                            href={`/agents/${agent.id}/edit`}
+                            className="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-surface-container-high transition-colors"
+                          >
+                            <span className="material-symbols-outlined text-sm">edit</span>
+                          </Link> */}
+                          {/* <button
+                            onClick={() => handleDelete(agent.id)}
+                            className="text-on-surface-variant hover:text-error p-1 rounded-full hover:bg-surface-container-high transition-colors"
+                          >
+                            <span className="material-symbols-outlined text-sm">delete</span>
+                          </button> */}
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </main>
-    </div>
-  );
+      </div>
+    </>
+  )
 }

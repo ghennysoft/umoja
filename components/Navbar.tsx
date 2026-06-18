@@ -1,61 +1,63 @@
-"use client"
+'use client'
 
-import { signOut, useSession } from "next-auth/react";
-import { Bell, LayoutDashboard, User2} from "lucide-react";
-import { useState } from "react";
+import Image from 'next/image'
+import { Menu, Search, Bell, ChevronDown } from 'lucide-react'
 
-export default function Navbar() {
-  const { data: session } = useSession();
-  const [logoutModal, setLogoutModal] = useState(false);
-  const handleLogout = ()=>{
-    signOut(); 
-    location.href="/"
-  }
+interface TopAppBarProps {
+  onMenuClick: () => void
+}
+
+export default function TopAppBar({ onMenuClick }: TopAppBarProps) {
   return (
-      <header className="w-full">
-        <div className="container mx-auto px-4 py-3">
-            <nav className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <LayoutDashboard className="hidden" />
-                <span className="text-xl font-bold">Administration</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <button 
-                  className="py-2 rounded-lg font-medium transition cursor-pointer"
-                  onClick={()=>setLogoutModal(!logoutModal)}
-                >
-                  <Bell size={20} />
-                </button>
-                <button 
-                  className="py-2 rounded-lg font-medium transition cursor-pointer"
-                  onClick={()=>setLogoutModal(!logoutModal)}
-                >
-                  <User2 size={20} />
-                </button>
-                <span className="text-sm text-gray-600 hidden sm:inline">{session?.user?.name}</span>
-              </div>
-            </nav>
+    <header className="h-16 md:h-20 bg-surface border-b border-outline-variant/40 flex items-center justify-between px-4 md:px-8 z-10 shrink-0">
+      <div className="flex items-center gap-2 md:gap-4 min-w-0">
+        {/* Bouton menu mobile */}
+        <button 
+          onClick={onMenuClick}
+          className="text-on-surface-variant hover:bg-surface-container rounded-full p-2 transition-colors lg:hidden flex-shrink-0"
+          aria-label="Ouvrir le menu"
+        >
+          <Menu />
+        </button>
+        
+        <div className="hidden sm:block min-w-0">
+          <h2 className="text-base md:text-xl font-bold text-on-surface flex items-center gap-2 truncate">
+            Bienvenue, Administrateur 👋
+          </h2>
+          <p className="text-xs md:text-sm text-on-surface-variant truncate">Tableau de bord</p>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
+        <div className="flex items-center gap-1 md:gap-3 text-on-surface-variant">
+          <button className="hover:bg-surface-container p-1.5 md:p-2 rounded-full transition-colors">
+            <Search />
+          </button>
+          <div className="relative">
+            <button className="hover:bg-surface-container p-1.5 md:p-2 rounded-full transition-colors">
+              <Bell />
+            </button>
+            <span className="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+          </div>
         </div>
 
-        {
-          logoutModal && (
-            <div className="fixed top-0 flex justify-center items-center h-screen w-screen bg-[rgba(8,8,8,0.26)] p-5">
-              <div className="flex flex-col p-5 bg-white rounded-2xl">
-                <h3 className="text-2xl mb-10 text-gray-950">Voulez-vous vous déconnecter ?</h3>
-                <div className="flex gap-2">
-                  <button 
-                    className="px-4 py-2 rounded-lg shadow-lg text-gray-950 font-medium transition cursor-pointer"
-                    onClick={()=>setLogoutModal(!logoutModal)}
-                  >Annuler</button>
-                  <button 
-                    className="px-4 py-2 rounded-lg bg-red-700 text-white font-medium transition cursor-pointer"
-                    onClick={handleLogout}
-                  >Confirmer</button>
-                </div>
-              </div>
-            </div>
-          )
-        }
+        <div className="h-6 md:h-8 w-px bg-outline-variant/40 hidden sm:block"></div>
+
+        <div className="flex items-center gap-1 md:gap-3 cursor-pointer flex-shrink-0">
+          <Image
+            alt="Admin Avatar"
+            className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-outline-variant"
+            src="/logo.png"
+            width={40}
+            height={40}
+          />
+          <div className="hidden md:block text-right">
+            <p className="text-sm font-bold text-on-surface">Administrateur</p>
+            <p className="text-xs text-secondary font-medium">Super Admin</p>
+          </div>
+          <ChevronDown />
+        </div>
+      </div>
     </header>
-  );
+  )
 }

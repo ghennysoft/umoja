@@ -9,18 +9,78 @@
 * 🟢 You can import this file directly.
 */
 
-export const Role = {
-  Client: 'Client',
-  Agent: 'Agent',
-  Admin: 'Admin'
+export const UserRole = {
+  ADMIN: 'ADMIN',
+  AGENT: 'AGENT',
+  MEMBER: 'MEMBER'
 } as const
 
-export type Role = (typeof Role)[keyof typeof Role]
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 
 export const Gender = {
-  Homme: 'Homme',
-  Femme: 'Femme'
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
 } as const
 
 export type Gender = (typeof Gender)[keyof typeof Gender]
+
+
+export const MaritalStatus = {
+  MARRIED: 'MARRIED',
+  SINGLE: 'SINGLE',
+  WIDOWED: 'WIDOWED',
+  DIVORCED: 'DIVORCED'
+} as const
+
+export type MaritalStatus = (typeof MaritalStatus)[keyof typeof MaritalStatus]
+
+
+export const IdType = {
+  NATIONAL_ID: 'NATIONAL_ID',
+  PASSPORT: 'PASSPORT',
+  DRIVER_LICENSE: 'DRIVER_LICENSE',
+  OTHER: 'OTHER'
+} as const
+
+export type IdType = (typeof IdType)[keyof typeof IdType]
+
+
+export const MissionStatus = {
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type MissionStatus = (typeof MissionStatus)[keyof typeof MissionStatus]
+
+
+export const ActivityType = {
+  FIELD_VISIT: 'FIELD_VISIT',
+  MEETING: 'MEETING',
+  TRAINING: 'TRAINING',
+  DISTRIBUTION: 'DISTRIBUTION',
+  OTHER: 'OTHER'
+} as const
+
+export type ActivityType = (typeof ActivityType)[keyof typeof ActivityType]
+
+
+export const ActivityStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ActivityStatus = (typeof ActivityStatus)[keyof typeof ActivityStatus]
+
+
+export const ReportStatus = {
+  DRAFT: 'DRAFT',
+  SUBMITTED: 'SUBMITTED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ReportStatus = (typeof ReportStatus)[keyof typeof ReportStatus]

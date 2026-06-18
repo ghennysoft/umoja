@@ -27,22 +27,32 @@ export type AggregateAgent = {
 export type AgentMinAggregateOutputType = {
   id: string | null
   agentId: string | null
-  firstname: string | null
-  lastname: string | null
-  nickname: string | null
-  email: string | null
-  phoneNumber: string | null
+  firstName: string | null
+  lastName: string | null
+  postName: string | null
+  photo: string | null
+  birthDate: Date | null
+  birthPlace: string | null
   gender: $Enums.Gender | null
-  placeOfBirth: string | null
-  dateOfBirth: string | null
   nationality: string | null
+  provinceOrigin: string | null
+  maritalStatus: $Enums.MaritalStatus | null
   country: string | null
-  state: string | null
   city: string | null
-  township: string | null
-  quarter: string | null
+  commune: string | null
   address: string | null
-  createdBy: string | null
+  phone: string | null
+  whatsapp: string | null
+  email: string | null
+  hasId: boolean | null
+  idType: $Enums.IdType | null
+  idNumber: string | null
+  idExpirationDate: Date | null
+  idPhoto: string | null
+  function: string | null
+  zone: string | null
+  startDate: Date | null
+  supervisor: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,22 +60,32 @@ export type AgentMinAggregateOutputType = {
 export type AgentMaxAggregateOutputType = {
   id: string | null
   agentId: string | null
-  firstname: string | null
-  lastname: string | null
-  nickname: string | null
-  email: string | null
-  phoneNumber: string | null
+  firstName: string | null
+  lastName: string | null
+  postName: string | null
+  photo: string | null
+  birthDate: Date | null
+  birthPlace: string | null
   gender: $Enums.Gender | null
-  placeOfBirth: string | null
-  dateOfBirth: string | null
   nationality: string | null
+  provinceOrigin: string | null
+  maritalStatus: $Enums.MaritalStatus | null
   country: string | null
-  state: string | null
   city: string | null
-  township: string | null
-  quarter: string | null
+  commune: string | null
   address: string | null
-  createdBy: string | null
+  phone: string | null
+  whatsapp: string | null
+  email: string | null
+  hasId: boolean | null
+  idType: $Enums.IdType | null
+  idNumber: string | null
+  idExpirationDate: Date | null
+  idPhoto: string | null
+  function: string | null
+  zone: string | null
+  startDate: Date | null
+  supervisor: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -73,22 +93,32 @@ export type AgentMaxAggregateOutputType = {
 export type AgentCountAggregateOutputType = {
   id: number
   agentId: number
-  firstname: number
-  lastname: number
-  nickname: number
-  email: number
-  phoneNumber: number
+  firstName: number
+  lastName: number
+  postName: number
+  photo: number
+  birthDate: number
+  birthPlace: number
   gender: number
-  placeOfBirth: number
-  dateOfBirth: number
   nationality: number
+  provinceOrigin: number
+  maritalStatus: number
   country: number
-  state: number
   city: number
-  township: number
-  quarter: number
+  commune: number
   address: number
-  createdBy: number
+  phone: number
+  whatsapp: number
+  email: number
+  hasId: number
+  idType: number
+  idNumber: number
+  idExpirationDate: number
+  idPhoto: number
+  function: number
+  zone: number
+  startDate: number
+  supervisor: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -98,22 +128,32 @@ export type AgentCountAggregateOutputType = {
 export type AgentMinAggregateInputType = {
   id?: true
   agentId?: true
-  firstname?: true
-  lastname?: true
-  nickname?: true
-  email?: true
-  phoneNumber?: true
+  firstName?: true
+  lastName?: true
+  postName?: true
+  photo?: true
+  birthDate?: true
+  birthPlace?: true
   gender?: true
-  placeOfBirth?: true
-  dateOfBirth?: true
   nationality?: true
+  provinceOrigin?: true
+  maritalStatus?: true
   country?: true
-  state?: true
   city?: true
-  township?: true
-  quarter?: true
+  commune?: true
   address?: true
-  createdBy?: true
+  phone?: true
+  whatsapp?: true
+  email?: true
+  hasId?: true
+  idType?: true
+  idNumber?: true
+  idExpirationDate?: true
+  idPhoto?: true
+  function?: true
+  zone?: true
+  startDate?: true
+  supervisor?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -121,22 +161,32 @@ export type AgentMinAggregateInputType = {
 export type AgentMaxAggregateInputType = {
   id?: true
   agentId?: true
-  firstname?: true
-  lastname?: true
-  nickname?: true
-  email?: true
-  phoneNumber?: true
+  firstName?: true
+  lastName?: true
+  postName?: true
+  photo?: true
+  birthDate?: true
+  birthPlace?: true
   gender?: true
-  placeOfBirth?: true
-  dateOfBirth?: true
   nationality?: true
+  provinceOrigin?: true
+  maritalStatus?: true
   country?: true
-  state?: true
   city?: true
-  township?: true
-  quarter?: true
+  commune?: true
   address?: true
-  createdBy?: true
+  phone?: true
+  whatsapp?: true
+  email?: true
+  hasId?: true
+  idType?: true
+  idNumber?: true
+  idExpirationDate?: true
+  idPhoto?: true
+  function?: true
+  zone?: true
+  startDate?: true
+  supervisor?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -144,22 +194,32 @@ export type AgentMaxAggregateInputType = {
 export type AgentCountAggregateInputType = {
   id?: true
   agentId?: true
-  firstname?: true
-  lastname?: true
-  nickname?: true
-  email?: true
-  phoneNumber?: true
+  firstName?: true
+  lastName?: true
+  postName?: true
+  photo?: true
+  birthDate?: true
+  birthPlace?: true
   gender?: true
-  placeOfBirth?: true
-  dateOfBirth?: true
   nationality?: true
+  provinceOrigin?: true
+  maritalStatus?: true
   country?: true
-  state?: true
   city?: true
-  township?: true
-  quarter?: true
+  commune?: true
   address?: true
-  createdBy?: true
+  phone?: true
+  whatsapp?: true
+  email?: true
+  hasId?: true
+  idType?: true
+  idNumber?: true
+  idExpirationDate?: true
+  idPhoto?: true
+  function?: true
+  zone?: true
+  startDate?: true
+  supervisor?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -240,22 +300,32 @@ export type AgentGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type AgentGroupByOutputType = {
   id: string
   agentId: string
-  firstname: string
-  lastname: string
-  nickname: string
-  email: string | null
-  phoneNumber: string
+  firstName: string
+  lastName: string
+  postName: string | null
+  photo: string | null
+  birthDate: Date
+  birthPlace: string
   gender: $Enums.Gender
-  placeOfBirth: string
-  dateOfBirth: string
   nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
   country: string
-  state: string
   city: string
-  township: string
-  quarter: string
+  commune: string
   address: string
-  createdBy: string | null
+  phone: string
+  whatsapp: string | null
+  email: string | null
+  hasId: boolean
+  idType: $Enums.IdType | null
+  idNumber: string | null
+  idExpirationDate: Date | null
+  idPhoto: string | null
+  function: string
+  zone: string
+  startDate: Date
+  supervisor: string | null
   createdAt: Date
   updatedAt: Date
   _count: AgentCountAggregateOutputType | null
@@ -284,94 +354,143 @@ export type AgentWhereInput = {
   NOT?: Prisma.AgentWhereInput | Prisma.AgentWhereInput[]
   id?: Prisma.StringFilter<"Agent"> | string
   agentId?: Prisma.StringFilter<"Agent"> | string
-  firstname?: Prisma.StringFilter<"Agent"> | string
-  lastname?: Prisma.StringFilter<"Agent"> | string
-  nickname?: Prisma.StringFilter<"Agent"> | string
-  email?: Prisma.StringNullableFilter<"Agent"> | string | null
-  phoneNumber?: Prisma.StringFilter<"Agent"> | string
+  firstName?: Prisma.StringFilter<"Agent"> | string
+  lastName?: Prisma.StringFilter<"Agent"> | string
+  postName?: Prisma.StringNullableFilter<"Agent"> | string | null
+  photo?: Prisma.StringNullableFilter<"Agent"> | string | null
+  birthDate?: Prisma.DateTimeFilter<"Agent"> | Date | string
+  birthPlace?: Prisma.StringFilter<"Agent"> | string
   gender?: Prisma.EnumGenderFilter<"Agent"> | $Enums.Gender
-  placeOfBirth?: Prisma.StringFilter<"Agent"> | string
-  dateOfBirth?: Prisma.StringFilter<"Agent"> | string
   nationality?: Prisma.StringFilter<"Agent"> | string
+  provinceOrigin?: Prisma.StringFilter<"Agent"> | string
+  maritalStatus?: Prisma.EnumMaritalStatusFilter<"Agent"> | $Enums.MaritalStatus
   country?: Prisma.StringFilter<"Agent"> | string
-  state?: Prisma.StringFilter<"Agent"> | string
   city?: Prisma.StringFilter<"Agent"> | string
-  township?: Prisma.StringFilter<"Agent"> | string
-  quarter?: Prisma.StringFilter<"Agent"> | string
+  commune?: Prisma.StringFilter<"Agent"> | string
   address?: Prisma.StringFilter<"Agent"> | string
-  createdBy?: Prisma.StringNullableFilter<"Agent"> | string | null
+  phone?: Prisma.StringFilter<"Agent"> | string
+  whatsapp?: Prisma.StringNullableFilter<"Agent"> | string | null
+  email?: Prisma.StringNullableFilter<"Agent"> | string | null
+  hasId?: Prisma.BoolFilter<"Agent"> | boolean
+  idType?: Prisma.EnumIdTypeNullableFilter<"Agent"> | $Enums.IdType | null
+  idNumber?: Prisma.StringNullableFilter<"Agent"> | string | null
+  idExpirationDate?: Prisma.DateTimeNullableFilter<"Agent"> | Date | string | null
+  idPhoto?: Prisma.StringNullableFilter<"Agent"> | string | null
+  function?: Prisma.StringFilter<"Agent"> | string
+  zone?: Prisma.StringFilter<"Agent"> | string
+  startDate?: Prisma.DateTimeFilter<"Agent"> | Date | string
+  supervisor?: Prisma.StringNullableFilter<"Agent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Agent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Agent"> | Date | string
+  missions?: Prisma.MissionListRelationFilter
+  activities?: Prisma.ActivityListRelationFilter
+  reports?: Prisma.ReportListRelationFilter
 }
 
 export type AgentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   agentId?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  nickname?: Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  postName?: Prisma.SortOrderInput | Prisma.SortOrder
+  photo?: Prisma.SortOrderInput | Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
+  birthPlace?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  placeOfBirth?: Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrder
   nationality?: Prisma.SortOrder
+  provinceOrigin?: Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrder
   country?: Prisma.SortOrder
-  state?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  township?: Prisma.SortOrder
-  quarter?: Prisma.SortOrder
+  commune?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  whatsapp?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  hasId?: Prisma.SortOrder
+  idType?: Prisma.SortOrderInput | Prisma.SortOrder
+  idNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  idExpirationDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  idPhoto?: Prisma.SortOrderInput | Prisma.SortOrder
+  function?: Prisma.SortOrder
+  zone?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  supervisor?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  missions?: Prisma.MissionOrderByRelationAggregateInput
+  activities?: Prisma.ActivityOrderByRelationAggregateInput
+  reports?: Prisma.ReportOrderByRelationAggregateInput
 }
 
 export type AgentWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  agentId?: string
   AND?: Prisma.AgentWhereInput | Prisma.AgentWhereInput[]
   OR?: Prisma.AgentWhereInput[]
   NOT?: Prisma.AgentWhereInput | Prisma.AgentWhereInput[]
-  agentId?: Prisma.StringFilter<"Agent"> | string
-  firstname?: Prisma.StringFilter<"Agent"> | string
-  lastname?: Prisma.StringFilter<"Agent"> | string
-  nickname?: Prisma.StringFilter<"Agent"> | string
-  email?: Prisma.StringNullableFilter<"Agent"> | string | null
-  phoneNumber?: Prisma.StringFilter<"Agent"> | string
+  firstName?: Prisma.StringFilter<"Agent"> | string
+  lastName?: Prisma.StringFilter<"Agent"> | string
+  postName?: Prisma.StringNullableFilter<"Agent"> | string | null
+  photo?: Prisma.StringNullableFilter<"Agent"> | string | null
+  birthDate?: Prisma.DateTimeFilter<"Agent"> | Date | string
+  birthPlace?: Prisma.StringFilter<"Agent"> | string
   gender?: Prisma.EnumGenderFilter<"Agent"> | $Enums.Gender
-  placeOfBirth?: Prisma.StringFilter<"Agent"> | string
-  dateOfBirth?: Prisma.StringFilter<"Agent"> | string
   nationality?: Prisma.StringFilter<"Agent"> | string
+  provinceOrigin?: Prisma.StringFilter<"Agent"> | string
+  maritalStatus?: Prisma.EnumMaritalStatusFilter<"Agent"> | $Enums.MaritalStatus
   country?: Prisma.StringFilter<"Agent"> | string
-  state?: Prisma.StringFilter<"Agent"> | string
   city?: Prisma.StringFilter<"Agent"> | string
-  township?: Prisma.StringFilter<"Agent"> | string
-  quarter?: Prisma.StringFilter<"Agent"> | string
+  commune?: Prisma.StringFilter<"Agent"> | string
   address?: Prisma.StringFilter<"Agent"> | string
-  createdBy?: Prisma.StringNullableFilter<"Agent"> | string | null
+  phone?: Prisma.StringFilter<"Agent"> | string
+  whatsapp?: Prisma.StringNullableFilter<"Agent"> | string | null
+  email?: Prisma.StringNullableFilter<"Agent"> | string | null
+  hasId?: Prisma.BoolFilter<"Agent"> | boolean
+  idType?: Prisma.EnumIdTypeNullableFilter<"Agent"> | $Enums.IdType | null
+  idNumber?: Prisma.StringNullableFilter<"Agent"> | string | null
+  idExpirationDate?: Prisma.DateTimeNullableFilter<"Agent"> | Date | string | null
+  idPhoto?: Prisma.StringNullableFilter<"Agent"> | string | null
+  function?: Prisma.StringFilter<"Agent"> | string
+  zone?: Prisma.StringFilter<"Agent"> | string
+  startDate?: Prisma.DateTimeFilter<"Agent"> | Date | string
+  supervisor?: Prisma.StringNullableFilter<"Agent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Agent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Agent"> | Date | string
-}, "id">
+  missions?: Prisma.MissionListRelationFilter
+  activities?: Prisma.ActivityListRelationFilter
+  reports?: Prisma.ReportListRelationFilter
+}, "id" | "agentId">
 
 export type AgentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   agentId?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  nickname?: Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  postName?: Prisma.SortOrderInput | Prisma.SortOrder
+  photo?: Prisma.SortOrderInput | Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
+  birthPlace?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  placeOfBirth?: Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrder
   nationality?: Prisma.SortOrder
+  provinceOrigin?: Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrder
   country?: Prisma.SortOrder
-  state?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  township?: Prisma.SortOrder
-  quarter?: Prisma.SortOrder
+  commune?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  whatsapp?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  hasId?: Prisma.SortOrder
+  idType?: Prisma.SortOrderInput | Prisma.SortOrder
+  idNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  idExpirationDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  idPhoto?: Prisma.SortOrderInput | Prisma.SortOrder
+  function?: Prisma.SortOrder
+  zone?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  supervisor?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AgentCountOrderByAggregateInput
@@ -385,22 +504,32 @@ export type AgentScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AgentScalarWhereWithAggregatesInput | Prisma.AgentScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   agentId?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  firstname?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  lastname?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  nickname?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  email?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
-  phoneNumber?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  firstName?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  lastName?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  postName?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
+  photo?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
+  birthDate?: Prisma.DateTimeWithAggregatesFilter<"Agent"> | Date | string
+  birthPlace?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   gender?: Prisma.EnumGenderWithAggregatesFilter<"Agent"> | $Enums.Gender
-  placeOfBirth?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  dateOfBirth?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   nationality?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  provinceOrigin?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  maritalStatus?: Prisma.EnumMaritalStatusWithAggregatesFilter<"Agent"> | $Enums.MaritalStatus
   country?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  state?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   city?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  township?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  quarter?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  commune?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   address?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  createdBy?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
+  phone?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  whatsapp?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
+  email?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
+  hasId?: Prisma.BoolWithAggregatesFilter<"Agent"> | boolean
+  idType?: Prisma.EnumIdTypeNullableWithAggregatesFilter<"Agent"> | $Enums.IdType | null
+  idNumber?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
+  idExpirationDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Agent"> | Date | string | null
+  idPhoto?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
+  function?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  zone?: Prisma.StringWithAggregatesFilter<"Agent"> | string
+  startDate?: Prisma.DateTimeWithAggregatesFilter<"Agent"> | Date | string
+  supervisor?: Prisma.StringNullableWithAggregatesFilter<"Agent"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Agent"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Agent"> | Date | string
 }
@@ -408,114 +537,176 @@ export type AgentScalarWhereWithAggregatesInput = {
 export type AgentCreateInput = {
   id?: string
   agentId: string
-  firstname: string
-  lastname: string
-  nickname: string
-  email?: string | null
-  phoneNumber: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
   gender: $Enums.Gender
-  placeOfBirth: string
-  dateOfBirth: string
   nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
   country: string
-  state: string
   city: string
-  township: string
-  quarter: string
+  commune: string
   address: string
-  createdBy?: string | null
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  missions?: Prisma.MissionCreateNestedManyWithoutAgentInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutAgentInput
+  reports?: Prisma.ReportCreateNestedManyWithoutAgentInput
 }
 
 export type AgentUncheckedCreateInput = {
   id?: string
   agentId: string
-  firstname: string
-  lastname: string
-  nickname: string
-  email?: string | null
-  phoneNumber: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
   gender: $Enums.Gender
-  placeOfBirth: string
-  dateOfBirth: string
   nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
   country: string
-  state: string
   city: string
-  township: string
-  quarter: string
+  commune: string
   address: string
-  createdBy?: string | null
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutAgentInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutAgentInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAgentInput
 }
 
 export type AgentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   agentId?: Prisma.StringFieldUpdateOperationsInput | string
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  nickname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  placeOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  dateOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
   country?: Prisma.StringFieldUpdateOperationsInput | string
-  state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
-  township?: Prisma.StringFieldUpdateOperationsInput | string
-  quarter?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  missions?: Prisma.MissionUpdateManyWithoutAgentNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutAgentNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutAgentNestedInput
 }
 
 export type AgentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   agentId?: Prisma.StringFieldUpdateOperationsInput | string
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  nickname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  placeOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  dateOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
   country?: Prisma.StringFieldUpdateOperationsInput | string
-  state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
-  township?: Prisma.StringFieldUpdateOperationsInput | string
-  quarter?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  missions?: Prisma.MissionUncheckedUpdateManyWithoutAgentNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutAgentNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutAgentNestedInput
 }
 
 export type AgentCreateManyInput = {
   id?: string
   agentId: string
-  firstname: string
-  lastname: string
-  nickname: string
-  email?: string | null
-  phoneNumber: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
   gender: $Enums.Gender
-  placeOfBirth: string
-  dateOfBirth: string
   nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
   country: string
-  state: string
   city: string
-  township: string
-  quarter: string
+  commune: string
   address: string
-  createdBy?: string | null
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -523,22 +714,32 @@ export type AgentCreateManyInput = {
 export type AgentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   agentId?: Prisma.StringFieldUpdateOperationsInput | string
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  nickname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  placeOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  dateOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
   country?: Prisma.StringFieldUpdateOperationsInput | string
-  state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
-  township?: Prisma.StringFieldUpdateOperationsInput | string
-  quarter?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -546,22 +747,32 @@ export type AgentUpdateManyMutationInput = {
 export type AgentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   agentId?: Prisma.StringFieldUpdateOperationsInput | string
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  nickname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-  placeOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
-  dateOfBirth?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
   country?: Prisma.StringFieldUpdateOperationsInput | string
-  state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
-  township?: Prisma.StringFieldUpdateOperationsInput | string
-  quarter?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -569,22 +780,32 @@ export type AgentUncheckedUpdateManyInput = {
 export type AgentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   agentId?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  nickname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  postName?: Prisma.SortOrder
+  photo?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
+  birthPlace?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  placeOfBirth?: Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrder
   nationality?: Prisma.SortOrder
+  provinceOrigin?: Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrder
   country?: Prisma.SortOrder
-  state?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  township?: Prisma.SortOrder
-  quarter?: Prisma.SortOrder
+  commune?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  whatsapp?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  hasId?: Prisma.SortOrder
+  idType?: Prisma.SortOrder
+  idNumber?: Prisma.SortOrder
+  idExpirationDate?: Prisma.SortOrder
+  idPhoto?: Prisma.SortOrder
+  function?: Prisma.SortOrder
+  zone?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  supervisor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -592,22 +813,32 @@ export type AgentCountOrderByAggregateInput = {
 export type AgentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   agentId?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  nickname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  postName?: Prisma.SortOrder
+  photo?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
+  birthPlace?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  placeOfBirth?: Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrder
   nationality?: Prisma.SortOrder
+  provinceOrigin?: Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrder
   country?: Prisma.SortOrder
-  state?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  township?: Prisma.SortOrder
-  quarter?: Prisma.SortOrder
+  commune?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  whatsapp?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  hasId?: Prisma.SortOrder
+  idType?: Prisma.SortOrder
+  idNumber?: Prisma.SortOrder
+  idExpirationDate?: Prisma.SortOrder
+  idPhoto?: Prisma.SortOrder
+  function?: Prisma.SortOrder
+  zone?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  supervisor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -615,74 +846,686 @@ export type AgentMaxOrderByAggregateInput = {
 export type AgentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   agentId?: Prisma.SortOrder
-  firstname?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  nickname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  postName?: Prisma.SortOrder
+  photo?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
+  birthPlace?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  placeOfBirth?: Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrder
   nationality?: Prisma.SortOrder
+  provinceOrigin?: Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrder
   country?: Prisma.SortOrder
-  state?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  township?: Prisma.SortOrder
-  quarter?: Prisma.SortOrder
+  commune?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  whatsapp?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  hasId?: Prisma.SortOrder
+  idType?: Prisma.SortOrder
+  idNumber?: Prisma.SortOrder
+  idExpirationDate?: Prisma.SortOrder
+  idPhoto?: Prisma.SortOrder
+  function?: Prisma.SortOrder
+  zone?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  supervisor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type AgentScalarRelationFilter = {
+  is?: Prisma.AgentWhereInput
+  isNot?: Prisma.AgentWhereInput
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type EnumGenderFieldUpdateOperationsInput = {
   set?: $Enums.Gender
 }
 
+export type EnumMaritalStatusFieldUpdateOperationsInput = {
+  set?: $Enums.MaritalStatus
+}
+
+export type NullableEnumIdTypeFieldUpdateOperationsInput = {
+  set?: $Enums.IdType | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type AgentCreateNestedOneWithoutMissionsInput = {
+  create?: Prisma.XOR<Prisma.AgentCreateWithoutMissionsInput, Prisma.AgentUncheckedCreateWithoutMissionsInput>
+  connectOrCreate?: Prisma.AgentCreateOrConnectWithoutMissionsInput
+  connect?: Prisma.AgentWhereUniqueInput
+}
+
+export type AgentUpdateOneRequiredWithoutMissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.AgentCreateWithoutMissionsInput, Prisma.AgentUncheckedCreateWithoutMissionsInput>
+  connectOrCreate?: Prisma.AgentCreateOrConnectWithoutMissionsInput
+  upsert?: Prisma.AgentUpsertWithoutMissionsInput
+  connect?: Prisma.AgentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AgentUpdateToOneWithWhereWithoutMissionsInput, Prisma.AgentUpdateWithoutMissionsInput>, Prisma.AgentUncheckedUpdateWithoutMissionsInput>
+}
+
+export type AgentCreateNestedOneWithoutActivitiesInput = {
+  create?: Prisma.XOR<Prisma.AgentCreateWithoutActivitiesInput, Prisma.AgentUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.AgentCreateOrConnectWithoutActivitiesInput
+  connect?: Prisma.AgentWhereUniqueInput
+}
+
+export type AgentUpdateOneRequiredWithoutActivitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.AgentCreateWithoutActivitiesInput, Prisma.AgentUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.AgentCreateOrConnectWithoutActivitiesInput
+  upsert?: Prisma.AgentUpsertWithoutActivitiesInput
+  connect?: Prisma.AgentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AgentUpdateToOneWithWhereWithoutActivitiesInput, Prisma.AgentUpdateWithoutActivitiesInput>, Prisma.AgentUncheckedUpdateWithoutActivitiesInput>
+}
+
+export type AgentCreateNestedOneWithoutReportsInput = {
+  create?: Prisma.XOR<Prisma.AgentCreateWithoutReportsInput, Prisma.AgentUncheckedCreateWithoutReportsInput>
+  connectOrCreate?: Prisma.AgentCreateOrConnectWithoutReportsInput
+  connect?: Prisma.AgentWhereUniqueInput
+}
+
+export type AgentUpdateOneRequiredWithoutReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.AgentCreateWithoutReportsInput, Prisma.AgentUncheckedCreateWithoutReportsInput>
+  connectOrCreate?: Prisma.AgentCreateOrConnectWithoutReportsInput
+  upsert?: Prisma.AgentUpsertWithoutReportsInput
+  connect?: Prisma.AgentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AgentUpdateToOneWithWhereWithoutReportsInput, Prisma.AgentUpdateWithoutReportsInput>, Prisma.AgentUncheckedUpdateWithoutReportsInput>
+}
+
+export type AgentCreateWithoutMissionsInput = {
+  id?: string
+  agentId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  activities?: Prisma.ActivityCreateNestedManyWithoutAgentInput
+  reports?: Prisma.ReportCreateNestedManyWithoutAgentInput
+}
+
+export type AgentUncheckedCreateWithoutMissionsInput = {
+  id?: string
+  agentId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutAgentInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAgentInput
+}
+
+export type AgentCreateOrConnectWithoutMissionsInput = {
+  where: Prisma.AgentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AgentCreateWithoutMissionsInput, Prisma.AgentUncheckedCreateWithoutMissionsInput>
+}
+
+export type AgentUpsertWithoutMissionsInput = {
+  update: Prisma.XOR<Prisma.AgentUpdateWithoutMissionsInput, Prisma.AgentUncheckedUpdateWithoutMissionsInput>
+  create: Prisma.XOR<Prisma.AgentCreateWithoutMissionsInput, Prisma.AgentUncheckedCreateWithoutMissionsInput>
+  where?: Prisma.AgentWhereInput
+}
+
+export type AgentUpdateToOneWithWhereWithoutMissionsInput = {
+  where?: Prisma.AgentWhereInput
+  data: Prisma.XOR<Prisma.AgentUpdateWithoutMissionsInput, Prisma.AgentUncheckedUpdateWithoutMissionsInput>
+}
+
+export type AgentUpdateWithoutMissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  agentId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activities?: Prisma.ActivityUpdateManyWithoutAgentNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutAgentNestedInput
+}
+
+export type AgentUncheckedUpdateWithoutMissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  agentId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutAgentNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutAgentNestedInput
+}
+
+export type AgentCreateWithoutActivitiesInput = {
+  id?: string
+  agentId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  missions?: Prisma.MissionCreateNestedManyWithoutAgentInput
+  reports?: Prisma.ReportCreateNestedManyWithoutAgentInput
+}
+
+export type AgentUncheckedCreateWithoutActivitiesInput = {
+  id?: string
+  agentId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutAgentInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAgentInput
+}
+
+export type AgentCreateOrConnectWithoutActivitiesInput = {
+  where: Prisma.AgentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AgentCreateWithoutActivitiesInput, Prisma.AgentUncheckedCreateWithoutActivitiesInput>
+}
+
+export type AgentUpsertWithoutActivitiesInput = {
+  update: Prisma.XOR<Prisma.AgentUpdateWithoutActivitiesInput, Prisma.AgentUncheckedUpdateWithoutActivitiesInput>
+  create: Prisma.XOR<Prisma.AgentCreateWithoutActivitiesInput, Prisma.AgentUncheckedCreateWithoutActivitiesInput>
+  where?: Prisma.AgentWhereInput
+}
+
+export type AgentUpdateToOneWithWhereWithoutActivitiesInput = {
+  where?: Prisma.AgentWhereInput
+  data: Prisma.XOR<Prisma.AgentUpdateWithoutActivitiesInput, Prisma.AgentUncheckedUpdateWithoutActivitiesInput>
+}
+
+export type AgentUpdateWithoutActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  agentId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  missions?: Prisma.MissionUpdateManyWithoutAgentNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutAgentNestedInput
+}
+
+export type AgentUncheckedUpdateWithoutActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  agentId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  missions?: Prisma.MissionUncheckedUpdateManyWithoutAgentNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutAgentNestedInput
+}
+
+export type AgentCreateWithoutReportsInput = {
+  id?: string
+  agentId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  missions?: Prisma.MissionCreateNestedManyWithoutAgentInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutAgentInput
+}
+
+export type AgentUncheckedCreateWithoutReportsInput = {
+  id?: string
+  agentId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasId?: boolean
+  idType?: $Enums.IdType | null
+  idNumber?: string | null
+  idExpirationDate?: Date | string | null
+  idPhoto?: string | null
+  function: string
+  zone: string
+  startDate: Date | string
+  supervisor?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutAgentInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutAgentInput
+}
+
+export type AgentCreateOrConnectWithoutReportsInput = {
+  where: Prisma.AgentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AgentCreateWithoutReportsInput, Prisma.AgentUncheckedCreateWithoutReportsInput>
+}
+
+export type AgentUpsertWithoutReportsInput = {
+  update: Prisma.XOR<Prisma.AgentUpdateWithoutReportsInput, Prisma.AgentUncheckedUpdateWithoutReportsInput>
+  create: Prisma.XOR<Prisma.AgentCreateWithoutReportsInput, Prisma.AgentUncheckedCreateWithoutReportsInput>
+  where?: Prisma.AgentWhereInput
+}
+
+export type AgentUpdateToOneWithWhereWithoutReportsInput = {
+  where?: Prisma.AgentWhereInput
+  data: Prisma.XOR<Prisma.AgentUpdateWithoutReportsInput, Prisma.AgentUncheckedUpdateWithoutReportsInput>
+}
+
+export type AgentUpdateWithoutReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  agentId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  missions?: Prisma.MissionUpdateManyWithoutAgentNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutAgentNestedInput
+}
+
+export type AgentUncheckedUpdateWithoutReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  agentId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasId?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  idType?: Prisma.NullableEnumIdTypeFieldUpdateOperationsInput | $Enums.IdType | null
+  idNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idExpirationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idPhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  function?: Prisma.StringFieldUpdateOperationsInput | string
+  zone?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supervisor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  missions?: Prisma.MissionUncheckedUpdateManyWithoutAgentNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutAgentNestedInput
+}
+
+
+/**
+ * Count Type AgentCountOutputType
+ */
+
+export type AgentCountOutputType = {
+  missions: number
+  activities: number
+  reports: number
+}
+
+export type AgentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  missions?: boolean | AgentCountOutputTypeCountMissionsArgs
+  activities?: boolean | AgentCountOutputTypeCountActivitiesArgs
+  reports?: boolean | AgentCountOutputTypeCountReportsArgs
+}
+
+/**
+ * AgentCountOutputType without action
+ */
+export type AgentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgentCountOutputType
+   */
+  select?: Prisma.AgentCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * AgentCountOutputType without action
+ */
+export type AgentCountOutputTypeCountMissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MissionWhereInput
+}
+
+/**
+ * AgentCountOutputType without action
+ */
+export type AgentCountOutputTypeCountActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityWhereInput
+}
+
+/**
+ * AgentCountOutputType without action
+ */
+export type AgentCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReportWhereInput
+}
 
 
 export type AgentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   agentId?: boolean
-  firstname?: boolean
-  lastname?: boolean
-  nickname?: boolean
-  email?: boolean
-  phoneNumber?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  postName?: boolean
+  photo?: boolean
+  birthDate?: boolean
+  birthPlace?: boolean
   gender?: boolean
-  placeOfBirth?: boolean
-  dateOfBirth?: boolean
   nationality?: boolean
+  provinceOrigin?: boolean
+  maritalStatus?: boolean
   country?: boolean
-  state?: boolean
   city?: boolean
-  township?: boolean
-  quarter?: boolean
+  commune?: boolean
   address?: boolean
-  createdBy?: boolean
+  phone?: boolean
+  whatsapp?: boolean
+  email?: boolean
+  hasId?: boolean
+  idType?: boolean
+  idNumber?: boolean
+  idExpirationDate?: boolean
+  idPhoto?: boolean
+  function?: boolean
+  zone?: boolean
+  startDate?: boolean
+  supervisor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  missions?: boolean | Prisma.Agent$missionsArgs<ExtArgs>
+  activities?: boolean | Prisma.Agent$activitiesArgs<ExtArgs>
+  reports?: boolean | Prisma.Agent$reportsArgs<ExtArgs>
+  _count?: boolean | Prisma.AgentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["agent"]>
 
 export type AgentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   agentId?: boolean
-  firstname?: boolean
-  lastname?: boolean
-  nickname?: boolean
-  email?: boolean
-  phoneNumber?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  postName?: boolean
+  photo?: boolean
+  birthDate?: boolean
+  birthPlace?: boolean
   gender?: boolean
-  placeOfBirth?: boolean
-  dateOfBirth?: boolean
   nationality?: boolean
+  provinceOrigin?: boolean
+  maritalStatus?: boolean
   country?: boolean
-  state?: boolean
   city?: boolean
-  township?: boolean
-  quarter?: boolean
+  commune?: boolean
   address?: boolean
-  createdBy?: boolean
+  phone?: boolean
+  whatsapp?: boolean
+  email?: boolean
+  hasId?: boolean
+  idType?: boolean
+  idNumber?: boolean
+  idExpirationDate?: boolean
+  idPhoto?: boolean
+  function?: boolean
+  zone?: boolean
+  startDate?: boolean
+  supervisor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["agent"]>
@@ -690,22 +1533,32 @@ export type AgentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type AgentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   agentId?: boolean
-  firstname?: boolean
-  lastname?: boolean
-  nickname?: boolean
-  email?: boolean
-  phoneNumber?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  postName?: boolean
+  photo?: boolean
+  birthDate?: boolean
+  birthPlace?: boolean
   gender?: boolean
-  placeOfBirth?: boolean
-  dateOfBirth?: boolean
   nationality?: boolean
+  provinceOrigin?: boolean
+  maritalStatus?: boolean
   country?: boolean
-  state?: boolean
   city?: boolean
-  township?: boolean
-  quarter?: boolean
+  commune?: boolean
   address?: boolean
-  createdBy?: boolean
+  phone?: boolean
+  whatsapp?: boolean
+  email?: boolean
+  hasId?: boolean
+  idType?: boolean
+  idNumber?: boolean
+  idExpirationDate?: boolean
+  idPhoto?: boolean
+  function?: boolean
+  zone?: boolean
+  startDate?: boolean
+  supervisor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["agent"]>
@@ -713,50 +1566,82 @@ export type AgentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type AgentSelectScalar = {
   id?: boolean
   agentId?: boolean
-  firstname?: boolean
-  lastname?: boolean
-  nickname?: boolean
-  email?: boolean
-  phoneNumber?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  postName?: boolean
+  photo?: boolean
+  birthDate?: boolean
+  birthPlace?: boolean
   gender?: boolean
-  placeOfBirth?: boolean
-  dateOfBirth?: boolean
   nationality?: boolean
+  provinceOrigin?: boolean
+  maritalStatus?: boolean
   country?: boolean
-  state?: boolean
   city?: boolean
-  township?: boolean
-  quarter?: boolean
+  commune?: boolean
   address?: boolean
-  createdBy?: boolean
+  phone?: boolean
+  whatsapp?: boolean
+  email?: boolean
+  hasId?: boolean
+  idType?: boolean
+  idNumber?: boolean
+  idExpirationDate?: boolean
+  idPhoto?: boolean
+  function?: boolean
+  zone?: boolean
+  startDate?: boolean
+  supervisor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AgentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "agentId" | "firstname" | "lastname" | "nickname" | "email" | "phoneNumber" | "gender" | "placeOfBirth" | "dateOfBirth" | "nationality" | "country" | "state" | "city" | "township" | "quarter" | "address" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["agent"]>
+export type AgentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "agentId" | "firstName" | "lastName" | "postName" | "photo" | "birthDate" | "birthPlace" | "gender" | "nationality" | "provinceOrigin" | "maritalStatus" | "country" | "city" | "commune" | "address" | "phone" | "whatsapp" | "email" | "hasId" | "idType" | "idNumber" | "idExpirationDate" | "idPhoto" | "function" | "zone" | "startDate" | "supervisor" | "createdAt" | "updatedAt", ExtArgs["result"]["agent"]>
+export type AgentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  missions?: boolean | Prisma.Agent$missionsArgs<ExtArgs>
+  activities?: boolean | Prisma.Agent$activitiesArgs<ExtArgs>
+  reports?: boolean | Prisma.Agent$reportsArgs<ExtArgs>
+  _count?: boolean | Prisma.AgentCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type AgentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type AgentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $AgentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Agent"
-  objects: {}
+  objects: {
+    missions: Prisma.$MissionPayload<ExtArgs>[]
+    activities: Prisma.$ActivityPayload<ExtArgs>[]
+    reports: Prisma.$ReportPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     agentId: string
-    firstname: string
-    lastname: string
-    nickname: string
-    email: string | null
-    phoneNumber: string
+    firstName: string
+    lastName: string
+    postName: string | null
+    photo: string | null
+    birthDate: Date
+    birthPlace: string
     gender: $Enums.Gender
-    placeOfBirth: string
-    dateOfBirth: string
     nationality: string
+    provinceOrigin: string
+    maritalStatus: $Enums.MaritalStatus
     country: string
-    state: string
     city: string
-    township: string
-    quarter: string
+    commune: string
     address: string
-    createdBy: string | null
+    phone: string
+    whatsapp: string | null
+    email: string | null
+    hasId: boolean
+    idType: $Enums.IdType | null
+    idNumber: string | null
+    idExpirationDate: Date | null
+    idPhoto: string | null
+    function: string
+    zone: string
+    startDate: Date
+    supervisor: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["agent"]>
@@ -1153,6 +2038,9 @@ readonly fields: AgentFieldRefs;
  */
 export interface Prisma__AgentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  missions<T extends Prisma.Agent$missionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agent$missionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activities<T extends Prisma.Agent$activitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agent$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reports<T extends Prisma.Agent$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agent$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1184,22 +2072,32 @@ export interface Prisma__AgentClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface AgentFieldRefs {
   readonly id: Prisma.FieldRef<"Agent", 'String'>
   readonly agentId: Prisma.FieldRef<"Agent", 'String'>
-  readonly firstname: Prisma.FieldRef<"Agent", 'String'>
-  readonly lastname: Prisma.FieldRef<"Agent", 'String'>
-  readonly nickname: Prisma.FieldRef<"Agent", 'String'>
-  readonly email: Prisma.FieldRef<"Agent", 'String'>
-  readonly phoneNumber: Prisma.FieldRef<"Agent", 'String'>
+  readonly firstName: Prisma.FieldRef<"Agent", 'String'>
+  readonly lastName: Prisma.FieldRef<"Agent", 'String'>
+  readonly postName: Prisma.FieldRef<"Agent", 'String'>
+  readonly photo: Prisma.FieldRef<"Agent", 'String'>
+  readonly birthDate: Prisma.FieldRef<"Agent", 'DateTime'>
+  readonly birthPlace: Prisma.FieldRef<"Agent", 'String'>
   readonly gender: Prisma.FieldRef<"Agent", 'Gender'>
-  readonly placeOfBirth: Prisma.FieldRef<"Agent", 'String'>
-  readonly dateOfBirth: Prisma.FieldRef<"Agent", 'String'>
   readonly nationality: Prisma.FieldRef<"Agent", 'String'>
+  readonly provinceOrigin: Prisma.FieldRef<"Agent", 'String'>
+  readonly maritalStatus: Prisma.FieldRef<"Agent", 'MaritalStatus'>
   readonly country: Prisma.FieldRef<"Agent", 'String'>
-  readonly state: Prisma.FieldRef<"Agent", 'String'>
   readonly city: Prisma.FieldRef<"Agent", 'String'>
-  readonly township: Prisma.FieldRef<"Agent", 'String'>
-  readonly quarter: Prisma.FieldRef<"Agent", 'String'>
+  readonly commune: Prisma.FieldRef<"Agent", 'String'>
   readonly address: Prisma.FieldRef<"Agent", 'String'>
-  readonly createdBy: Prisma.FieldRef<"Agent", 'String'>
+  readonly phone: Prisma.FieldRef<"Agent", 'String'>
+  readonly whatsapp: Prisma.FieldRef<"Agent", 'String'>
+  readonly email: Prisma.FieldRef<"Agent", 'String'>
+  readonly hasId: Prisma.FieldRef<"Agent", 'Boolean'>
+  readonly idType: Prisma.FieldRef<"Agent", 'IdType'>
+  readonly idNumber: Prisma.FieldRef<"Agent", 'String'>
+  readonly idExpirationDate: Prisma.FieldRef<"Agent", 'DateTime'>
+  readonly idPhoto: Prisma.FieldRef<"Agent", 'String'>
+  readonly function: Prisma.FieldRef<"Agent", 'String'>
+  readonly zone: Prisma.FieldRef<"Agent", 'String'>
+  readonly startDate: Prisma.FieldRef<"Agent", 'DateTime'>
+  readonly supervisor: Prisma.FieldRef<"Agent", 'String'>
   readonly createdAt: Prisma.FieldRef<"Agent", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Agent", 'DateTime'>
 }
@@ -1219,6 +2117,10 @@ export type AgentFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
+  /**
    * Filter, which Agent to fetch.
    */
   where: Prisma.AgentWhereUniqueInput
@@ -1237,6 +2139,10 @@ export type AgentFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
+  /**
    * Filter, which Agent to fetch.
    */
   where: Prisma.AgentWhereUniqueInput
@@ -1254,6 +2160,10 @@ export type AgentFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Agent
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
   /**
    * Filter, which Agent to fetch.
    */
@@ -1303,6 +2213,10 @@ export type AgentFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
+  /**
    * Filter, which Agent to fetch.
    */
   where?: Prisma.AgentWhereInput
@@ -1350,6 +2264,10 @@ export type AgentFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Agent
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
   /**
    * Filter, which Agents to fetch.
    */
@@ -1399,6 +2317,10 @@ export type AgentCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
+  /**
    * The data needed to create a Agent.
    */
   data: Prisma.XOR<Prisma.AgentCreateInput, Prisma.AgentUncheckedCreateInput>
@@ -1446,6 +2368,10 @@ export type AgentUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Agent
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
   /**
    * The data needed to update a Agent.
    */
@@ -1513,6 +2439,10 @@ export type AgentUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
+  /**
    * The filter to search for the Agent to update in case it exists.
    */
   where: Prisma.AgentWhereUniqueInput
@@ -1539,6 +2469,10 @@ export type AgentDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
+  /**
    * Filter which Agent to delete.
    */
   where: Prisma.AgentWhereUniqueInput
@@ -1559,6 +2493,78 @@ export type AgentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Agent.missions
+ */
+export type Agent$missionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Mission
+   */
+  select?: Prisma.MissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Mission
+   */
+  omit?: Prisma.MissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MissionInclude<ExtArgs> | null
+  where?: Prisma.MissionWhereInput
+  orderBy?: Prisma.MissionOrderByWithRelationInput | Prisma.MissionOrderByWithRelationInput[]
+  cursor?: Prisma.MissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MissionScalarFieldEnum | Prisma.MissionScalarFieldEnum[]
+}
+
+/**
+ * Agent.activities
+ */
+export type Agent$activitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Activity
+   */
+  select?: Prisma.ActivitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Activity
+   */
+  omit?: Prisma.ActivityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityInclude<ExtArgs> | null
+  where?: Prisma.ActivityWhereInput
+  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
+}
+
+/**
+ * Agent.reports
+ */
+export type Agent$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Report
+   */
+  select?: Prisma.ReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Report
+   */
+  omit?: Prisma.ReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReportInclude<ExtArgs> | null
+  where?: Prisma.ReportWhereInput
+  orderBy?: Prisma.ReportOrderByWithRelationInput | Prisma.ReportOrderByWithRelationInput[]
+  cursor?: Prisma.ReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
+}
+
+/**
  * Agent without action
  */
 export type AgentDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1570,4 +2576,8 @@ export type AgentDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Agent
    */
   omit?: Prisma.AgentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentInclude<ExtArgs> | null
 }
