@@ -1,18 +1,18 @@
 'use client'
 
 import { UseFormRegister, FieldErrors } from 'react-hook-form'
-import { AgentFormData } from '@/types/agent.types'
+import { MemberFormData } from '@/types/member.types'
 
 interface AgentFormStep1Props {
-  register: UseFormRegister<AgentFormData>
-  errors: FieldErrors<AgentFormData>
+  register: UseFormRegister<MemberFormData>
+  errors: FieldErrors<MemberFormData>
 }
 
-export default function AgentFormStep1({ register, errors }: AgentFormStep1Props) {
+export default function MemberFormStep1({ register, errors }: AgentFormStep1Props) {
   return (
     <div className="space-y-6">
       <h3 className="text-headline-md font-bold text-on-surface">Informations Personnelles</h3>
-      <p className="text-body-md text-on-surface-variant">Entez les details personnels de l&apos;agent</p>
+      <p className="text-body-md text-on-surface-variant">Entez les details personnels du membre</p>
       
         <div>
           <label className="block text-label-md font-medium text-on-surface mb-1">

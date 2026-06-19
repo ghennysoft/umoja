@@ -14,7 +14,7 @@ import {
   ArcElement,
   DoughnutController,
 } from 'chart.js'
-import { Line, Doughnut } from 'react-chartjs-2'
+// import { Line, Doughnut } from 'react-chartjs-2'
 
 // Enregistrer les composants Chart.js
 ChartJS.register(
@@ -162,7 +162,7 @@ export default function ChartsSection() {
       {/* Line Chart */}
       <div className="lg:col-span-2 card p-4 md:p-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 md:mb-6 gap-3">
-          <h3 className="text-base md:text-lg font-bold text-on-surface">Vue d'ensemble des cotisations</h3>
+          <h3 className="text-base md:text-lg font-bold text-on-surface">Vue d&apos;ensemble des cotisations</h3>
           <select className="bg-surface border border-outline-variant/60 text-sm rounded-lg px-3 py-1.5 focus:ring-primary focus:border-primary outline-none w-full sm:w-auto">
             <option>Ce mois</option>
             <option>Le mois dernier</option>
@@ -170,7 +170,7 @@ export default function ChartsSection() {
           </select>
         </div>
         <div className="h-48 md:h-64 relative w-full">
-          <Line data={lineData} options={lineOptions as any} />
+          {/* <Line data={lineData} options={lineOptions as any} /> */}
         </div>
       </div>
 
@@ -179,7 +179,7 @@ export default function ChartsSection() {
         <h3 className="text-base md:text-lg font-bold text-on-surface mb-4 md:mb-6">Répartition des membres</h3>
         <div className="flex-1 flex flex-col items-center justify-center">
           <div className="h-40 md:h-48 w-full relative">
-            <Doughnut data={doughnutData} options={doughnutOptions as any} plugins={[textCenter]} />
+            {/* <Doughnut data={doughnutData} options={doughnutOptions as any} plugins={[textCenter]} /> */}
           </div>
           {/* Custom Legend */}
           <div className="mt-4 md:mt-6 w-full flex flex-col gap-2 px-2 md:px-4">

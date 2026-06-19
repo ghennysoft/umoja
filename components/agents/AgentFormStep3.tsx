@@ -8,7 +8,7 @@ interface AgentFormStep3Props {
   errors: FieldErrors<AgentFormData>
 }
 
-export default function AgentFormStep3({ register, errors }: AgentFormStep3Props) {
+export default function MemberFormStep3({ register, errors }: AgentFormStep3Props) {
   return (
     <div className="space-y-6">
       <h3 className="text-headline-md font-bold text-on-surface">Fonction dans l'ASBL</h3>

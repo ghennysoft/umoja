@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Agent: 'Agent',
+  Member: 'Member',
   Mission: 'Mission',
   Activity: 'Activity',
   Report: 'Report'
@@ -79,6 +80,7 @@ export const UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   name: 'name',
+  photo: 'photo',
   role: 'role',
   isActive: 'isActive',
   createdAt: 'createdAt',
@@ -122,6 +124,36 @@ export const AgentScalarFieldEnum = {
 } as const
 
 export type AgentScalarFieldEnum = (typeof AgentScalarFieldEnum)[keyof typeof AgentScalarFieldEnum]
+
+
+export const MemberScalarFieldEnum = {
+  id: 'id',
+  memberId: 'memberId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  postName: 'postName',
+  photo: 'photo',
+  birthDate: 'birthDate',
+  birthPlace: 'birthPlace',
+  gender: 'gender',
+  nationality: 'nationality',
+  provinceOrigin: 'provinceOrigin',
+  maritalStatus: 'maritalStatus',
+  country: 'country',
+  city: 'city',
+  commune: 'commune',
+  address: 'address',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  email: 'email',
+  hasDiplome: 'hasDiplome',
+  diplomeLevel: 'diplomeLevel',
+  profession: 'profession',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
 
 
 export const MissionScalarFieldEnum = {

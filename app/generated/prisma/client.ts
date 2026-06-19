@@ -52,6 +52,11 @@ export type User = Prisma.UserModel
  */
 export type Agent = Prisma.AgentModel
 /**
+ * Model Member
+ * 
+ */
+export type Member = Prisma.MemberModel
+/**
  * Model Mission
  * 
  */

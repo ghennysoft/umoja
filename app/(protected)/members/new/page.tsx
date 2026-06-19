@@ -5,12 +5,11 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import AgentFormStep1 from '@/components/agents/AgentFormStep1'
-import AgentFormStep2 from '@/components/agents/AgentFormStep2'
-import AgentFormStep3 from '@/components/agents/AgentFormStep3'
-import { agentSchema, AgentFormData } from '@/schemas/agent.schema'
+import MemberFormStep1 from '@/components/members/MemberFormStep1'
+import MemberFormStep2 from '@/components/members/MemberFormStep2'
+import { memberSchema, MemberFormData } from '@/schemas/member.schema'
 
-const steps = ['Informations Personnelles', 'Identification', 'Fonction']
+const steps = ['Informations Personnelles', 'Profile']
 
 export default function NewAgentPage() {
   const [currentStep, setCurrentStep] = useState(0)
@@ -27,17 +26,17 @@ export default function NewAgentPage() {
     trigger,
     getValues,
     setError,
-  } = useForm<AgentFormData>({
-    resolver: zodResolver(agentSchema),
+  } = useForm<MemberFormData>({
+    resolver: zodResolver(memberSchema),
     defaultValues: {
-      hasId: false,
+      hasDiplome: false,
       gender: undefined,
       maritalStatus: undefined,
     },
   })
 
   const onNext = async () => {
-    let fieldsToValidate: (keyof AgentFormData)[] = []
+    let fieldsToValidate: (keyof MemberFormData)[] = []
 
     if (currentStep === 0) {
       fieldsToValidate = [
@@ -46,12 +45,11 @@ export default function NewAgentPage() {
         'city', 'commune', 'address', 'phone'
       ]
     } else if (currentStep === 1) {
-      const hasId = getValues('hasId')
-      if (hasId) {
-        fieldsToValidate = ['idType', 'idNumber', 'idExpirationDate']
+      const hasDiplome = getValues('hasDiplome')
+      if (hasDiplome) {
+        fieldsToValidate = ['diplomeLevel']
       }
-    } else if (currentStep === 2) {
-      fieldsToValidate = ['function', 'zone', 'startDate']
+      fieldsToValidate = ['profession']
     }
 
     const isValid = await trigger(fieldsToValidate as any)
@@ -90,7 +88,7 @@ export default function NewAgentPage() {
         }
       })
 
-      const response = await axios.post('/api/agents', formData, {
+      const response = await axios.post('/api/members', formData, {
         headers: { 
           'Content-Type': 'multipart/form-data',
         },
@@ -100,7 +98,7 @@ export default function NewAgentPage() {
       console.log('Response:', response.data)
 
       if (response.data.success) {
-        router.push('/agents')
+        router.push('/members')
       } else {
         setSubmitError(response.data.message || 'Failed to create agent')
       }
@@ -124,16 +122,16 @@ export default function NewAgentPage() {
     }
   }
 
-  // Watch hasId pour mettre à jour l'UI du step 2
-  const hasId = watch('hasId')
+  // Watch hasDiplome pour mettre à jour l'UI du step 2
+  const hasDiplome = watch('hasDiplome')
 
   return (
     <>
         <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-            <h1 className="text-headline-lg font-bold text-on-surface">Add New Agent</h1>
-            <p className="text-body-md text-on-surface-variant">Fill in the agent's information</p>
+            <h1 className="text-headline-lg font-bold text-on-surface">Ajouter un nouveau membre</h1>
+            <p className="text-body-md text-on-surface-variant">Renseignez les informations du membre</p>
         </div>
 
         {/* Steps Progress */}
@@ -175,22 +173,16 @@ export default function NewAgentPage() {
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm border border-outline-variant/20">
             {currentStep === 0 && (
-            <AgentFormStep1 
+            <MemberFormStep1 
                 register={register} 
                 errors={errors} 
             />
             )}
             {currentStep === 1 && (
-            <AgentFormStep2 
+            <MemberFormStep2 
                 register={register} 
                 errors={errors} 
                 watch={watch}
-            />
-            )}
-            {currentStep === 2 && (
-            <AgentFormStep3 
-                register={register} 
-                errors={errors} 
             />
             )}
 
@@ -217,10 +209,10 @@ export default function NewAgentPage() {
                     {isSubmitting ? (
                     <span className="flex items-center gap-2">
                         <span className="animate-spin">⏳</span>
-                        Creating...
+                        Création...
                     </span>
                     ) : (
-                    'Create Agent'
+                    'Créer un membre'
                     )}
                 </button>
                 ) : (

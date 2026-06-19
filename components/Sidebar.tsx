@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { LayoutDashboard, UserRoundCog } from 'lucide-react'
+import { LayoutDashboard, ContactRound, UserRoundCheck, LogOut } from 'lucide-react'
 
 interface SideNavbarProps {
   isOpen: boolean
@@ -12,10 +12,10 @@ interface SideNavbarProps {
 
 const navLinks = [
   { icon: LayoutDashboard, label: 'Tableau de bord', route: '/', active: true },
-  // { icon: LayoutDashboard, label: 'Membres / Adhérents', route: '/' },
+  { icon: ContactRound, label: 'Agents Terrain', route: '/agents' },
+  { icon: UserRoundCheck, label: 'Membres', route: '/members' },
   // { icon: LayoutDashboard, label: 'Cotisations & Paiements', route: '/' },
   // { icon: LayoutDashboard, label: 'Projets & Activités', route: '/' },
-  { icon: UserRoundCog, label: 'Agents Terrain', route: '/agents' },
   // { icon: LayoutDashboard, label: 'Événements', route: '/' },
   // { icon: LayoutDashboard, label: 'Documents', route: '/' },
   // { icon: LayoutDashboard, label: 'Rapports & Statistiques', route: '/' },
@@ -75,43 +75,43 @@ export default function Sidebar({ isOpen, onClose, onMenuClick }: SideNavbarProp
                 {/* <span className="material-icons-outlined text-lg md:text-base">{link.icon}</span> */}
                 <link.icon />
                 <span className="text-sm md:text-base">{link.label}</span>
-                {link.badge && (
+                {/* {link.badge && (
                   <span className="ml-auto bg-secondary text-white text-xs font-bold px-2 py-0.5 rounded-full">
                     {link.badge}
                   </span>
-                )}
+                )} */}
               </Link>
             ))}
             <Link
               href="#"
               className="flex items-center gap-3 px-4 py-3 mt-4 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors border border-white/10"
             >
-              <span className="material-icons-outlined">logout</span>
+              <LogOut />
               <span>Déconnexion</span>
             </Link>
           </nav>
         </div>
 
         {/* Sidebar Footer CTA */}
-        <div className="p-4 md:p-6">
+        {/* <div className="p-4 md:p-6">
           <div className="bg-primary-container/10 p-4 md:p-5 rounded-2xl border border-white/10 flex flex-col items-center text-center gap-3">
             <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center">
               <span className="material-icons text-yellow-400 text-xl md:text-2xl">diversity_3</span>
             </div>
             <p className="text-xs md:text-sm text-white/90 font-medium">L'union fait la force, ensemble pour un avenir meilleur. 💛</p>
           </div>
-        </div>
+        </div> */}
       </aside>
 
       {/* Mobile Toggle Button */}
-      <button
+      {/* <button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
         className="fixed bottom-4 right-4 z-50 lg:hidden bg-primary text-white p-3 rounded-full shadow-lg"
       >
         <span className="material-icons">
           {isMobileOpen ? 'close' : 'menu'}
         </span>
-      </button>
+      </button> */}
     </>
   )
 }
