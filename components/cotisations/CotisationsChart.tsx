@@ -12,7 +12,7 @@ import {
   Filler,
   Legend,
 } from 'chart.js'
-import { Line } from 'react-chartjs-2'
+// import { Line } from 'react-chartjs-2'
 
 ChartJS.register(
   CategoryScale,
@@ -123,7 +123,7 @@ export default function CotisationsChart() {
         </select>
       </div>
       <div className="h-60 md:h-72 w-full relative">
-        <Line ref={chartRef} data={data} options={options as any} />
+        {/* <Line ref={chartRef} data={data} options={options as any} /> */}
       </div>
     </div>
   )

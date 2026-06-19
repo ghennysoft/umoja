@@ -171,7 +171,7 @@ export default function NewAgentPage() {
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm border border-outline-variant/20">
+        <form onSubmit={()=>{alert('clicked!');handleSubmit(onSubmit)}} className="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm border border-outline-variant/20">
             {currentStep === 0 && (
             <MemberFormStep1 
                 register={register} 
