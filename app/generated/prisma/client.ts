@@ -57,17 +57,7 @@ export type Agent = Prisma.AgentModel
  */
 export type Member = Prisma.MemberModel
 /**
- * Model Mission
+ * Model Contribution
  * 
  */
-export type Mission = Prisma.MissionModel
-/**
- * Model Activity
- * 
- */
-export type Activity = Prisma.ActivityModel
-/**
- * Model Report
- * 
- */
-export type Report = Prisma.ReportModel
+export type Contribution = Prisma.ContributionModel

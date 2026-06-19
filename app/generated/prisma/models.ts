@@ -11,7 +11,5 @@
 export type * from './models/User'
 export type * from './models/Agent'
 export type * from './models/Member'
-export type * from './models/Mission'
-export type * from './models/Activity'
-export type * from './models/Report'
+export type * from './models/Contribution'
 export type * from './commonInputTypes'

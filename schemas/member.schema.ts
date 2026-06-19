@@ -2,74 +2,43 @@ import { z } from 'zod'
 
 // Step 1: Personal Information
 export const memberPersonalSchema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
+  firstName: z.string().min(1, 'Le prénom est requis'),
+  lastName: z.string().min(1, 'Le nom est requis'),
   postName: z.string().optional(),
-  photo: z.any().optional(),
-  birthDate: z.string().min(1, 'Birth date is required'),
-  birthPlace: z.string().min(1, 'Birth place is required'),
+  photo: z.string().optional(),
+  birthDate: z.string().min(1, 'La date de naissance est requise'),
+  birthPlace: z.string().min(1, 'Le lieu de naissance est requis'),
   gender: z.enum(['MALE', 'FEMALE']),
-  nationality: z.string().min(1, 'Nationality is required'),
-  provinceOrigin: z.string().min(1, 'Province of origin is required'),
+  nationality: z.string().min(1, 'La nationalité est requise'),
+  provinceOrigin: z.string().min(1, 'La province d\'origine est requise'),
   maritalStatus: z.enum(['MARRIED', 'SINGLE', 'WIDOWED', 'DIVORCED']),
-  country: z.string().min(1, 'Country is required'),
-  city: z.string().min(1, 'City is required'),
-  commune: z.string().min(1, 'Commune is required'),
-  address: z.string().min(1, 'Address is required'),
-  phone: z.string().min(1, 'Phone number is required'),
+  country: z.string().min(1, 'Le pays est requis'),
+  city: z.string().min(1, 'La ville est requise'),
+  commune: z.string().min(1, 'La commune est requise'),
+  address: z.string().min(1, 'L\'adresse est requise'),
+  phone: z.string().min(1, 'Le numéro de téléphone est requis'),
   whatsapp: z.string().optional(),
-  email: z.string().email('Invalid email address').optional().or(z.literal('')),
+  email: z.string().email('Email invalide').optional().or(z.literal('')),
 })
 
-// Step 2: Identification (sans superRefine, utilisée dans le composant)
-export const memberIdentificationSchema = z.object({
-  hasId: z.boolean().default(false),
-  idType: z.enum(['NATIONAL_ID', 'PASSPORT', 'DRIVER_LICENSE', 'OTHER']).optional(),
-  idNumber: z.string().optional(),
-  idExpirationDate: z.string().optional(),
-  idPhoto: z.any().optional(),
+// Step 2: Profile
+export const memberProfileSchema = z.object({
+  hasDiploma: z.boolean().default(false),
+  diplomaLevel: z.enum(['STATE_DIPLOMA', 'GRADUATE', 'LICENSE', 'MASTER', 'DOCTORATE']).optional(),
+  profession: z.string().optional(),
+}).superRefine((data, ctx) => {
+  if (data.hasDiploma && !data.diplomaLevel) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Le niveau de diplôme est requis',
+      path: ['diplomaLevel'],
+    })
+  }
 })
 
-// Step 3: Function
-export const memberFunctionSchema = z.object({
-  function: z.string().min(1, 'Function is required'),
-  zone: z.string().min(1, 'Zone is required'),
-  startDate: z.string().min(1, 'Start date is required'),
-  supervisor: z.string().optional(),
-})
+// Full Member Schema
+export const memberSchema = memberPersonalSchema.merge(memberProfileSchema)
 
-// Full member Schema - Utilisation de .extend() au lieu de .merge()
-export const memberSchema = memberPersonalSchema
-  .extend(memberIdentificationSchema.shape)
-  .extend(memberFunctionSchema.shape)
-  .superRefine((data, ctx) => {
-    // Validation conditionnelle pour l'identification
-    if (data.hasId) {
-      if (!data.idType) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: 'ID type is required',
-          path: ['idType'],
-        })
-      }
-      if (!data.idNumber) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: 'ID number is required',
-          path: ['idNumber'],
-        })
-      }
-      if (!data.idExpirationDate) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: 'ID expiration date is required',
-          path: ['idExpirationDate'],
-        })
-      }
-    }
-  })
-
-export type memberPersonalInput = z.infer<typeof agentPersonalSchema>
-export type AgentIdentificationInput = z.infer<typeof agentIdentificationSchema>
-export type AgentFunctionInput = z.infer<typeof agentFunctionSchema>
-export type AgentInput = z.infer<typeof agentSchema>
+export type MemberPersonalInput = z.infer<typeof memberPersonalSchema>
+export type MemberProfileInput = z.infer<typeof memberProfileSchema>
+export type MemberInput = z.infer<typeof memberSchema>

@@ -14,14 +14,14 @@ const navLinks = [
   { icon: LayoutDashboard, label: 'Tableau de bord', route: '/', active: true },
   { icon: ContactRound, label: 'Agents Terrain', route: '/agents' },
   { icon: UserRoundCheck, label: 'Membres', route: '/members' },
-  // { icon: LayoutDashboard, label: 'Cotisations & Paiements', route: '/' },
+  { icon: LayoutDashboard, label: 'Cotisations & Paiements', route: '/cotisations' },
+  { icon: LayoutDashboard, label: 'Utilisateurs', route: '/users ' },
   // { icon: LayoutDashboard, label: 'Projets & Activités', route: '/' },
   // { icon: LayoutDashboard, label: 'Événements', route: '/' },
   // { icon: LayoutDashboard, label: 'Documents', route: '/' },
   // { icon: LayoutDashboard, label: 'Rapports & Statistiques', route: '/' },
   // { icon: LayoutDashboard, label: 'Messages', badge: '12', route: '/' },
   // { icon: LayoutDashboard, label: 'Paramètres', route: '/' },
-  // { icon: LayoutDashboard, label: 'Utilisateurs', route: '/' },
   // { icon: LayoutDashboard, label: 'Mon Profil', route: '/' },
 ]
 

@@ -44,8 +44,8 @@ export type MemberMinAggregateOutputType = {
   phone: string | null
   whatsapp: string | null
   email: string | null
-  hasDiplome: boolean | null
-  diplomeLevel: string | null
+  hasDiploma: boolean | null
+  diplomaLevel: $Enums.DiplomaLevel | null
   profession: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -71,8 +71,8 @@ export type MemberMaxAggregateOutputType = {
   phone: string | null
   whatsapp: string | null
   email: string | null
-  hasDiplome: boolean | null
-  diplomeLevel: string | null
+  hasDiploma: boolean | null
+  diplomaLevel: $Enums.DiplomaLevel | null
   profession: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -98,8 +98,8 @@ export type MemberCountAggregateOutputType = {
   phone: number
   whatsapp: number
   email: number
-  hasDiplome: number
-  diplomeLevel: number
+  hasDiploma: number
+  diplomaLevel: number
   profession: number
   createdAt: number
   updatedAt: number
@@ -127,8 +127,8 @@ export type MemberMinAggregateInputType = {
   phone?: true
   whatsapp?: true
   email?: true
-  hasDiplome?: true
-  diplomeLevel?: true
+  hasDiploma?: true
+  diplomaLevel?: true
   profession?: true
   createdAt?: true
   updatedAt?: true
@@ -154,8 +154,8 @@ export type MemberMaxAggregateInputType = {
   phone?: true
   whatsapp?: true
   email?: true
-  hasDiplome?: true
-  diplomeLevel?: true
+  hasDiploma?: true
+  diplomaLevel?: true
   profession?: true
   createdAt?: true
   updatedAt?: true
@@ -181,8 +181,8 @@ export type MemberCountAggregateInputType = {
   phone?: true
   whatsapp?: true
   email?: true
-  hasDiplome?: true
-  diplomeLevel?: true
+  hasDiploma?: true
+  diplomaLevel?: true
   profession?: true
   createdAt?: true
   updatedAt?: true
@@ -281,8 +281,8 @@ export type MemberGroupByOutputType = {
   phone: string
   whatsapp: string | null
   email: string | null
-  hasDiplome: boolean
-  diplomeLevel: string | null
+  hasDiploma: boolean
+  diplomaLevel: $Enums.DiplomaLevel | null
   profession: string | null
   createdAt: Date
   updatedAt: Date
@@ -329,11 +329,12 @@ export type MemberWhereInput = {
   phone?: Prisma.StringFilter<"Member"> | string
   whatsapp?: Prisma.StringNullableFilter<"Member"> | string | null
   email?: Prisma.StringNullableFilter<"Member"> | string | null
-  hasDiplome?: Prisma.BoolFilter<"Member"> | boolean
-  diplomeLevel?: Prisma.StringNullableFilter<"Member"> | string | null
+  hasDiploma?: Prisma.BoolFilter<"Member"> | boolean
+  diplomaLevel?: Prisma.EnumDiplomaLevelNullableFilter<"Member"> | $Enums.DiplomaLevel | null
   profession?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  contributions?: Prisma.ContributionListRelationFilter
 }
 
 export type MemberOrderByWithRelationInput = {
@@ -356,11 +357,12 @@ export type MemberOrderByWithRelationInput = {
   phone?: Prisma.SortOrder
   whatsapp?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
-  hasDiplome?: Prisma.SortOrder
-  diplomeLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  hasDiploma?: Prisma.SortOrder
+  diplomaLevel?: Prisma.SortOrderInput | Prisma.SortOrder
   profession?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  contributions?: Prisma.ContributionOrderByRelationAggregateInput
 }
 
 export type MemberWhereUniqueInput = Prisma.AtLeast<{
@@ -386,11 +388,12 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"Member"> | string
   whatsapp?: Prisma.StringNullableFilter<"Member"> | string | null
   email?: Prisma.StringNullableFilter<"Member"> | string | null
-  hasDiplome?: Prisma.BoolFilter<"Member"> | boolean
-  diplomeLevel?: Prisma.StringNullableFilter<"Member"> | string | null
+  hasDiploma?: Prisma.BoolFilter<"Member"> | boolean
+  diplomaLevel?: Prisma.EnumDiplomaLevelNullableFilter<"Member"> | $Enums.DiplomaLevel | null
   profession?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  contributions?: Prisma.ContributionListRelationFilter
 }, "id" | "memberId">
 
 export type MemberOrderByWithAggregationInput = {
@@ -413,8 +416,8 @@ export type MemberOrderByWithAggregationInput = {
   phone?: Prisma.SortOrder
   whatsapp?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
-  hasDiplome?: Prisma.SortOrder
-  diplomeLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  hasDiploma?: Prisma.SortOrder
+  diplomaLevel?: Prisma.SortOrderInput | Prisma.SortOrder
   profession?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -446,8 +449,8 @@ export type MemberScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringWithAggregatesFilter<"Member"> | string
   whatsapp?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
-  hasDiplome?: Prisma.BoolWithAggregatesFilter<"Member"> | boolean
-  diplomeLevel?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
+  hasDiploma?: Prisma.BoolWithAggregatesFilter<"Member"> | boolean
+  diplomaLevel?: Prisma.EnumDiplomaLevelNullableWithAggregatesFilter<"Member"> | $Enums.DiplomaLevel | null
   profession?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Member"> | Date | string
@@ -473,11 +476,12 @@ export type MemberCreateInput = {
   phone: string
   whatsapp?: string | null
   email?: string | null
-  hasDiplome?: boolean
-  diplomeLevel?: string | null
+  hasDiploma?: boolean
+  diplomaLevel?: $Enums.DiplomaLevel | null
   profession?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  contributions?: Prisma.ContributionCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUncheckedCreateInput = {
@@ -500,11 +504,12 @@ export type MemberUncheckedCreateInput = {
   phone: string
   whatsapp?: string | null
   email?: string | null
-  hasDiplome?: boolean
-  diplomeLevel?: string | null
+  hasDiploma?: boolean
+  diplomaLevel?: $Enums.DiplomaLevel | null
   profession?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutMemberInput
 }
 
 export type MemberUpdateInput = {
@@ -527,11 +532,12 @@ export type MemberUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasDiplome?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  diplomeLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
   profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contributions?: Prisma.ContributionUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberUncheckedUpdateInput = {
@@ -554,11 +560,12 @@ export type MemberUncheckedUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasDiplome?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  diplomeLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
   profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutMemberNestedInput
 }
 
 export type MemberCreateManyInput = {
@@ -581,8 +588,8 @@ export type MemberCreateManyInput = {
   phone: string
   whatsapp?: string | null
   email?: string | null
-  hasDiplome?: boolean
-  diplomeLevel?: string | null
+  hasDiploma?: boolean
+  diplomaLevel?: $Enums.DiplomaLevel | null
   profession?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -608,8 +615,8 @@ export type MemberUpdateManyMutationInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasDiplome?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  diplomeLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
   profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -635,8 +642,8 @@ export type MemberUncheckedUpdateManyInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasDiplome?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  diplomeLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
   profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -662,8 +669,8 @@ export type MemberCountOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   whatsapp?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  hasDiplome?: Prisma.SortOrder
-  diplomeLevel?: Prisma.SortOrder
+  hasDiploma?: Prisma.SortOrder
+  diplomaLevel?: Prisma.SortOrder
   profession?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -689,8 +696,8 @@ export type MemberMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   whatsapp?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  hasDiplome?: Prisma.SortOrder
-  diplomeLevel?: Prisma.SortOrder
+  hasDiploma?: Prisma.SortOrder
+  diplomaLevel?: Prisma.SortOrder
   profession?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -716,13 +723,189 @@ export type MemberMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   whatsapp?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  hasDiplome?: Prisma.SortOrder
-  diplomeLevel?: Prisma.SortOrder
+  hasDiploma?: Prisma.SortOrder
+  diplomaLevel?: Prisma.SortOrder
   profession?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
+export type MemberScalarRelationFilter = {
+  is?: Prisma.MemberWhereInput
+  isNot?: Prisma.MemberWhereInput
+}
+
+export type NullableEnumDiplomaLevelFieldUpdateOperationsInput = {
+  set?: $Enums.DiplomaLevel | null
+}
+
+export type MemberCreateNestedOneWithoutContributionsInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutContributionsInput, Prisma.MemberUncheckedCreateWithoutContributionsInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutContributionsInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutContributionsNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutContributionsInput, Prisma.MemberUncheckedCreateWithoutContributionsInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutContributionsInput
+  upsert?: Prisma.MemberUpsertWithoutContributionsInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutContributionsInput, Prisma.MemberUpdateWithoutContributionsInput>, Prisma.MemberUncheckedUpdateWithoutContributionsInput>
+}
+
+export type MemberCreateWithoutContributionsInput = {
+  id?: string
+  memberId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasDiploma?: boolean
+  diplomaLevel?: $Enums.DiplomaLevel | null
+  profession?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MemberUncheckedCreateWithoutContributionsInput = {
+  id?: string
+  memberId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasDiploma?: boolean
+  diplomaLevel?: $Enums.DiplomaLevel | null
+  profession?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MemberCreateOrConnectWithoutContributionsInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutContributionsInput, Prisma.MemberUncheckedCreateWithoutContributionsInput>
+}
+
+export type MemberUpsertWithoutContributionsInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutContributionsInput, Prisma.MemberUncheckedUpdateWithoutContributionsInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutContributionsInput, Prisma.MemberUncheckedCreateWithoutContributionsInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutContributionsInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutContributionsInput, Prisma.MemberUncheckedUpdateWithoutContributionsInput>
+}
+
+export type MemberUpdateWithoutContributionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
+  profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type MemberUncheckedUpdateWithoutContributionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
+  profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type MemberCountOutputType
+ */
+
+export type MemberCountOutputType = {
+  contributions: number
+}
+
+export type MemberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  contributions?: boolean | MemberCountOutputTypeCountContributionsArgs
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberCountOutputType
+   */
+  select?: Prisma.MemberCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountContributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContributionWhereInput
+}
 
 
 export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -745,11 +928,13 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   phone?: boolean
   whatsapp?: boolean
   email?: boolean
-  hasDiplome?: boolean
-  diplomeLevel?: boolean
+  hasDiploma?: boolean
+  diplomaLevel?: boolean
   profession?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  contributions?: boolean | Prisma.Member$contributionsArgs<ExtArgs>
+  _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -772,8 +957,8 @@ export type MemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   phone?: boolean
   whatsapp?: boolean
   email?: boolean
-  hasDiplome?: boolean
-  diplomeLevel?: boolean
+  hasDiploma?: boolean
+  diplomaLevel?: boolean
   profession?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -799,8 +984,8 @@ export type MemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   phone?: boolean
   whatsapp?: boolean
   email?: boolean
-  hasDiplome?: boolean
-  diplomeLevel?: boolean
+  hasDiploma?: boolean
+  diplomaLevel?: boolean
   profession?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -826,18 +1011,26 @@ export type MemberSelectScalar = {
   phone?: boolean
   whatsapp?: boolean
   email?: boolean
-  hasDiplome?: boolean
-  diplomeLevel?: boolean
+  hasDiploma?: boolean
+  diplomaLevel?: boolean
   profession?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "memberId" | "firstName" | "lastName" | "postName" | "photo" | "birthDate" | "birthPlace" | "gender" | "nationality" | "provinceOrigin" | "maritalStatus" | "country" | "city" | "commune" | "address" | "phone" | "whatsapp" | "email" | "hasDiplome" | "diplomeLevel" | "profession" | "createdAt" | "updatedAt", ExtArgs["result"]["member"]>
+export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "memberId" | "firstName" | "lastName" | "postName" | "photo" | "birthDate" | "birthPlace" | "gender" | "nationality" | "provinceOrigin" | "maritalStatus" | "country" | "city" | "commune" | "address" | "phone" | "whatsapp" | "email" | "hasDiploma" | "diplomaLevel" | "profession" | "createdAt" | "updatedAt", ExtArgs["result"]["member"]>
+export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  contributions?: boolean | Prisma.Member$contributionsArgs<ExtArgs>
+  _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type MemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type MemberIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Member"
-  objects: {}
+  objects: {
+    contributions: Prisma.$ContributionPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     memberId: string
@@ -858,8 +1051,8 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     phone: string
     whatsapp: string | null
     email: string | null
-    hasDiplome: boolean
-    diplomeLevel: string | null
+    hasDiploma: boolean
+    diplomaLevel: $Enums.DiplomaLevel | null
     profession: string | null
     createdAt: Date
     updatedAt: Date
@@ -1257,6 +1450,7 @@ readonly fields: MemberFieldRefs;
  */
 export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  contributions<T extends Prisma.Member$contributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContributionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1305,8 +1499,8 @@ export interface MemberFieldRefs {
   readonly phone: Prisma.FieldRef<"Member", 'String'>
   readonly whatsapp: Prisma.FieldRef<"Member", 'String'>
   readonly email: Prisma.FieldRef<"Member", 'String'>
-  readonly hasDiplome: Prisma.FieldRef<"Member", 'Boolean'>
-  readonly diplomeLevel: Prisma.FieldRef<"Member", 'String'>
+  readonly hasDiploma: Prisma.FieldRef<"Member", 'Boolean'>
+  readonly diplomaLevel: Prisma.FieldRef<"Member", 'DiplomaLevel'>
   readonly profession: Prisma.FieldRef<"Member", 'String'>
   readonly createdAt: Prisma.FieldRef<"Member", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Member", 'DateTime'>
@@ -1327,6 +1521,10 @@ export type MemberFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
+  /**
    * Filter, which Member to fetch.
    */
   where: Prisma.MemberWhereUniqueInput
@@ -1345,6 +1543,10 @@ export type MemberFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
+  /**
    * Filter, which Member to fetch.
    */
   where: Prisma.MemberWhereUniqueInput
@@ -1362,6 +1564,10 @@ export type MemberFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Member
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
   /**
    * Filter, which Member to fetch.
    */
@@ -1411,6 +1617,10 @@ export type MemberFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
+  /**
    * Filter, which Member to fetch.
    */
   where?: Prisma.MemberWhereInput
@@ -1458,6 +1668,10 @@ export type MemberFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Member
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
   /**
    * Filter, which Members to fetch.
    */
@@ -1507,6 +1721,10 @@ export type MemberCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
+  /**
    * The data needed to create a Member.
    */
   data: Prisma.XOR<Prisma.MemberCreateInput, Prisma.MemberUncheckedCreateInput>
@@ -1554,6 +1772,10 @@ export type MemberUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Member
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
   /**
    * The data needed to update a Member.
    */
@@ -1621,6 +1843,10 @@ export type MemberUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
+  /**
    * The filter to search for the Member to update in case it exists.
    */
   where: Prisma.MemberWhereUniqueInput
@@ -1647,6 +1873,10 @@ export type MemberDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
+  /**
    * Filter which Member to delete.
    */
   where: Prisma.MemberWhereUniqueInput
@@ -1667,6 +1897,30 @@ export type MemberDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Member.contributions
+ */
+export type Member$contributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Contribution
+   */
+  select?: Prisma.ContributionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Contribution
+   */
+  omit?: Prisma.ContributionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContributionInclude<ExtArgs> | null
+  where?: Prisma.ContributionWhereInput
+  orderBy?: Prisma.ContributionOrderByWithRelationInput | Prisma.ContributionOrderByWithRelationInput[]
+  cursor?: Prisma.ContributionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContributionScalarFieldEnum | Prisma.ContributionScalarFieldEnum[]
+}
+
+/**
  * Member without action
  */
 export type MemberDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1678,4 +1932,8 @@ export type MemberDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Member
    */
   omit?: Prisma.MemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
 }

@@ -1,9 +1,8 @@
-import { Agent, Gender, MaritalStatus, IdType } from '@prisma/client'
+import { Member, Gender, MaritalStatus, DiplomaLevel } from '@prisma/client'
 
-export type AgentWithRelations = Agent & {
-  missions?: Mission[]
-  activities?: Activity[]
-  reports?: Report[]
+export type MemberWithRelations = Member & {
+  contributions?: Contribution[]
+  activities?: MemberActivity[]
 }
 
 export interface MemberFormData {
@@ -27,10 +26,9 @@ export interface MemberFormData {
   email?: string
   
   // Step 2
-  hasDiplome: boolean
-  diplomeLevel: string
-  Profession: string
-
+  hasDiploma: boolean
+  diplomaLevel?: DiplomaLevel
+  profession?: string
 }
 
 export interface ApiResponse<T = any> {

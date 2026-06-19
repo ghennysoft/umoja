@@ -28,3 +28,40 @@ export function formatCurrency(amount: number): string {
     currency: 'USD'
   }).format(amount)
 }
+
+export function generateMemberId(): string {
+  const date = new Date()
+  const year = date.getFullYear().toString().slice(-2)
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const count = Math.floor(Math.random() * 10000).toString().padStart(4, '0')
+  return `UY/ME/${year}${month}/${count}`
+}
+
+export function getDiplomaLabel(level: string): string {
+  const labels: Record<string, string> = {
+    STATE_DIPLOMA: 'Diplôme d\'État',
+    GRADUATE: 'Graduât',
+    LICENSE: 'Licence',
+    MASTER: 'Master',
+    DOCTORATE: 'Doctorat'
+  }
+  return labels[level] || level
+}
+
+export function getGenderLabel(gender: string): string {
+  const labels: Record<string, string> = {
+    MALE: 'Masculin',
+    FEMALE: 'Féminin'
+  }
+  return labels[gender] || gender
+}
+
+export function getMaritalStatusLabel(status: string): string {
+  const labels: Record<string, string> = {
+    MARRIED: 'Marié(e)',
+    SINGLE: 'Célibataire',
+    WIDOWED: 'Veuf/Veuve',
+    DIVORCED: 'Divorcé(e)'
+  }
+  return labels[status] || status
+}

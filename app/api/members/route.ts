@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
-import { generateAgentId } from '@/app/lib/utils'
+import { generateMemberId } from '@/app/lib/utils'
 import { memberSchema } from '@/schemas/member.schema'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
-
 
 export async function GET(request: NextRequest) {
   try {
@@ -12,7 +11,6 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '10')
     const search = searchParams.get('search') || ''
-    // const zone = searchParams.get('zone') || ''
     const status = searchParams.get('status') || ''
 
     const skip = (page - 1) * limit
@@ -28,20 +26,18 @@ export async function GET(request: NextRequest) {
       ]
     }
 
-    // if (zone) {
-    //   where.zone = zone
-    // }
-
-    if (status) {
-      where.status = status
-    }
-
     const [members, total] = await Promise.all([
       prisma.member.findMany({
         where,
         skip,
         take: limit,
         orderBy: { createdAt: 'desc' },
+        include: {
+          contributions: {
+            where: { status: 'PAID' },
+            take: 1,
+          },
+        },
       }),
       prisma.member.count({ where }),
     ])
@@ -59,7 +55,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error fetching members:', error)
     return NextResponse.json(
-      { success: false, message: 'Failed to fetch members' },
+      { success: false, message: 'Erreur lors du chargement des membres' },
       { status: 500 }
     )
   }
@@ -69,68 +65,51 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
 
-    // Extraire les données du formulaire
+    // Extract form data
     const data: Record<string, any> = {}
     const files: Record<string, File> = {}
 
     for (const [key, value] of formData.entries()) {
       if (value instanceof File) {
         files[key] = value
-        // Pour les fichiers, on stocke le nom du fichier dans data
-        data[key] = value.name
       } else {
-        // Convertir les valeurs booléennes
-        if (key === 'hasId') {
-          data[key] = value === 'true'
-        } else {
-          data[key] = value
-        }
+        data[key] = value
       }
     }
 
-    console.log('Received data:', data)
-    console.log('Received files:', Object.keys(files))
+    // Parse boolean fields
+    if (data.hasDiploma) {
+      data.hasDiploma = data.hasDiploma === 'true'
+    }
 
-    // Valider les données
+    // Validate data
     const validatedData = memberSchema.parse(data)
-    console.log('Validated data:', validatedData)
 
-    // Gérer l'upload des fichiers
+    // Handle file uploads
     const uploadDir = path.join(process.cwd(), 'public/uploads/members')
     await mkdir(uploadDir, { recursive: true })
 
     let photoPath: string | undefined
-    let idPhotoPath: string | undefined
 
     if (files.photo) {
       const photoBuffer = Buffer.from(await files.photo.arrayBuffer())
-      const fileExtension = files.photo.name.split('.').pop()
-      const fileName = `photo-${Date.now()}.${fileExtension}`
+      const fileName = `photo-${Date.now()}-${files.photo.name}`
       const filePath = path.join(uploadDir, fileName)
       await writeFile(filePath, photoBuffer)
       photoPath = `/uploads/members/${fileName}`
     }
 
-    if (files.idPhoto) {
-      const idPhotoBuffer = Buffer.from(await files.idPhoto.arrayBuffer())
-      const fileExtension = files.idPhoto.name.split('.').pop()
-      const fileName = `id-${Date.now()}.${fileExtension}`
-      const filePath = path.join(uploadDir, fileName)
-      await writeFile(filePath, idPhotoBuffer)
-      idPhotoPath = `/uploads/members/${fileName}`
-    }
+    // Generate member ID
+    const memberId = generateMemberId()
 
-    // Générer l'ID de l'member
-    const memberId = generatememberId()
-
-    // Créer l'member dans la base de données
+    // Create member in database
     const member = await prisma.member.create({
       data: {
         memberId,
         firstName: validatedData.firstName,
         lastName: validatedData.lastName,
-        postName: validatedData.postName || null,
-        photo: photoPath || null,
+        postName: validatedData.postName,
+        photo: photoPath,
         birthDate: new Date(validatedData.birthDate),
         birthPlace: validatedData.birthPlace,
         gender: validatedData.gender,
@@ -142,45 +121,35 @@ export async function POST(request: NextRequest) {
         commune: validatedData.commune,
         address: validatedData.address,
         phone: validatedData.phone,
-        whatsapp: validatedData.whatsapp || null,
-        email: validatedData.email || null,
-        
-        hasDiplome: validatedData.hasDiplome,
-        diplomeLevel: validatedData.diplomeLevel || null,
-        Profession: validatedData.Profession || null,
+        whatsapp: validatedData.whatsapp,
+        email: validatedData.email,
+        hasDiploma: validatedData.hasDiploma,
+        diplomaLevel: validatedData.diplomaLevel,
+        profession: validatedData.profession,
       },
     })
-
-    console.log('member created:', member)
 
     return NextResponse.json({
       success: true,
       data: member,
-      message: 'member created successfully',
+      message: 'Membre créé avec succès',
     })
   } catch (error: any) {
     console.error('Error creating member:', error)
     
-    // Gérer les erreurs de validation Zod
-    if (error.name === 'ZodError') {
-      const errors = error.errors.reduce((acc: any, err: any) => {
-        const path = err.path.join('.')
-        acc[path] = [err.message]
-        return acc
-      }, {})
-      
+    if (error.errors) {
       return NextResponse.json(
         {
           success: false,
-          message: 'Validation failed',
-          errors,
+          message: 'Erreur de validation',
+          errors: error.errors,
         },
         { status: 400 }
       )
     }
 
     return NextResponse.json(
-      { success: false, message: error.message || 'Failed to create member' },
+      { success: false, message: error.message || 'Erreur lors de la création du membre' },
       { status: 500 }
     )
   }

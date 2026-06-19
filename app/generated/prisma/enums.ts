@@ -9,15 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const UserRole = {
-  ADMIN: 'ADMIN',
-  AGENT: 'AGENT',
-  MEMBER: 'MEMBER'
-} as const
-
-export type UserRole = (typeof UserRole)[keyof typeof UserRole]
-
-
 export const Gender = {
   MALE: 'MALE',
   FEMALE: 'FEMALE'
@@ -34,6 +25,26 @@ export const MaritalStatus = {
 } as const
 
 export type MaritalStatus = (typeof MaritalStatus)[keyof typeof MaritalStatus]
+
+
+export const DiplomaLevel = {
+  STATE_DIPLOMA: 'STATE_DIPLOMA',
+  GRADUATE: 'GRADUATE',
+  LICENSE: 'LICENSE',
+  MASTER: 'MASTER',
+  DOCTORATE: 'DOCTORATE'
+} as const
+
+export type DiplomaLevel = (typeof DiplomaLevel)[keyof typeof DiplomaLevel]
+
+
+export const UserRole = {
+  ADMIN: 'ADMIN',
+  AGENT: 'AGENT',
+  MEMBER: 'MEMBER'
+} as const
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 
 export const IdType = {
@@ -53,27 +64,6 @@ export const MissionStatus = {
 } as const
 
 export type MissionStatus = (typeof MissionStatus)[keyof typeof MissionStatus]
-
-
-export const ActivityType = {
-  FIELD_VISIT: 'FIELD_VISIT',
-  MEETING: 'MEETING',
-  TRAINING: 'TRAINING',
-  DISTRIBUTION: 'DISTRIBUTION',
-  OTHER: 'OTHER'
-} as const
-
-export type ActivityType = (typeof ActivityType)[keyof typeof ActivityType]
-
-
-export const ActivityStatus = {
-  PENDING: 'PENDING',
-  IN_PROGRESS: 'IN_PROGRESS',
-  COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
-} as const
-
-export type ActivityStatus = (typeof ActivityStatus)[keyof typeof ActivityStatus]
 
 
 export const ReportStatus = {

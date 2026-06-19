@@ -3,17 +3,33 @@
 import { UseFormRegister, FieldErrors } from 'react-hook-form'
 import { MemberFormData } from '@/types/member.types'
 
-interface AgentFormStep1Props {
+interface MemberFormStep1Props {
   register: UseFormRegister<MemberFormData>
   errors: FieldErrors<MemberFormData>
 }
 
-export default function MemberFormStep1({ register, errors }: AgentFormStep1Props) {
+export default function MemberFormStep1({ register, errors }: MemberFormStep1Props) {
   return (
     <div className="space-y-6">
       <h3 className="text-headline-md font-bold text-on-surface">Informations Personnelles</h3>
-      <p className="text-body-md text-on-surface-variant">Entez les details personnels du membre</p>
-      
+      <p className="text-body-md text-on-surface-variant">Saisissez les informations personnelles du membre</p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-label-md font-medium text-on-surface mb-1">
+            Prénom <span className="text-error">*</span>
+          </label>
+          <input
+            type="text"
+            {...register('firstName')}
+            className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+            placeholder="Entrer le prénom"
+          />
+          {errors.firstName && (
+            <p className="text-xs text-error mt-1">{errors.firstName.message}</p>
+          )}
+        </div>
+
         <div>
           <label className="block text-label-md font-medium text-on-surface mb-1">
             Nom <span className="text-error">*</span>
@@ -22,7 +38,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="text"
             {...register('lastName')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter last name"
+            placeholder="Entrer le nom"
           />
           {errors.lastName && (
             <p className="text-xs text-error mt-1">{errors.lastName.message}</p>
@@ -37,24 +53,8 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="text"
             {...register('postName')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter post name"
+            placeholder="Entrer le post-nom"
           />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-label-md font-medium text-on-surface mb-1">
-            Prénom <span className="text-error">*</span>
-          </label>
-          <input
-            type="text"
-            {...register('firstName')}
-            className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter first name"
-          />
-          {errors.firstName && (
-            <p className="text-xs text-error mt-1">{errors.firstName.message}</p>
-          )}
         </div>
 
         <div>
@@ -91,7 +91,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="text"
             {...register('birthPlace')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter birth place"
+            placeholder="Entrer le lieu de naissance"
           />
           {errors.birthPlace && (
             <p className="text-xs text-error mt-1">{errors.birthPlace.message}</p>
@@ -106,9 +106,9 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             {...register('gender')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
           >
-            <option value="">Select gender</option>
-            <option value="MALE">Homme</option>
-            <option value="FEMALE">Femme</option>
+            <option value="">Sélectionner le genre</option>
+            <option value="MALE">Masculin</option>
+            <option value="FEMALE">Féminin</option>
           </select>
           {errors.gender && (
             <p className="text-xs text-error mt-1">{errors.gender.message}</p>
@@ -123,7 +123,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="text"
             {...register('nationality')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter nationality"
+            placeholder="Entrer la nationalité"
           />
           {errors.nationality && (
             <p className="text-xs text-error mt-1">{errors.nationality.message}</p>
@@ -132,13 +132,13 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
 
         <div>
           <label className="block text-label-md font-medium text-on-surface mb-1">
-            Province d&apos;Origine <span className="text-error">*</span>
+            Province d'origine <span className="text-error">*</span>
           </label>
           <input
             type="text"
             {...register('provinceOrigin')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter province"
+            placeholder="Entrer la province"
           />
           {errors.provinceOrigin && (
             <p className="text-xs text-error mt-1">{errors.provinceOrigin.message}</p>
@@ -147,17 +147,17 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
 
         <div>
           <label className="block text-label-md font-medium text-on-surface mb-1">
-            Etat-civil <span className="text-error">*</span>
+            État civil <span className="text-error">*</span>
           </label>
           <select
             {...register('maritalStatus')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
           >
-            <option value="">Select status</option>
-            <option value="MARRIED">Marrié</option>
-            <option value="SINGLE">Celibataire</option>
-            <option value="DIVORCED">Divorcé</option>
-            <option value="WIDOWED">Veuf</option>
+            <option value="">Sélectionner l'état civil</option>
+            <option value="MARRIED">Marié(e)</option>
+            <option value="SINGLE">Célibataire</option>
+            <option value="WIDOWED">Veuf/Veuve</option>
+            <option value="DIVORCED">Divorcé(e)</option>
           </select>
           {errors.maritalStatus && (
             <p className="text-xs text-error mt-1">{errors.maritalStatus.message}</p>
@@ -172,7 +172,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="text"
             {...register('country')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter country"
+            placeholder="Entrer le pays"
           />
           {errors.country && (
             <p className="text-xs text-error mt-1">{errors.country.message}</p>
@@ -187,7 +187,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="text"
             {...register('city')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter city"
+            placeholder="Entrer la ville"
           />
           {errors.city && (
             <p className="text-xs text-error mt-1">{errors.city.message}</p>
@@ -202,7 +202,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="text"
             {...register('commune')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter commune"
+            placeholder="Entrer la commune"
           />
           {errors.commune && (
             <p className="text-xs text-error mt-1">{errors.commune.message}</p>
@@ -217,7 +217,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="text"
             {...register('address')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter address"
+            placeholder="Entrer l'adresse"
           />
           {errors.address && (
             <p className="text-xs text-error mt-1">{errors.address.message}</p>
@@ -226,13 +226,13 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
 
         <div>
           <label className="block text-label-md font-medium text-on-surface mb-1">
-            Numéro de téléphone <span className="text-error">*</span>
+            Téléphone <span className="text-error">*</span>
           </label>
           <input
             type="tel"
             {...register('phone')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter phone number"
+            placeholder="Entrer le numéro de téléphone"
           />
           {errors.phone && (
             <p className="text-xs text-error mt-1">{errors.phone.message}</p>
@@ -247,7 +247,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="tel"
             {...register('whatsapp')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter WhatsApp number"
+            placeholder="Entrer le numéro WhatsApp"
           />
         </div>
 
@@ -259,7 +259,7 @@ export default function MemberFormStep1({ register, errors }: AgentFormStep1Prop
             type="email"
             {...register('email')}
             className="w-full px-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Enter email address"
+            placeholder="Entrer l'adresse email"
           />
           {errors.email && (
             <p className="text-xs text-error mt-1">{errors.email.message}</p>

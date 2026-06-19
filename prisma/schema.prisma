@@ -23,6 +23,8 @@ model User {
   isActive      Boolean   @default(true)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt            @default(now())
+
+  contributions Contribution[]
 }
 
 model Agent {
@@ -62,16 +64,11 @@ model Agent {
   // Timestamps
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
-
-  // Relations
-  missions          Mission[]
-  activities        Activity[]
-  reports           Report[]
 }
 
 model Member {
-  id                String   @id @default(cuid())
-  memberId           String   @unique
+  id                String         @id @default(cuid())
+  memberId          String         @unique
   firstName         String
   lastName          String
   postName          String?
@@ -89,65 +86,30 @@ model Member {
   phone             String
   whatsapp          String?
   email             String?
+  
+  // Profile - CORRIGÉ : hasDiploma au lieu de hasDiplome
+  hasDiploma        Boolean        @default(false)
+  diplomaLevel      DiplomaLevel?
+  profession        String?
+  
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
 
-  // Profession
-  hasDiplome             Boolean  @default(false)
-  diplomeLevel          String?
-  profession  String?
+  contributions     Contribution[]
+}
 
-  // Timestamps
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+model Contribution {
+  id          String             @id @default(cuid())
+  memberId    String
+  member      Member             @relation(fields: [memberId], references: [id])
+  userId      String
+  user        User              @relation(fields: [userId], references: [id])
+  amount      Float
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
 }
 
 
-
-
-
-
-model Mission {
-  id        String   @id @default(cuid())
-  agentId   String
-  agent     Agent    @relation(fields: [agentId], references: [id])
-  zone      String
-  startDate DateTime
-  endDate   DateTime?
-  status    MissionStatus @default(ACTIVE)
-  notes     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Activity {
-  id          String   @id @default(cuid())
-  agentId     String
-  agent       Agent    @relation(fields: [agentId], references: [id])
-  type        ActivityType
-  description String
-  date        DateTime @default(now())
-  location    String?
-  status      ActivityStatus @default(PENDING)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Report {
-  id          String   @id @default(cuid())
-  agentId     String
-  agent       Agent    @relation(fields: [agentId], references: [id])
-  title       String
-  content     String
-  date        DateTime @default(now())
-  status      ReportStatus @default(DRAFT)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-enum UserRole {
-  ADMIN
-  AGENT
-  MEMBER
-}
 enum Gender {
   MALE
   FEMALE
@@ -158,6 +120,20 @@ enum MaritalStatus {
   SINGLE
   WIDOWED
   DIVORCED
+}
+
+enum DiplomaLevel {
+  STATE_DIPLOMA
+  GRADUATE
+  LICENSE
+  MASTER
+  DOCTORATE
+}
+
+enum UserRole {
+  ADMIN
+  AGENT
+  MEMBER
 }
 
 enum IdType {
@@ -173,20 +149,6 @@ enum MissionStatus {
   CANCELLED
 }
 
-enum ActivityType {
-  FIELD_VISIT
-  MEETING
-  TRAINING
-  DISTRIBUTION
-  OTHER
-}
-
-enum ActivityStatus {
-  PENDING
-  IN_PROGRESS
-  COMPLETED
-  CANCELLED
-}
 
 enum ReportStatus {
   DRAFT

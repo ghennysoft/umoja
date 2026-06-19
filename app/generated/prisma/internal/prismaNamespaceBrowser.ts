@@ -54,9 +54,7 @@ export const ModelName = {
   User: 'User',
   Agent: 'Agent',
   Member: 'Member',
-  Mission: 'Mission',
-  Activity: 'Activity',
-  Report: 'Report'
+  Contribution: 'Contribution'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -146,8 +144,8 @@ export const MemberScalarFieldEnum = {
   phone: 'phone',
   whatsapp: 'whatsapp',
   email: 'email',
-  hasDiplome: 'hasDiplome',
-  diplomeLevel: 'diplomeLevel',
+  hasDiploma: 'hasDiploma',
+  diplomaLevel: 'diplomaLevel',
   profession: 'profession',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -156,48 +154,16 @@ export const MemberScalarFieldEnum = {
 export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
 
 
-export const MissionScalarFieldEnum = {
+export const ContributionScalarFieldEnum = {
   id: 'id',
-  agentId: 'agentId',
-  zone: 'zone',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  status: 'status',
-  notes: 'notes',
+  memberId: 'memberId',
+  userId: 'userId',
+  amount: 'amount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type MissionScalarFieldEnum = (typeof MissionScalarFieldEnum)[keyof typeof MissionScalarFieldEnum]
-
-
-export const ActivityScalarFieldEnum = {
-  id: 'id',
-  agentId: 'agentId',
-  type: 'type',
-  description: 'description',
-  date: 'date',
-  location: 'location',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ActivityScalarFieldEnum = (typeof ActivityScalarFieldEnum)[keyof typeof ActivityScalarFieldEnum]
-
-
-export const ReportScalarFieldEnum = {
-  id: 'id',
-  agentId: 'agentId',
-  title: 'title',
-  content: 'content',
-  date: 'date',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
+export type ContributionScalarFieldEnum = (typeof ContributionScalarFieldEnum)[keyof typeof ContributionScalarFieldEnum]
 
 
 export const SortOrder = {
