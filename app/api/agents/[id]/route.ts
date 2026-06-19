@@ -155,50 +155,50 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const agent = await prisma.agent.findUnique({
-      where: { id: params.id },
-    })
+// export async function DELETE(
+//   request: NextRequest,
+//   { params }: { params: { id: string } }
+// ) {
+//   try {
+//     const agent = await prisma.agent.findUnique({
+//       where: { id: params.id },
+//     })
 
-    if (!agent) {
-      return NextResponse.json(
-        { success: false, message: 'Agent not found' },
-        { status: 404 }
-      )
-    }
+//     if (!agent) {
+//       return NextResponse.json(
+//         { success: false, message: 'Agent not found' },
+//         { status: 404 }
+//       )
+//     }
 
-    // Delete associated files
-    if (agent.photo) {
-      const photoPath = path.join(process.cwd(), 'public', agent.photo)
-      try {
-        await unlink(photoPath)
-      } catch (e) {}
-    }
+//     // Delete associated files
+//     if (agent.photo) {
+//       const photoPath = path.join(process.cwd(), 'public', agent.photo)
+//       try {
+//         await unlink(photoPath)
+//       } catch (e) {}
+//     }
 
-    if (agent.idPhoto) {
-      const idPhotoPath = path.join(process.cwd(), 'public', agent.idPhoto)
-      try {
-        await unlink(idPhotoPath)
-      } catch (e) {}
-    }
+//     if (agent.idPhoto) {
+//       const idPhotoPath = path.join(process.cwd(), 'public', agent.idPhoto)
+//       try {
+//         await unlink(idPhotoPath)
+//       } catch (e) {}
+//     }
 
-    await prisma.agent.delete({
-      where: { id: params.id },
-    })
+//     await prisma.agent.delete({
+//       where: { id: params.id },
+//     })
 
-    return NextResponse.json({
-      success: true,
-      message: 'Agent deleted successfully',
-    })
-  } catch (error) {
-    console.error('Error deleting agent:', error)
-    return NextResponse.json(
-      { success: false, message: 'Failed to delete agent' },
-      { status: 500 }
-    )
-  }
-}
+//     return NextResponse.json({
+//       success: true,
+//       message: 'Agent deleted successfully',
+//     })
+//   } catch (error) {
+//     console.error('Error deleting agent:', error)
+//     return NextResponse.json(
+//       { success: false, message: 'Failed to delete agent' },
+//       { status: 500 }
+//     )
+//   }
+// }

@@ -142,17 +142,3 @@ enum IdType {
   DRIVER_LICENSE
   OTHER
 }
-
-enum MissionStatus {
-  ACTIVE
-  COMPLETED
-  CANCELLED
-}
-
-
-enum ReportStatus {
-  DRAFT
-  SUBMITTED
-  APPROVED
-  REJECTED
-}
