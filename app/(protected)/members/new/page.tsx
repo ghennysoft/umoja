@@ -170,8 +170,8 @@ export default function NewAgentPage() {
             </div>
         )}
 
-        {/* Form */}
-        <form onSubmit={()=>{alert('clicked!');handleSubmit(onSubmit)}} className="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm border border-outline-variant/20">
+        {/* Form ;handleSubmit(onSubmit) */}
+        <form onSubmit={console.log('clicked!')} className="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm border border-outline-variant/20">
             {currentStep === 0 && (
             <MemberFormStep1 
                 register={register} 
@@ -202,9 +202,10 @@ export default function NewAgentPage() {
             <div className="flex gap-3 w-full sm:w-auto">
                 {currentStep === steps.length - 1 ? (
                 <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full sm:w-auto px-6 py-2 bg-secondary text-on-secondary rounded-lg font-medium hover:bg-secondary/90 transition-colors disabled:opacity-50"
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={console.log('clicked!')}
+                  className="w-full sm:w-auto px-6 py-2 bg-secondary text-on-secondary rounded-lg font-medium hover:bg-secondary/90 transition-colors disabled:opacity-50"
                 >
                     {isSubmitting ? (
                     <span className="flex items-center gap-2">

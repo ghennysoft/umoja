@@ -53,8 +53,15 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+
+  const { id } = await params;
+
+  if (!id) {
+    return NextResponse.json({ error: "ID manquant" }, { status: 400 });
+  }
+  
   try {
     const formData = await request.formData()
     const data: Record<string, any> = {}
