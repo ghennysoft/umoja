@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '@/lib/prisma'
+import prisma from '@/app/lib/prisma'
 // import { getSession } from '@/lib/auth'
 import { hash } from 'bcryptjs'
-import { createAuditLog } from '@/lib/audit'
+// import { createAuditLog } from '@/app/lib/audit'
 
 export async function GET() {
   try {

@@ -4,9 +4,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import { UserPlus, Mail, Lock, User, Shield, UserCog, Users } from 'lucide-react'
-import SideNavbar from '@/components/common/SideNavbar'
-import TopAppBar from '@/components/common/TopAppBar'
-import Footer from '@/components/common/Footer'
 
 export default function NewUserPage() {
   const router = useRouter()

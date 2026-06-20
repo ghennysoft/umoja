@@ -25,7 +25,6 @@ import {
 interface SideNavbarProps {
   isOpen: boolean
   onClose: () => void
-  // userRole?: 'ADMIN' | 'AGENT' | 'USER'
 }
 
 export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
@@ -101,6 +100,7 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
                 <Link
                   key={link.href}
                   href={link.href}
+                  onClick={onClose}
                   className={active
                     ? 'flex items-center gap-3 px-4 py-3 bg-secondary text-white rounded-xl font-semibold shadow-md'
                     : 'flex items- acenter gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors'

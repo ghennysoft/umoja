@@ -35,9 +35,9 @@ export default function DashboardStats({ stats }: StatsProps) {
     {
       icon: DollarSign,
       label: 'Cotisations',
-      value: `${stats.totalContributions.toFixed(2)} $`,
+      value: `${stats.totalContributions.toFixed(2)} Fc`,
       color: 'text-blue-600 bg-blue-100',
-      change: `+${stats.monthlyContributions.toFixed(2)} $ ce mois`,
+      change: `+${stats.monthlyContributions.toFixed(2)} Fc ce mois`,
       positive: true,
     },
     {

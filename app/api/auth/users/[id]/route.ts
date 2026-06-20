@@ -41,13 +41,13 @@ export async function GET(
         role: true,
         createdAt: true,
         updatedAt: true,
-        _count: {
-          select: {
-            members: true,
-            contributions: true,
-            agents: true,
-          },
-        },
+        // _count: {
+        //   select: {
+        //     members: true,
+        //     contributions: true,
+        //     agents: true,
+        //   },
+        // },
       },
     })
 

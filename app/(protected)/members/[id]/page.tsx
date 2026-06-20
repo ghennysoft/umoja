@@ -226,7 +226,7 @@ export default function MemberDetailPage() {
         <div className="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/20 mt-6">
           <h3 className="text-headline-md font-bold text-on-surface mb-4">Contributions</h3>
           <div className="space-y-3">
-            {member.contributions.map((contribution) => (
+            {member.contributions.map((contribution: any) => (
               <div key={contribution.id} className="flex justify-between items-center p-3 bg-surface-container-low rounded-lg">
                 <div>
                   <p className="font-medium">{contribution.amount} $</p>

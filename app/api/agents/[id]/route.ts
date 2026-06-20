@@ -40,109 +40,109 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+// export async function PUT(
+//   request: NextRequest,
+//   { params }: { params: Promise<{ id: string }> }
+// ) {
 
-  const { id } = await params;
+//   const { id } = await params;
 
-  if (!id) {
-    return NextResponse.json({ error: "ID manquant" }, { status: 400 });
-  }
+//   if (!id) {
+//     return NextResponse.json({ error: "ID manquant" }, { status: 400 });
+//   }
   
-  try {
-    const formData = await request.formData()
-    const data: Record<string, any> = {}
-    const files: Record<string, File> = {}
+//   try {
+//     const formData = await request.formData()
+//     const data: Record<string, any> = {}
+//     const files: Record<string, File> = {}
 
-    for (const [key, value] of formData.entries()) {
-      if (value instanceof File) {
-        files[key] = value
-      } else {
-        data[key] = value
-      }
-    }
+//     for (const [key, value] of formData.entries()) {
+//       if (value instanceof File) {
+//         files[key] = value
+//       } else {
+//         data[key] = value
+//       }
+//     }
 
-    if (data.hasId) {
-      data.hasId = data.hasId === 'true'
-    }
+//     if (data.hasId) {
+//       data.hasId = data.hasId === 'true'
+//     }
 
-    const validatedData = agentSchema.partial().parse(data)
+//     const validatedData = agentSchema.partial().parse(data)
 
-    const existingAgent = await prisma.agent.findUnique({
-      where: { id: params.id },
-    })
+//     const existingAgent = await prisma.agent.findUnique({
+//       where: { id: params.id },
+//     })
 
-    if (!existingAgent) {
-      return NextResponse.json(
-        { success: false, message: 'Agent not found' },
-        { status: 404 }
-      )
-    }
+//     if (!existingAgent) {
+//       return NextResponse.json(
+//         { success: false, message: 'Agent not found' },
+//         { status: 404 }
+//       )
+//     }
 
-    const uploadDir = path.join(process.cwd(), 'public/uploads/agents')
-    await mkdir(uploadDir, { recursive: true })
+//     const uploadDir = path.join(process.cwd(), 'public/uploads/agents')
+//     await mkdir(uploadDir, { recursive: true })
 
-    let photoPath = existingAgent.photo
-    let idPhotoPath = existingAgent.idPhoto
+//     let photoPath = existingAgent.photo
+//     let idPhotoPath = existingAgent.idPhoto
 
-    if (files.photo) {
-      // Delete old photo if exists
-      if (existingAgent.photo) {
-        const oldPath = path.join(process.cwd(), 'public', existingAgent.photo)
-        try {
-          await unlink(oldPath)
-        } catch (e) {}
-      }
+//     if (files.photo) {
+//       // Delete old photo if exists
+//       if (existingAgent.photo) {
+//         const oldPath = path.join(process.cwd(), 'public', existingAgent.photo)
+//         try {
+//           await unlink(oldPath)
+//         } catch (e) {}
+//       }
 
-      const photoBuffer = Buffer.from(await files.photo.arrayBuffer())
-      const fileName = `photo-${Date.now()}-${files.photo.name}`
-      const filePath = path.join(uploadDir, fileName)
-      await writeFile(filePath, photoBuffer)
-      photoPath = `/uploads/agents/${fileName}`
-    }
+//       const photoBuffer = Buffer.from(await files.photo.arrayBuffer())
+//       const fileName = `photo-${Date.now()}-${files.photo.name}`
+//       const filePath = path.join(uploadDir, fileName)
+//       await writeFile(filePath, photoBuffer)
+//       photoPath = `/uploads/agents/${fileName}`
+//     }
 
-    if (files.idPhoto) {
-      if (existingAgent.idPhoto) {
-        const oldPath = path.join(process.cwd(), 'public', existingAgent.idPhoto)
-        try {
-          await unlink(oldPath)
-        } catch (e) {}
-      }
+//     if (files.idPhoto) {
+//       if (existingAgent.idPhoto) {
+//         const oldPath = path.join(process.cwd(), 'public', existingAgent.idPhoto)
+//         try {
+//           await unlink(oldPath)
+//         } catch (e) {}
+//       }
 
-      const idPhotoBuffer = Buffer.from(await files.idPhoto.arrayBuffer())
-      const fileName = `id-${Date.now()}-${files.idPhoto.name}`
-      const filePath = path.join(uploadDir, fileName)
-      await writeFile(filePath, idPhotoBuffer)
-      idPhotoPath = `/uploads/agents/${fileName}`
-    }
+//       const idPhotoBuffer = Buffer.from(await files.idPhoto.arrayBuffer())
+//       const fileName = `id-${Date.now()}-${files.idPhoto.name}`
+//       const filePath = path.join(uploadDir, fileName)
+//       await writeFile(filePath, idPhotoBuffer)
+//       idPhotoPath = `/uploads/agents/${fileName}`
+//     }
 
-    const agent = await prisma.agent.update({
-      where: { id: params.id },
-      data: {
-        ...validatedData,
-        photo: photoPath,
-        idPhoto: idPhotoPath,
-        birthDate: validatedData.birthDate ? new Date(validatedData.birthDate) : undefined,
-        idExpirationDate: validatedData.idExpirationDate ? new Date(validatedData.idExpirationDate) : undefined,
-        startDate: validatedData.startDate ? new Date(validatedData.startDate) : undefined,
-      },
-    })
+//     const agent = await prisma.agent.update({
+//       where: { id: params.id },
+//       data: {
+//         ...validatedData,
+//         photo: photoPath,
+//         idPhoto: idPhotoPath,
+//         birthDate: validatedData.birthDate ? new Date(validatedData.birthDate) : undefined,
+//         idExpirationDate: validatedData.idExpirationDate ? new Date(validatedData.idExpirationDate) : undefined,
+//         startDate: validatedData.startDate ? new Date(validatedData.startDate) : undefined,
+//       },
+//     })
 
-    return NextResponse.json({
-      success: true,
-      data: agent,
-      message: 'Agent updated successfully',
-    })
-  } catch (error: any) {
-    console.error('Error updating agent:', error)
-    return NextResponse.json(
-      { success: false, message: error.message || 'Failed to update agent' },
-      { status: 500 }
-    )
-  }
-}
+//     return NextResponse.json({
+//       success: true,
+//       data: agent,
+//       message: 'Agent updated successfully',
+//     })
+//   } catch (error: any) {
+//     console.error('Error updating agent:', error)
+//     return NextResponse.json(
+//       { success: false, message: error.message || 'Failed to update agent' },
+//       { status: 500 }
+//     )
+//   }
+// }
 
 // export async function DELETE(
 //   request: NextRequest,

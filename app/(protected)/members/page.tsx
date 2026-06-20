@@ -6,10 +6,10 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import { Eye, CirclePlus } from 'lucide-react'
 import MemberStats from '@/components/members/MemberStats'
-import { Member } from '@prisma/client'
+// import { Member } from '@prisma/client'
 
 export default function MembresPage() {
-  const [members, setMembers] = useState<Member[]>([])
+  const [members, setMembers] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [search, setSearch] = useState('')

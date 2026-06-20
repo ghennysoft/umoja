@@ -97,11 +97,11 @@ export async function POST(request: NextRequest) {
       data: user,
       message: 'Utilisateur créé avec succès',
     })
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error creating user:', error)
         return NextResponse.json(
-            { success: false, message: error.message || 'Erreur lors de la création' },
-            { status: error.message === 'Unauthorized' ? 401 : 500 }
+            { success: false, message: error?.message || 'Erreur lors de la création' },
+            { status: error?.message === 'Unauthorized' ? 401 : 500 }
         )
     }
 }

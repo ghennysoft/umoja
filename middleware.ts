@@ -1,57 +1,58 @@
+import { withAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
 
+export default withAuth(
+  function middleware(req) {
+    const token = req.nextauth.token;
+    const path = req.nextUrl.pathname;
 
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { useSession } from 'next-auth/react'
+    // Routes publiques (accessibles sans authentification)
+    const publicRoutes = ['/login']
 
-// Routes publiques (accessibles sans authentification)
-const publicRoutes = ['/login']
+    // Routes admin seulement
+    const adminRoutes = ['/users', '/users/new', '/users/:id/edit', '/agents', '/agents/new']
 
-// Routes admin seulement
-const adminRoutes = ['/users', '/users/new', '/users/:id/edit', '/agents', '/agents/new']
-
-export async function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname
-
-  // Vérifier si la route est publique
-  if (publicRoutes.includes(pathname)) {
-    return NextResponse.next()
-  }
-
-  // Récupérer la session
-  const session = useSession()
-
-  // Si pas de session, rediriger vers login
-  if (!session) {
+    // Si pas de session, rediriger vers login
+  if (!token) {
     const loginUrl = new URL('/login', request.url)
-    loginUrl.searchParams.set('redirect', pathname)
+    loginUrl.searchParams.set('redirect', path)
     return NextResponse.redirect(loginUrl)
   }
 
   // Vérifier les routes admin
-  if (adminRoutes.some(route => pathname.startsWith(route.replace(':id', '')))) {
-    if (session.role !== 'ADMIN') {
+  if (adminRoutes.some(route => path.startsWith(route.replace(':id', '')))) {
+    if (token.role !== 'ADMIN') {
       return NextResponse.redirect(new URL('/dashboard', request.url))
     }
   }
 
   // Agent ne peut pas accéder aux agents
-  if (session.role === 'AGENT' && pathname.startsWith('/agents')) {
+  if (token.role === 'AGENT' && path.startsWith('/agents')) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
-  return NextResponse.next()
-}
+
+    // // Redirection admin
+    // if (path.startsWith("/admin") && token?.role !== "ADMIN") {
+    //   return NextResponse.redirect(new URL("/caisse", req.url));
+    // }
+
+    // // Redirection caisse pour admin
+    // if (path.startsWith("/caisse") && token?.role === "ADMIN") {
+    //   return NextResponse.redirect(new URL("/admin", req.url));
+    // }
+
+    // Vérifier si la route est publique
+    return NextResponse.next();
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => !!token,
+    },
+  }
+);
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     */
-    '/((?!_next/static|_next/image|favicon.ico|public).*)',
-  ],
-}
+  matcher: ["/agents/:path*", "/cotiations/:path*", "/dashboard/:path*", "/members/:path*", "/profile/:path*", "/users/:path*"],
+};
+

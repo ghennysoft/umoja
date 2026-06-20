@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { Menu, Search, Bell, ChevronDown } from 'lucide-react'
 
 interface TopAppBarProps {
-  onMenuClick: () => void
+  onMenuClick: () => void 
 }
 
 export default function TopAppBar({ onMenuClick }: TopAppBarProps) {

@@ -16,6 +16,7 @@ interface Contribution {
   type: string
   description: string | null
   status: string
+  createdAt: string
   member: {
     id: string
     memberId: string

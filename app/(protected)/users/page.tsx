@@ -18,15 +18,12 @@ import {
   Calendar,
   Eye
 } from 'lucide-react'
-import SideNavbar from '@/components/common/SideNavbar'
-import TopAppBar from '@/components/common/TopAppBar'
-import Footer from '@/components/common/Footer'
 
 interface User {
   id: string
   email: string
   name: string
-  role: 'ADMIN' | 'AGENT' | 'USER'
+  role: 'ADMIN' | 'AGENT' | 'MEMBER'
   createdAt: string
   updatedAt: string
   _count: {
@@ -39,7 +36,7 @@ interface User {
 const roleColors = {
   ADMIN: 'bg-purple-100 text-purple-700',
   AGENT: 'bg-blue-100 text-blue-700',
-  USER: 'bg-green-100 text-green-700',
+  MEMBER: 'bg-green-100 text-green-700',
 }
 
 const roleLabels = {
@@ -131,7 +128,7 @@ export default function UsersPage() {
           <option value="">Tous les rôles</option>
           <option value="ADMIN">Administrateur</option>
           <option value="AGENT">Agent</option>
-          <option value="USER">Membre</option>
+          <option value="MEMBER">Membre</option>
         </select>
         <button
           onClick={() => { setSearch(''); setRoleFilter('') }}
@@ -203,7 +200,7 @@ export default function UsersPage() {
                       <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ${roleColors[user.role]}`}>
                         {user.role === 'ADMIN' && <Shield className="w-3 h-3" />}
                         {user.role === 'AGENT' && <UserCog className="w-3 h-3" />}
-                        {user.role === 'USER' && <User className="w-3 h-3" />}
+                        {user.role === 'MEMBER' && <User className="w-3 h-3" />}
                         {roleLabels[user.role]}
                       </span>
                     </td>

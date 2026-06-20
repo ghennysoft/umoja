@@ -3,9 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import SideNavbar from '@/components/common/SideNavbar'
-import TopAppBar from '@/components/common/TopAppBar'
-import Footer from '@/components/common/Footer'
 
 const steps = ['Informations Personnelles', 'Profil']
 

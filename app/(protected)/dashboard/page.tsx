@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 import DashboardStats from '@/components/dashboard/DashboardStats'
 import DashboardCharts from '@/components/dashboard/DashboardCharts'
 import RecentActivities from '@/components/dashboard/RecentActivities'
+import { Calendar } from 'lucide-react'
 
 export default function DashboardPage() {
   const router = useRouter()
@@ -51,7 +52,7 @@ export default function DashboardPage() {
       <div className="flex justify-end mb-6">
         <button className="flex items-center gap-2 bg-white border border-outline-variant/60 px-3 py-2 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-medium text-on-surface hover:bg-surface-container transition-colors shadow-sm">
           <span>01 mai 2024 - 31 mai 2024</span>
-          <span className="material-icons-outlined text-base text-on-surface-variant">calendar_today</span>
+          <Calendar />
         </button>
       </div>
 
