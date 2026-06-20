@@ -68,7 +68,7 @@ export default function NewAgentPage() {
     setCurrentStep((prev) => Math.max(prev - 1, 0))
   }
 
-  const onSubmit = async (data: AgentFormData) => {
+  const onSubmit = async (data: any) => {
     setIsSubmitting(true)
     setSubmitError(null)
     
