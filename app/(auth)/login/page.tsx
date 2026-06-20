@@ -25,7 +25,7 @@ export default function LoginPage() {
         redirect: false,
       });
       if (result?.error) {
-        setError(response.data.message || 'Erreur de connexion')
+        setError('Erreur de connexion')
         console.error('Email ou mot de passe incorrect');
       } else {
         console.log(result);
@@ -33,7 +33,7 @@ export default function LoginPage() {
         router.push('/dashboard');
       }
     } catch (error: any) {
-      setError(error.response?.data?.message || 'Erreur de connexion')
+      setError('Erreur de connexion')
     } finally {
       setIsLoading(false)
     }
