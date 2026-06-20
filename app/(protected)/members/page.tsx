@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import { Eye } from 'lucide-react'
+import { Eye, CirclePlus } from 'lucide-react'
 import MemberStats from '@/components/members/MemberStats'
 import { Member } from '@prisma/client'
 

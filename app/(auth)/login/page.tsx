@@ -3,81 +3,123 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-// import { Button } from '@/components/ui/button';
-// import { Input } from '@/components/ui/input';
-// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-// import toast from 'react-hot-toast';
+import { Eye, EyeOff, LogIn, User, Lock } from 'lucide-react'
 
 export default function LoginPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    const result = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    });
-    if (result?.error) {
-      console.error('Email ou mot de passe incorrect');
-    } else {
-      console.log(result);
-      // toast.success('Connexion réussie');
-      router.push('/dashboard');
+    e.preventDefault()
+    setError('')
+    setIsLoading(true)
+
+    try {
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+      if (result?.error) {
+        setError(response.data.message || 'Erreur de connexion')
+        console.error('Email ou mot de passe incorrect');
+      } else {
+        console.log(result);
+        // toast.success('Connexion réussie');
+        router.push('/dashboard');
+      }
+    } catch (error: any) {
+      setError(error.response?.data?.message || 'Erreur de connexion')
+    } finally {
+      setIsLoading(false)
     }
-    setLoading(false);
-  };
+  }
 
   return (
-    <div className='bg-white p-3'>
-      <div className="flex justify-center mb-3">
-        <img src="/logo.png" width={150} alt="logo umoja" />
-      </div>
-      <div>
-        <h4 className="text-center text-2xl">Connexion</h4>
+    <div className="min-h-screen bg-surface flex items-center justify-center p-4">
+      <div className="bg-surface-container-lowest rounded-2xl p-8 max-w-md w-full shadow-lg border border-outline-variant/20">
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <img src="/logo.png" alt="logo" width={150} />
+          </div>
+          {/* <h1 className="text-2xl font-bold text-on-surface">UMOJA YETU ASBL</h1> */}
+          <p className="text-on-surface-variant mt-1">Connectez-vous à votre compte</p>
+        </div>
+
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          <label htmlFor="email">Email</label>
-          <input 
-            type="email"
-            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
-            placeholder="Adresse email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <div>
+            <label className="block text-label-md font-medium text-on-surface mb-1">
+              Email
+            </label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="exemple@email.com"
+                required
+              />
+            </div>
+          </div>
 
-          <label htmlFor="password">Mot de passe</label>
-          <input 
-            type="password"
-            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
-            placeholder="Mot de passe"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          {
-            loading
-            ? <button 
+          <div>
+            <label className="block text-label-md font-medium text-on-surface mb-1">
+              Mot de passe
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-10 pr-12 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="••••••••"
+                required
+              />
+              <button
                 type="button"
-                disabled
-                className="block p-2 my-4 rounded-xl w-full bg-gray-300 text-gray-500"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
               >
-                Connexion en cour... 
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
-            : <button 
-                type="submit"
-                className="block p-2 my-4 rounded-xl w-full bg-blue-600 text-white cursor-pointer"
-              >
+            </div>
+          </div>
+
+          {error && (
+            <div className="bg-error-container text-on-error-container p-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-secondary text-on-secondary py-2.5 rounded-lg font-medium hover:bg-secondary/90 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            {isLoading ? (
+              <span className="animate-spin">⏳</span>
+            ) : (
+              <>
+                <LogIn className="w-4 h-4" />
                 Se connecter
-              </button>
-          }
+              </>
+            )}
+          </button>
         </form>
+
+        <p className="text-center text-sm text-on-surface-variant mt-6">
+          Contactez l'administrateur pour créer un compte
+        </p>
       </div>
     </div>
-  );
+  )
 }

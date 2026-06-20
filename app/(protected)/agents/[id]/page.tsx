@@ -260,7 +260,7 @@ export default function AgentDetailPage() {
         </div>
 
         {/* Missions */}
-        {agent.missions && agent.missions.length > 0 && (
+        {/* {agent.missions && agent.missions.length > 0 && (
           <div className="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/20 mt-6">
             <h3 className="text-headline-md font-bold text-on-surface mb-4">Missions</h3>
             <div className="space-y-3">
@@ -283,7 +283,7 @@ export default function AgentDetailPage() {
               ))}
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </>
   )

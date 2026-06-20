@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react';
 import Link from 'next/link'
 import axios from 'axios'
-import { DollarCircle } from 'lucide-react'
+import { HandCoins, Divide, CirclePlus, CircleMinus } from 'lucide-react'
 import ContributionForm from '@/components/contributions/ContributionForm'
 
 interface Contribution {
@@ -126,7 +126,7 @@ export default function CotisationsPage() {
         onClick={() => setShowForm(!showForm)}
         className="flex items-center gap-2 bg-secondary text-on-secondary px-5 py-2.5 rounded-lg font-medium hover:bg-secondary/90 transition-colors shadow-sm whitespace-nowrap"
         >
-        <span className="material-symbols-outlined text-sm">{showForm ? 'close' : 'add'}</span>
+        {showForm ? <CircleMinus /> : <CirclePlus />}
         {showForm ? 'Fermer le formulaire' : 'Enregistrer un paiement'}
         </button>
     </div>
@@ -147,10 +147,10 @@ export default function CotisationsPage() {
         <div className="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/20">
         <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
-            <span className="material-symbols-outlined text-2xl">payments</span>
+            <HandCoins />
             </div>
             <div>
-            <h3 className="text-stat-number text-on-surface">{summary.totalAmount.toFixed(2)} $</h3>
+            <h3 className="text-stat-number text-on-surface">{summary.totalAmount.toFixed(2)} Fc</h3>
             <p className="text-label-md text-on-surface-variant">Montant total</p>
             </div>
         </div>
@@ -158,7 +158,7 @@ export default function CotisationsPage() {
         <div className="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/20">
         <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-            <span className="material-symbols-outlined text-2xl">receipt_long</span>
+            <HandCoins />
             </div>
             <div>
             <h3 className="text-stat-number text-on-surface">{summary.totalCount}</h3>
@@ -169,10 +169,10 @@ export default function CotisationsPage() {
         <div className="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/20">
         <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center">
-            <span className="material-symbols-outlined text-2xl">calculate</span>
+            <Divide />
             </div>
             <div>
-            <h3 className="text-stat-number text-on-surface">{summary.averageAmount.toFixed(2)} $</h3>
+            <h3 className="text-stat-number text-on-surface">{summary.averageAmount.toFixed(2)} Fc</h3>
             <p className="text-label-md text-on-surface-variant">Moyenne par paiement</p>
             </div>
         </div>
@@ -254,7 +254,7 @@ export default function CotisationsPage() {
                 <p className="text-sm text-on-surface-variant">{group.count} paiements</p>
                 </div>
                 <div className="text-right">
-                <p className="text-headline-md font-bold text-secondary">{group.total.toFixed(2)} $</p>
+                <p className="text-headline-md font-bold text-secondary">{group.total.toFixed(2)} Fc</p>
                 </div>
             </div>
             {/* Group Details */}
@@ -263,7 +263,7 @@ export default function CotisationsPage() {
                 <thead>
                     <tr className="bg-surface-container-low/50 border-b border-outline-variant/10">
                     <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold">Membre</th>
-                    <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold hidden sm:table-cell">Type</th>
+                    {/* <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold hidden sm:table-cell">Type</th> */}
                     <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold hidden md:table-cell">Date</th>
                     <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold text-right">Montant</th>
                     </tr>
@@ -277,18 +277,18 @@ export default function CotisationsPage() {
                             <span className="text-xs text-on-surface-variant">({contribution.member.memberId})</span>
                         </div>
                         </td>
-                        <td className="px-4 py-3 hidden sm:table-cell">
+                        {/* <td className="px-4 py-3 hidden sm:table-cell">
                         <span className="text-sm text-on-surface-variant">
                             {contribution.type === 'MONTHLY' ? 'Mensuelle' :
                             contribution.type === 'ANNUAL' ? 'Annuelle' :
                             contribution.type === 'SPECIAL' ? 'Spéciale' : 'Autre'}
                         </span>
-                        </td>
+                        </td> */}
                         <td className="px-4 py-3 hidden md:table-cell text-sm text-on-surface-variant">
-                        {formatDate(contribution.date)}
+                        {formatDate(contribution.createdAt)}
                         </td>
                         <td className="px-4 py-3 text-right font-medium text-secondary">
-                        {contribution.amount.toFixed(2)} $
+                        {contribution.amount.toFixed(2)} Fc
                         </td>
                     </tr>
                     ))}

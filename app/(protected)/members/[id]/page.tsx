@@ -55,7 +55,7 @@ export default function MemberDetailPage() {
     return (
       <div className="text-center">
         <p className="text-on-surface-variant text-lg">Membre non trouvé</p>
-        <Link href="/membres" className="text-secondary hover:underline mt-2 inline-block">
+        <Link href="/members" className="text-secondary hover:underline mt-2 inline-block">
           Retour aux Membres
         </Link>
       </div>
@@ -67,7 +67,7 @@ export default function MemberDetailPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <Link href="/membres" className="text-secondary hover:underline flex items-center gap-1 mb-2">
+          <Link href="/members" className="text-secondary hover:underline flex items-center gap-1 mb-2">
             <ArrowLeft />
             Retour aux Membres
           </Link>

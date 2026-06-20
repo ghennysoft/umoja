@@ -13,7 +13,6 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '10')
     const search = searchParams.get('search') || ''
     const zone = searchParams.get('zone') || ''
-    const status = searchParams.get('status') || ''
 
     const skip = (page - 1) * limit
 
@@ -32,22 +31,12 @@ export async function GET(request: NextRequest) {
       where.zone = zone
     }
 
-    if (status) {
-      where.status = status
-    }
-
     const [agents, total] = await Promise.all([
       prisma.agent.findMany({
         where,
         skip,
         take: limit,
         orderBy: { createdAt: 'desc' },
-        include: {
-          missions: {
-            where: { status: 'ACTIVE' },
-            take: 1,
-          },
-        },
       }),
       prisma.agent.count({ where }),
     ])

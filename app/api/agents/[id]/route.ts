@@ -18,17 +18,6 @@ export async function GET(
   try {
     const agent = await prisma.agent.findUnique({
       where: { id: id },
-      include: {
-        missions: true,
-        activities: {
-          orderBy: { date: 'desc' },
-          take: 5,
-        },
-        reports: {
-          orderBy: { date: 'desc' },
-          take: 5,
-        },
-      },
     })
 
     if (!agent) {

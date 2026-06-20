@@ -1,4 +1,5 @@
 import { Member } from '@prisma/client'
+import { UsersRound, ShieldCheck, GraduationCap } from 'lucide-react'
 
 interface MemberStatsProps {
   members: Member[]
@@ -15,7 +16,7 @@ export default function MemberStats({ members }: MemberStatsProps) {
       <div className="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/20">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-primary-container/10 text-primary flex items-center justify-center">
-            <span className="material-symbols-outlined text-2xl">groups</span>
+            <UsersRound />
           </div>
           <div>
             <h3 className="text-stat-number text-on-surface">{total}</h3>
@@ -26,7 +27,7 @@ export default function MemberStats({ members }: MemberStatsProps) {
       <div className="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/20">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
-            <span className="material-symbols-outlined text-2xl">verified</span>
+            <ShieldCheck />
           </div>
           <div>
             <h3 className="text-stat-number text-on-surface">{active}</h3>
@@ -37,7 +38,7 @@ export default function MemberStats({ members }: MemberStatsProps) {
       <div className="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/20">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center">
-            <span className="material-symbols-outlined text-2xl">school</span>
+            <GraduationCap />
           </div>
           <div>
             <h3 className="text-stat-number text-on-surface">{diplomaRate}%</h3>

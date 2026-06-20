@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
+import { CheckCircle } from 'lucide-react'
 
 interface ContributionFormProps {
   onSuccess?: () => void
@@ -314,7 +315,7 @@ export default function ContributionFormSimple({
                 <span className={`material-symbols-outlined text-3xl ${
                   dialog.exists ? 'text-secondary' : 'text-error'
                 }`}>
-                  {dialog.exists ? 'check_circle' : 'error'}
+                  {dialog.exists ? <CheckCircle /> : 'error'}
                 </span>
               </div>
               <h3 className="text-headline-md font-bold text-on-surface mb-2">

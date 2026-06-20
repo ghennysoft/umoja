@@ -22,9 +22,13 @@ model User {
   role          UserRole  @default(MEMBER)
   isActive      Boolean   @default(true)
   createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt            @default(now())
-
-  contributions Contribution[]
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  members       Member[]       @relation("UserMembers")
+  contributions Contribution[] @relation("UserContributions")
+  agents        Agent[]        @relation("UserAgents")
+  auditLogs     AuditLog[]     @relation("UserAuditLogs")
 }
 
 model Agent {
@@ -64,6 +68,11 @@ model Agent {
   // Timestamps
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
+  
+  // Relations
+  owner            String?        @relation("UserAgent", fields: [userId], references: [id])
+  userId      String
+  user        User              @relation(fields: [userId], references: [id])
 }
 
 model Member {
@@ -95,6 +104,8 @@ model Member {
   createdAt         DateTime       @default(now())
   updatedAt         DateTime       @updatedAt
 
+  userId      String?
+  user        User?              @relation(fields: [userId], references: [id])
   contributions     Contribution[]
 }
 
@@ -107,6 +118,19 @@ model Contribution {
   amount      Float
   createdAt   DateTime           @default(now())
   updatedAt   DateTime           @updatedAt
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation("UserAuditLogs", fields: [userId], references: [id])
+  action      String   // CREATE, UPDATE, DELETE, LOGIN, LOGOUT
+  entity      String   // USER, MEMBER, AGENT, CONTRIBUTION
+  entityId    String?
+  changes     Json?    // Changements effectués
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
 }
 
 

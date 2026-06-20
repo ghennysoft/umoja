@@ -1,29 +1,53 @@
-"use client"
+'use client'
 
-import KPICards from '@/components/dashboard/KPICards'
-import ChartsSection from '@/components/dashboard/ChartsSection'
-import ProjectsTable from '@/components/dashboard/ProjectsTable'
-import QuickAccess from '@/components/dashboard/QuickAccess'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
+import { useSession } from 'next-auth/react'
+import DashboardStats from '@/components/dashboard/DashboardStats'
+import DashboardCharts from '@/components/dashboard/DashboardCharts'
 import RecentActivities from '@/components/dashboard/RecentActivities'
-import DashboardFooter from '@/components/dashboard/DashboardFooter'
-
-const stats = [
-  { title: "Cotisation du jour", value: "0 CDF", change: "0%", up: false, 
-    // icon: DollarSign
-   },
-  { title: "Enregistrements", value: "0", change: "0%", up: false, 
-    // icon: CreditCard
-   },
-  { title: "Agents", value: "0", change: "0%", up: false, 
-    // icon: UserCog2
-   },
-  // { title: "Taux de conversion", value: "94.2%", change: "-0.8%", up: false, icon: TrendingUp },
-];
 
 export default function DashboardPage() {
+  const router = useRouter()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [user, setUser] = useState<any | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [dashboardData, setDashboardData] = useState<any>(null)
+
+  useEffect(() => {
+    // const session = useSession()
+    // if (!session) {
+    //   router.push('/login')
+    //   return
+    // }
+    // setUser(session)
+    fetchDashboardData()
+  }, [router])
+
+  const fetchDashboardData = async () => {
+    try {
+      const response = await axios.get('/api/dashboard/stats')
+      if (response.data.success) {
+        setDashboardData(response.data.data)
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
   return (
     <>
-      {/* Date Range Picker */}
       <div className="flex justify-end mb-6">
         <button className="flex items-center gap-2 bg-white border border-outline-variant/60 px-3 py-2 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-medium text-on-surface hover:bg-surface-container transition-colors shadow-sm">
           <span>01 mai 2024 - 31 mai 2024</span>
@@ -31,20 +55,17 @@ export default function DashboardPage() {
         </button>
       </div>
 
-      {/* KPI Cards */}
-      <KPICards />
-
-      {/* Charts Section */}
-      <ChartsSection />
-
-      {/* Bottom Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
-        <ProjectsTable />
-        <div className="flex flex-col gap-6">
-          <QuickAccess />
-          <RecentActivities />
-        </div>
-      </div>
+      {dashboardData && (
+        <>
+          <DashboardStats stats={dashboardData.stats} />
+          <DashboardCharts charts={dashboardData.charts} />
+          <RecentActivities 
+            members={dashboardData.recent.members}
+            contributions={dashboardData.recent.contributions}
+            userRole={user?.role}
+          />
+        </>
+      )}
     </>
   )
 }
