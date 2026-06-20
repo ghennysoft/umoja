@@ -103,13 +103,13 @@ export default function CotisationsPage() {
   }
 
   const formatGroupLabel = (group: GroupedData) => {
-    if (groupBy === 'day' && group.date) {
-      return formatDate(group.date)
-    } else if (groupBy === 'week' && group.weekNumber && group.year) {
-      return `Semaine ${group.weekNumber} - ${group.year}`
-    } else if (groupBy === 'month' && group.monthNumber && group.year) {
+    if (groupBy === 'day' && group?.date) {
+      return formatDate(group?.date)
+    } else if (groupBy === 'week' && group?.weekNumber && group?.year) {
+      return `Semaine ${group?.weekNumber} - ${group?.year}`
+    } else if (groupBy === 'month' && group?.monthNumber && group?.year) {
       const monthNames = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc']
-      return `${monthNames[group.monthNumber - 1]} ${group.year}`
+      return `${monthNames[group?.monthNumber - 1]} ${group?.year}`
     }
     return ''
   }
@@ -251,10 +251,10 @@ export default function CotisationsPage() {
             <div className="flex justify-between items-center px-6 py-3 bg-surface-container-low border-b border-outline-variant/20">
                 <div>
                 <h3 className="font-headline-md text-on-surface">{formatGroupLabel(group)}</h3>
-                <p className="text-sm text-on-surface-variant">{group.count} paiements</p>
+                <p className="text-sm text-on-surface-variant">{group?.count} paiements</p>
                 </div>
                 <div className="text-right">
-                <p className="text-headline-md font-bold text-secondary">{group.total.toFixed(2)} Fc</p>
+                <p className="text-headline-md font-bold text-secondary">{group?.total?.toFixed(2)} Fc</p>
                 </div>
             </div>
             {/* Group Details */}
@@ -269,26 +269,26 @@ export default function CotisationsPage() {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/10">
-                    {group.contributions.map((contribution) => (
-                    <tr key={contribution.id} className="hover:bg-surface-container-low/50 transition-colors">
+                    {group?.contributions?.map((contribution) => (
+                    <tr key={contribution?.id} className="hover:bg-surface-container-low/50 transition-colors">
                         <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
-                            <span className="font-medium">{contribution.member.firstName} {contribution.member.lastName}</span>
-                            <span className="text-xs text-on-surface-variant">({contribution.member.memberId})</span>
+                            <span className="font-medium">{contribution?.member?.firstName} {contribution?.member?.lastName}</span>
+                            <span className="text-xs text-on-surface-variant">({contribution?.member?.memberId})</span>
                         </div>
                         </td>
                         {/* <td className="px-4 py-3 hidden sm:table-cell">
                         <span className="text-sm text-on-surface-variant">
-                            {contribution.type === 'MONTHLY' ? 'Mensuelle' :
-                            contribution.type === 'ANNUAL' ? 'Annuelle' :
-                            contribution.type === 'SPECIAL' ? 'Spéciale' : 'Autre'}
+                            {contribution?.type === 'MONTHLY' ? 'Mensuelle' :
+                            contribution?.type === 'ANNUAL' ? 'Annuelle' :
+                            contribution?.type === 'SPECIAL' ? 'Spéciale' : 'Autre'}
                         </span>
                         </td> */}
                         <td className="px-4 py-3 hidden md:table-cell text-sm text-on-surface-variant">
-                        {formatDate(contribution.createdAt)}
+                        {formatDate(contribution?.createdAt) || ''}
                         </td>
                         <td className="px-4 py-3 text-right font-medium text-secondary">
-                        {contribution.amount.toFixed(2)} Fc
+                        {contribution?.amount?.toFixed(2)} Fc
                         </td>
                     </tr>
                     ))}
