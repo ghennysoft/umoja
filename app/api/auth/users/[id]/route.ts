@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
-import { requireAdmin, getSession } from '@/lib/auth'
+import prisma from '@/app/lib/prisma'
+// import { requireAdmin, getSession } from '@/lib/auth'
 import { hash } from 'bcryptjs'
 
 export async function GET(
