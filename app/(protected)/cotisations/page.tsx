@@ -137,7 +137,7 @@ export default function CotisationsPage() {
         <ContributionForm 
             onSuccess={handleFormSuccess}
             onCancel={() => setShowForm(false)}
-            userId={session.user.id}
+            userId={session?.user?.id}
         />
         </div>
     )}
