@@ -8,7 +8,7 @@ import axios from 'axios'
 import AgentFormStep1 from '@/components/agents/AgentFormStep1'
 import AgentFormStep2 from '@/components/agents/AgentFormStep2'
 import AgentFormStep3 from '@/components/agents/AgentFormStep3'
-import { agentSchema, AgentFormData } from '@/schemas/agent.schema'
+import { agentSchema } from '@/schemas/agent.schema'
 
 const steps = ['Informations Personnelles', 'Identification', 'Fonction']
 
@@ -27,7 +27,7 @@ export default function NewAgentPage() {
     trigger,
     getValues,
     setError,
-  } = useForm<AgentFormData>({
+  } = useForm<any>({
     resolver: zodResolver(agentSchema),
     defaultValues: {
       hasId: false,
@@ -37,7 +37,7 @@ export default function NewAgentPage() {
   })
 
   const onNext = async () => {
-    let fieldsToValidate: (keyof AgentFormData)[] = []
+    let fieldsToValidate: (keyof any)[] = []
 
     if (currentStep === 0) {
       fieldsToValidate = [
