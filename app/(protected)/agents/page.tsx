@@ -11,11 +11,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import AgentsStats from '@/components/agents/AgentsStats'
-import { Agent } from '@prisma/client'
+// import { Agent } from '@prisma/client'
 import { CirclePlus, MapPin, Eye } from 'lucide-react'
 
 export default function DashboardPage() {  
-  const [agents, setAgents] = useState<Agent[]>([])
+  const [agents, setAgents] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [search, setSearch] = useState('')
