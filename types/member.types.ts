@@ -1,8 +1,8 @@
-import { Member, Gender, MaritalStatus, DiplomaLevel } from '@prisma/client'
+import { Gender, MaritalStatus, DiplomaLevel } from '@/app/generated/prisma/enums';
+import { Member, Contribution } from '@/app/generated/prisma/client';
 
 export type MemberWithRelations = Member & {
   contributions?: Contribution[]
-  activities?: MemberActivity[]
 }
 
 export interface MemberFormData {

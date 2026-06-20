@@ -12,7 +12,7 @@ interface TopAppBarProps {
 export default function TopAppBar({ onMenuClick }: TopAppBarProps) {
   const { data } = useSession();
 
-  const [session, setSession] = useState("");
+  const [session, setSession] = useState<any>(null);
   console.log(session)
   useEffect(() => {
     const checkSession = () => {

@@ -1,8 +1,8 @@
-import { Member } from '@prisma/client'
+// import { Member } from '@prisma/client'
 import { UsersRound, ShieldCheck, GraduationCap } from 'lucide-react'
 
 interface MemberStatsProps {
-  members: Member[]
+  members: any[]
 }
 
 export default function MemberStats({ members }: MemberStatsProps) {

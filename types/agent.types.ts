@@ -1,10 +1,7 @@
-import { Agent, Gender, MaritalStatus, IdType } from '@prisma/client'
+import { Gender, MaritalStatus, IdType } from '@/app/generated/prisma/enums';
+import { Agent } from '@/app/generated/prisma/client';
 
-export type AgentWithRelations = Agent & {
-  missions?: Mission[]
-  activities?: Activity[]
-  reports?: Report[]
-}
+export type AgentWithRelations = Agent
 
 export interface AgentFormData {
   // Step 1

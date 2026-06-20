@@ -29,7 +29,6 @@ interface SideNavbarProps {
 
 export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
   const { data: session } = useSession();
-  console.log(session)
   const pathname = usePathname()
   const isAdmin = session?.user?.role === 'ADMIN';
 
@@ -39,7 +38,7 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
       if(session){
         setUserRole(session?.user?.role);
       } else {
-        location.hre='/login';
+        // location.href='/login';
       }
     };
     checkUserRole();

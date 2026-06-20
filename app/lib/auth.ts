@@ -5,7 +5,6 @@ import prisma from './prisma';
 import { z } from 'zod';
 import { UserRole } from '../generated/prisma/enums';
 
-
 const loginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1),

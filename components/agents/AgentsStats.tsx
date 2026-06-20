@@ -1,8 +1,8 @@
-import { Agent } from '@prisma/client'
+// import { Agent } from '@prisma/client'
 import { UserRoundCog, Waypoints, MapPinned } from 'lucide-react'
 
 interface AgentStatsProps {
-  agents: Agent[]
+  agents: any[]
 }
 
 export default function AgentStats({ agents }: AgentStatsProps) {
