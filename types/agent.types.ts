@@ -21,7 +21,6 @@ export interface AgentFormData {
   address: string
   phone: string
   whatsapp?: string
-  email?: string
   
   // Step 2
   hasId: boolean
@@ -30,11 +29,15 @@ export interface AgentFormData {
   idExpirationDate?: string
   idPhoto?: string
   
-  // Step 3
   function: string
   zone: string
   startDate: string
   supervisor?: string
+
+  // Step 3
+  email: string
+  password: string
+  confirmPassword: string
 }
 
 export interface ApiResponse<T = any> {

@@ -55,22 +55,3 @@ export const IdType = {
 } as const
 
 export type IdType = (typeof IdType)[keyof typeof IdType]
-
-
-export const MissionStatus = {
-  ACTIVE: 'ACTIVE',
-  COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
-} as const
-
-export type MissionStatus = (typeof MissionStatus)[keyof typeof MissionStatus]
-
-
-export const ReportStatus = {
-  DRAFT: 'DRAFT',
-  SUBMITTED: 'SUBMITTED',
-  APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED'
-} as const
-
-export type ReportStatus = (typeof ReportStatus)[keyof typeof ReportStatus]

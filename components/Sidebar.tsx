@@ -80,7 +80,7 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
       <aside className={`
         fixed left-0 top-0 h-full bg-primary flex flex-col justify-between text-on-primary z-50
         transition-transform duration-300 ease-in-out
-        w-72 max-w-[280px] overflow-y-auto
+        w-72 max-w-70 overflow-y-auto
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0 lg:relative lg:z-auto
       `}>

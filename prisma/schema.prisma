@@ -12,127 +12,125 @@ datasource db {
   provider = "postgresql"
 }
 
-
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  password      String
-  name          String
-  photo         String?
-  role          UserRole  @default(MEMBER)
-  isActive      Boolean   @default(true)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  photo     String?
+  role      UserRole @default(MEMBER)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   // Relations
-  members       Member[]       @relation("UserMembers")
-  contributions Contribution[] @relation("UserContributions")
-  agents        Agent[]        @relation("UserAgents")
-  auditLogs     AuditLog[]     @relation("UserAuditLogs")
+  members       Member[]       
+  contributions Contribution[] 
+  agents        Agent[]        
+  auditLogs     AuditLog[]    
 }
 
 model Agent {
-  id                String   @id @default(cuid())
-  agentId           String   @unique
-  firstName         String
-  lastName          String
-  postName          String?
-  photo             String?
-  birthDate         DateTime
-  birthPlace        String
-  gender            Gender
-  nationality       String
-  provinceOrigin    String
-  maritalStatus     MaritalStatus
-  country           String
-  city              String
-  commune           String
-  address           String
-  phone             String
-  whatsapp          String?
-  email             String?
+  id             String        @id @default(cuid())
+  agentId        String        @unique
+  firstName      String
+  lastName       String
+  postName       String?
+  photo          String?
+  birthDate      DateTime
+  birthPlace     String
+  gender         Gender
+  nationality    String
+  provinceOrigin String
+  maritalStatus  MaritalStatus
+  country        String
+  city           String
+  commune        String
+  address        String
+  phone          String
+  whatsapp       String?
+  email          String?
 
   // Identification
-  hasId             Boolean  @default(false)
-  idType            IdType?
-  idNumber          String?
-  idExpirationDate  DateTime?
-  idPhoto           String?
+  hasId            Boolean   @default(false)
+  idType           IdType?
+  idNumber         String?
+  idExpirationDate DateTime?
+  idPhoto          String?
 
   // Function
-  function          String
-  zone              String
-  startDate         DateTime
-  supervisor        String?
+  function   String
+  zone       String
+  startDate  DateTime
+  supervisor String?
 
   // Timestamps
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   // Relations
-  owner            String?        @relation("UserAgent", fields: [userId], references: [id])
-  userId      String
-  user        User              @relation(fields: [userId], references: [id])
+  ownerId String?
+  userId  String?
+  user    User?    @relation(fields: [userId], references: [id])
 }
 
 model Member {
-  id                String         @id @default(cuid())
-  memberId          String         @unique
-  firstName         String
-  lastName          String
-  postName          String?
-  photo             String?
-  birthDate         DateTime
-  birthPlace        String
-  gender            Gender
-  nationality       String
-  provinceOrigin    String
-  maritalStatus     MaritalStatus
-  country           String
-  city              String
-  commune           String
-  address           String
-  phone             String
-  whatsapp          String?
-  email             String?
-  
-  // Profile - CORRIGÉ : hasDiploma au lieu de hasDiplome
-  hasDiploma        Boolean        @default(false)
-  diplomaLevel      DiplomaLevel?
-  profession        String?
-  
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
+  id             String        @id @default(cuid())
+  memberId       String        @unique
+  firstName      String
+  lastName       String
+  postName       String?
+  photo          String?
+  birthDate      DateTime
+  birthPlace     String
+  gender         Gender
+  nationality    String
+  provinceOrigin String
+  maritalStatus  MaritalStatus
+  country        String
+  city           String
+  commune        String
+  address        String
+  phone          String
+  whatsapp       String?
+  email          String?
 
-  userId      String?
-  user        User?              @relation(fields: [userId], references: [id])
-  contributions     Contribution[]
+  // Profile - CORRIGÉ : hasDiploma au lieu de hasDiplome
+  hasDiploma   Boolean       @default(false)
+  diplomaLevel DiplomaLevel?
+  profession   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId        String?
+  user          User?          @relation(fields: [userId], references: [id])
+  contributions Contribution[]
 }
 
 model Contribution {
-  id          String             @id @default(cuid())
-  memberId    String
-  member      Member             @relation(fields: [memberId], references: [id])
-  userId      String
-  user        User              @relation(fields: [userId], references: [id])
-  amount      Float
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
+  id        String   @id @default(cuid())
+  memberId  String
+  member    Member   @relation(fields: [memberId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  amount    Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model AuditLog {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation("UserAuditLogs", fields: [userId], references: [id])
-  action      String   // CREATE, UPDATE, DELETE, LOGIN, LOGOUT
-  entity      String   // USER, MEMBER, AGENT, CONTRIBUTION
-  entityId    String?
-  changes     Json?    // Changements effectués
-  ipAddress   String?
-  userAgent   String?
-  createdAt   DateTime @default(now())
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  action    String // CREATE, UPDATE, DELETE, LOGIN, LOGOUT
+  entity    String // USER, MEMBER, AGENT, CONTRIBUTION
+  entityId  String?
+  changes   Json? // Changements effectués
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
 }
-
 
 enum Gender {
   MALE

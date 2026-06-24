@@ -264,35 +264,34 @@ export default function CotisationsPage() {
                 <thead>
                     <tr className="bg-surface-container-low/50 border-b border-outline-variant/10">
                     <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold">Membre</th>
-                    {/* <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold hidden sm:table-cell">Type</th> */}
+                    <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold hidden sm:table-cell">Agent</th>
                     <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold hidden md:table-cell">Date</th>
                     <th className="text-label-md text-on-surface-variant px-4 py-2 font-semibold text-right">Montant</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/10">
-                    {group?.contributions?.map((contribution) => (
-                    <tr key={contribution?.id} className="hover:bg-surface-container-low/50 transition-colors">
-                        <td className="px-4 py-3">
-                        <div className="flex items-center gap-2">
-                            <span className="font-medium">{contribution?.member?.firstName} {contribution?.member?.lastName}</span>
-                            <span className="text-xs text-on-surface-variant">({contribution?.member?.memberId})</span>
-                        </div>
-                        </td>
-                        {/* <td className="px-4 py-3 hidden sm:table-cell">
-                        <span className="text-sm text-on-surface-variant">
-                            {contribution?.type === 'MONTHLY' ? 'Mensuelle' :
-                            contribution?.type === 'ANNUAL' ? 'Annuelle' :
-                            contribution?.type === 'SPECIAL' ? 'Spéciale' : 'Autre'}
-                        </span>
-                        </td> */}
-                        <td className="px-4 py-3 hidden md:table-cell text-sm text-on-surface-variant">
-                        {formatDate(contribution?.createdAt) || ''}
-                        </td>
-                        <td className="px-4 py-3 text-right font-medium text-secondary">
-                        {contribution?.amount?.toFixed(2)} Fc
-                        </td>
-                    </tr>
-                    ))}
+                  {group?.contributions?.map((contribution) => (
+                  <tr key={contribution?.id} className="hover:bg-surface-container-low/50 transition-colors">
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium">{contribution?.member?.firstName} {contribution?.member?.lastName}</span>
+                        <span className="text-xs text-on-surface-variant">({contribution?.member?.memberId})</span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 hidden sm:table-cell">
+                      <span className="font-medium">{contribution?.member?.firstName} {contribution?.member?.lastName}</span>
+                      <span className="text-sm text-on-surface-variant">
+                        {contribution?.user?.name}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 hidden md:table-cell text-sm text-on-surface-variant">
+                      {formatDate(contribution?.createdAt) || ''}
+                    </td>
+                    <td className="px-4 py-3 text-right font-medium text-secondary">
+                      {contribution?.amount?.toFixed(2)} Fc
+                    </td>
+                  </tr>
+                  ))}
                 </tbody>
                 </table>
             </div>

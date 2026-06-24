@@ -50,8 +50,6 @@ export async function GET(request: NextRequest) {
       },
       orderBy: { createdAt: 'desc' },
     })
-    console.log({contributions});
-    
 
     // Group contributions
     let groupedData: any = {}

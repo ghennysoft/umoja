@@ -49,6 +49,7 @@ export type MemberMinAggregateOutputType = {
   profession: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
 }
 
 export type MemberMaxAggregateOutputType = {
@@ -76,6 +77,7 @@ export type MemberMaxAggregateOutputType = {
   profession: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
 }
 
 export type MemberCountAggregateOutputType = {
@@ -103,6 +105,7 @@ export type MemberCountAggregateOutputType = {
   profession: number
   createdAt: number
   updatedAt: number
+  userId: number
   _all: number
 }
 
@@ -132,6 +135,7 @@ export type MemberMinAggregateInputType = {
   profession?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
 }
 
 export type MemberMaxAggregateInputType = {
@@ -159,6 +163,7 @@ export type MemberMaxAggregateInputType = {
   profession?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
 }
 
 export type MemberCountAggregateInputType = {
@@ -186,6 +191,7 @@ export type MemberCountAggregateInputType = {
   profession?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
   _all?: true
 }
 
@@ -286,6 +292,7 @@ export type MemberGroupByOutputType = {
   profession: string | null
   createdAt: Date
   updatedAt: Date
+  userId: string | null
   _count: MemberCountAggregateOutputType | null
   _min: MemberMinAggregateOutputType | null
   _max: MemberMaxAggregateOutputType | null
@@ -334,6 +341,8 @@ export type MemberWhereInput = {
   profession?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  userId?: Prisma.StringNullableFilter<"Member"> | string | null
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   contributions?: Prisma.ContributionListRelationFilter
 }
 
@@ -362,6 +371,8 @@ export type MemberOrderByWithRelationInput = {
   profession?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
   contributions?: Prisma.ContributionOrderByRelationAggregateInput
 }
 
@@ -393,6 +404,8 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   profession?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  userId?: Prisma.StringNullableFilter<"Member"> | string | null
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   contributions?: Prisma.ContributionListRelationFilter
 }, "id" | "memberId">
 
@@ -421,6 +434,7 @@ export type MemberOrderByWithAggregationInput = {
   profession?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MemberCountOrderByAggregateInput
   _max?: Prisma.MemberMaxOrderByAggregateInput
   _min?: Prisma.MemberMinOrderByAggregateInput
@@ -454,6 +468,7 @@ export type MemberScalarWhereWithAggregatesInput = {
   profession?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Member"> | Date | string
+  userId?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
 }
 
 export type MemberCreateInput = {
@@ -481,6 +496,7 @@ export type MemberCreateInput = {
   profession?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutMembersInput
   contributions?: Prisma.ContributionCreateNestedManyWithoutMemberInput
 }
 
@@ -509,6 +525,7 @@ export type MemberUncheckedCreateInput = {
   profession?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId?: string | null
   contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutMemberInput
 }
 
@@ -537,6 +554,7 @@ export type MemberUpdateInput = {
   profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutMembersNestedInput
   contributions?: Prisma.ContributionUpdateManyWithoutMemberNestedInput
 }
 
@@ -565,6 +583,7 @@ export type MemberUncheckedUpdateInput = {
   profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contributions?: Prisma.ContributionUncheckedUpdateManyWithoutMemberNestedInput
 }
 
@@ -593,6 +612,7 @@ export type MemberCreateManyInput = {
   profession?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId?: string | null
 }
 
 export type MemberUpdateManyMutationInput = {
@@ -647,6 +667,17 @@ export type MemberUncheckedUpdateManyInput = {
   profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type MemberListRelationFilter = {
+  every?: Prisma.MemberWhereInput
+  some?: Prisma.MemberWhereInput
+  none?: Prisma.MemberWhereInput
+}
+
+export type MemberOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type MemberCountOrderByAggregateInput = {
@@ -674,6 +705,7 @@ export type MemberCountOrderByAggregateInput = {
   profession?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MemberMaxOrderByAggregateInput = {
@@ -701,6 +733,7 @@ export type MemberMaxOrderByAggregateInput = {
   profession?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MemberMinOrderByAggregateInput = {
@@ -728,11 +761,54 @@ export type MemberMinOrderByAggregateInput = {
   profession?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MemberScalarRelationFilter = {
   is?: Prisma.MemberWhereInput
   isNot?: Prisma.MemberWhereInput
+}
+
+export type MemberCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutUserInput, Prisma.MemberUncheckedCreateWithoutUserInput> | Prisma.MemberCreateWithoutUserInput[] | Prisma.MemberUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutUserInput | Prisma.MemberCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.MemberCreateManyUserInputEnvelope
+  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+}
+
+export type MemberUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutUserInput, Prisma.MemberUncheckedCreateWithoutUserInput> | Prisma.MemberCreateWithoutUserInput[] | Prisma.MemberUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutUserInput | Prisma.MemberCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.MemberCreateManyUserInputEnvelope
+  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+}
+
+export type MemberUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutUserInput, Prisma.MemberUncheckedCreateWithoutUserInput> | Prisma.MemberCreateWithoutUserInput[] | Prisma.MemberUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutUserInput | Prisma.MemberCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.MemberUpsertWithWhereUniqueWithoutUserInput | Prisma.MemberUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.MemberCreateManyUserInputEnvelope
+  set?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  disconnect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  delete?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  update?: Prisma.MemberUpdateWithWhereUniqueWithoutUserInput | Prisma.MemberUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.MemberUpdateManyWithWhereWithoutUserInput | Prisma.MemberUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
+}
+
+export type MemberUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutUserInput, Prisma.MemberUncheckedCreateWithoutUserInput> | Prisma.MemberCreateWithoutUserInput[] | Prisma.MemberUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutUserInput | Prisma.MemberCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.MemberUpsertWithWhereUniqueWithoutUserInput | Prisma.MemberUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.MemberCreateManyUserInputEnvelope
+  set?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  disconnect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  delete?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  update?: Prisma.MemberUpdateWithWhereUniqueWithoutUserInput | Prisma.MemberUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.MemberUpdateManyWithWhereWithoutUserInput | Prisma.MemberUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
 }
 
 export type NullableEnumDiplomaLevelFieldUpdateOperationsInput = {
@@ -751,6 +827,119 @@ export type MemberUpdateOneRequiredWithoutContributionsNestedInput = {
   upsert?: Prisma.MemberUpsertWithoutContributionsInput
   connect?: Prisma.MemberWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutContributionsInput, Prisma.MemberUpdateWithoutContributionsInput>, Prisma.MemberUncheckedUpdateWithoutContributionsInput>
+}
+
+export type MemberCreateWithoutUserInput = {
+  id?: string
+  memberId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasDiploma?: boolean
+  diplomaLevel?: $Enums.DiplomaLevel | null
+  profession?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  contributions?: Prisma.ContributionCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutUserInput = {
+  id?: string
+  memberId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasDiploma?: boolean
+  diplomaLevel?: $Enums.DiplomaLevel | null
+  profession?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutUserInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutUserInput, Prisma.MemberUncheckedCreateWithoutUserInput>
+}
+
+export type MemberCreateManyUserInputEnvelope = {
+  data: Prisma.MemberCreateManyUserInput | Prisma.MemberCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type MemberUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.MemberWhereUniqueInput
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutUserInput, Prisma.MemberUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutUserInput, Prisma.MemberUncheckedCreateWithoutUserInput>
+}
+
+export type MemberUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.MemberWhereUniqueInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutUserInput, Prisma.MemberUncheckedUpdateWithoutUserInput>
+}
+
+export type MemberUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.MemberScalarWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateManyMutationInput, Prisma.MemberUncheckedUpdateManyWithoutUserInput>
+}
+
+export type MemberScalarWhereInput = {
+  AND?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
+  OR?: Prisma.MemberScalarWhereInput[]
+  NOT?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
+  id?: Prisma.StringFilter<"Member"> | string
+  memberId?: Prisma.StringFilter<"Member"> | string
+  firstName?: Prisma.StringFilter<"Member"> | string
+  lastName?: Prisma.StringFilter<"Member"> | string
+  postName?: Prisma.StringNullableFilter<"Member"> | string | null
+  photo?: Prisma.StringNullableFilter<"Member"> | string | null
+  birthDate?: Prisma.DateTimeFilter<"Member"> | Date | string
+  birthPlace?: Prisma.StringFilter<"Member"> | string
+  gender?: Prisma.EnumGenderFilter<"Member"> | $Enums.Gender
+  nationality?: Prisma.StringFilter<"Member"> | string
+  provinceOrigin?: Prisma.StringFilter<"Member"> | string
+  maritalStatus?: Prisma.EnumMaritalStatusFilter<"Member"> | $Enums.MaritalStatus
+  country?: Prisma.StringFilter<"Member"> | string
+  city?: Prisma.StringFilter<"Member"> | string
+  commune?: Prisma.StringFilter<"Member"> | string
+  address?: Prisma.StringFilter<"Member"> | string
+  phone?: Prisma.StringFilter<"Member"> | string
+  whatsapp?: Prisma.StringNullableFilter<"Member"> | string | null
+  email?: Prisma.StringNullableFilter<"Member"> | string | null
+  hasDiploma?: Prisma.BoolFilter<"Member"> | boolean
+  diplomaLevel?: Prisma.EnumDiplomaLevelNullableFilter<"Member"> | $Enums.DiplomaLevel | null
+  profession?: Prisma.StringNullableFilter<"Member"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
+  userId?: Prisma.StringNullableFilter<"Member"> | string | null
 }
 
 export type MemberCreateWithoutContributionsInput = {
@@ -778,6 +967,7 @@ export type MemberCreateWithoutContributionsInput = {
   profession?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutMembersInput
 }
 
 export type MemberUncheckedCreateWithoutContributionsInput = {
@@ -805,6 +995,7 @@ export type MemberUncheckedCreateWithoutContributionsInput = {
   profession?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId?: string | null
 }
 
 export type MemberCreateOrConnectWithoutContributionsInput = {
@@ -848,9 +1039,121 @@ export type MemberUpdateWithoutContributionsInput = {
   profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutMembersNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutContributionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
+  profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type MemberCreateManyUserInput = {
+  id?: string
+  memberId: string
+  firstName: string
+  lastName: string
+  postName?: string | null
+  photo?: string | null
+  birthDate: Date | string
+  birthPlace: string
+  gender: $Enums.Gender
+  nationality: string
+  provinceOrigin: string
+  maritalStatus: $Enums.MaritalStatus
+  country: string
+  city: string
+  commune: string
+  address: string
+  phone: string
+  whatsapp?: string | null
+  email?: string | null
+  hasDiploma?: boolean
+  diplomaLevel?: $Enums.DiplomaLevel | null
+  profession?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MemberUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
+  profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contributions?: Prisma.ContributionUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  postName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  birthPlace?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  nationality?: Prisma.StringFieldUpdateOperationsInput | string
+  provinceOrigin?: Prisma.StringFieldUpdateOperationsInput | string
+  maritalStatus?: Prisma.EnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  commune?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDiploma?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  diplomaLevel?: Prisma.NullableEnumDiplomaLevelFieldUpdateOperationsInput | $Enums.DiplomaLevel | null
+  profession?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   memberId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -933,6 +1236,8 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   profession?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
+  user?: boolean | Prisma.Member$userArgs<ExtArgs>
   contributions?: boolean | Prisma.Member$contributionsArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
@@ -962,6 +1267,8 @@ export type MemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   profession?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
+  user?: boolean | Prisma.Member$userArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -989,6 +1296,8 @@ export type MemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   profession?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
+  user?: boolean | Prisma.Member$userArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectScalar = {
@@ -1016,19 +1325,26 @@ export type MemberSelectScalar = {
   profession?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
 }
 
-export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "memberId" | "firstName" | "lastName" | "postName" | "photo" | "birthDate" | "birthPlace" | "gender" | "nationality" | "provinceOrigin" | "maritalStatus" | "country" | "city" | "commune" | "address" | "phone" | "whatsapp" | "email" | "hasDiploma" | "diplomaLevel" | "profession" | "createdAt" | "updatedAt", ExtArgs["result"]["member"]>
+export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "memberId" | "firstName" | "lastName" | "postName" | "photo" | "birthDate" | "birthPlace" | "gender" | "nationality" | "provinceOrigin" | "maritalStatus" | "country" | "city" | "commune" | "address" | "phone" | "whatsapp" | "email" | "hasDiploma" | "diplomaLevel" | "profession" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["member"]>
 export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Member$userArgs<ExtArgs>
   contributions?: boolean | Prisma.Member$contributionsArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type MemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type MemberIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type MemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Member$userArgs<ExtArgs>
+}
+export type MemberIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Member$userArgs<ExtArgs>
+}
 
 export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Member"
   objects: {
+    user: Prisma.$UserPayload<ExtArgs> | null
     contributions: Prisma.$ContributionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1056,6 +1372,7 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     profession: string | null
     createdAt: Date
     updatedAt: Date
+    userId: string | null
   }, ExtArgs["result"]["member"]>
   composites: {}
 }
@@ -1450,6 +1767,7 @@ readonly fields: MemberFieldRefs;
  */
 export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.Member$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   contributions<T extends Prisma.Member$contributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContributionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1504,6 +1822,7 @@ export interface MemberFieldRefs {
   readonly profession: Prisma.FieldRef<"Member", 'String'>
   readonly createdAt: Prisma.FieldRef<"Member", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Member", 'DateTime'>
+  readonly userId: Prisma.FieldRef<"Member", 'String'>
 }
     
 
@@ -1758,6 +2077,10 @@ export type MemberCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.MemberCreateManyInput | Prisma.MemberCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1828,6 +2151,10 @@ export type MemberUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Members to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1894,6 +2221,25 @@ export type MemberDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Members to delete.
    */
   limit?: number
+}
+
+/**
+ * Member.user
+ */
+export type Member$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

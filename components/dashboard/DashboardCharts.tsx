@@ -14,7 +14,7 @@ import {
   Legend,
   Filler,
 } from 'chart.js'
-// import { Line, Bar, Doughnut } from 'react-chartjs-2'
+import { Line, Bar, Doughnut } from 'react-chartjs-2'
 import { TrendingUp, PieChart, BarChart3 } from 'lucide-react'
 
 ChartJS.register(
@@ -58,7 +58,7 @@ export default function DashboardCharts({ charts }: ChartsProps) {
     labels: charts.monthlyData.map(d => d.month),
     datasets: [
       {
-        label: 'Cotisations ($)',
+        label: 'Cotisations (Fc)',
         data: charts.monthlyData.map(d => d.total),
         borderColor: '#18a058',
         backgroundColor: (context: any) => {
@@ -105,7 +105,7 @@ export default function DashboardCharts({ charts }: ChartsProps) {
         beginAtZero: true,
         ticks: {
           callback: function (value: any) {
-            return value + ' $'
+            return value + ' Fc'
           },
         },
         border: { display: false },
@@ -202,7 +202,7 @@ export default function DashboardCharts({ charts }: ChartsProps) {
           </select>
         </div>
         <div className="h-56 md:h-64 w-full relative">
-          {/* <Line data={lineData} options={lineOptions as any} /> */}
+          <Line data={lineData} options={lineOptions as any} />
         </div>
       </div>
 
@@ -213,7 +213,7 @@ export default function DashboardCharts({ charts }: ChartsProps) {
           <h3 className="text-headline-md text-on-surface">Répartition par type</h3>
         </div>
         <div className="h-48 md:h-56 w-full relative">
-          {/* <Doughnut data={doughnutData} options={doughnutOptions as any} /> */}
+          <Doughnut data={doughnutData} options={doughnutOptions as any} />
         </div>
       </div>
 
@@ -224,7 +224,7 @@ export default function DashboardCharts({ charts }: ChartsProps) {
           <h3 className="text-headline-md text-on-surface">Répartition par genre</h3>
         </div>
         <div className="h-48 md:h-56 w-full relative">
-          {/* <Bar data={barData} options={barOptions as any} /> */}
+          <Bar data={barData} options={barOptions as any} />
         </div>
       </div>
     </div>

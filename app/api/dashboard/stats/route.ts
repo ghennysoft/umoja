@@ -1,16 +1,8 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
-// import { getSession } from '@/app/lib/auth'
 
 export async function GET() {
   try {
-    // const session = getSession()
-    // if (!session) {
-    //   return NextResponse.json(
-    //     { success: false, message: 'Non authentifié' },
-    //     { status: 401 }
-    //   )
-    // }
 
     // Statistiques de base
     const [
@@ -73,19 +65,6 @@ export async function GET() {
         },
       }),
     ])
-
-    // // Données pour les graphiques
-    // const monthlyData = await prisma.$queryRaw<any[]>
-    // `
-    //   SELECT 
-    //     DATE_TRUNC('month', created_at) as month,
-    //     SUM(amount) as total,
-    //     COUNT(*) as count
-    //   FROM "Contribution"
-    //   WHERE created_at >= NOW() - INTERVAL '6 months'
-    //   GROUP BY DATE_TRUNC('month', created_at)
-    //   ORDER BY month ASC
-    // `
 
     // Données pour les graphiques - Version Prisma pur
     const monthlyData = []

@@ -15,7 +15,6 @@ const steps = ['Informations Personnelles', 'Identification', 'Fonction']
 export default function NewAgentPage() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const router = useRouter()
 

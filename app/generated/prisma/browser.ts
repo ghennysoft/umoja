@@ -37,3 +37,8 @@ export type Member = Prisma.MemberModel
  * 
  */
 export type Contribution = Prisma.ContributionModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel

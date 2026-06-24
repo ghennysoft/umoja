@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-import { Menu, Search, Bell, ChevronDown } from 'lucide-react'
+import { Menu } from 'lucide-react'
 
 interface TopAppBarProps {
   onMenuClick: () => void 
@@ -27,7 +27,7 @@ export default function TopAppBar({ onMenuClick }: TopAppBarProps) {
         {/* Bouton menu mobile */}
         <button 
           onClick={onMenuClick}
-          className="text-on-surface-variant hover:bg-surface-container rounded-full p-2 transition-colors lg:hidden flex-shrink-0"
+          className="text-on-surface-variant hover:bg-surface-container rounded-full p-2 transition-colors lg:hidden shrink-0"
           aria-label="Ouvrir le menu"
         >
           <Menu />
@@ -41,7 +41,7 @@ export default function TopAppBar({ onMenuClick }: TopAppBarProps) {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
+      <div className="flex items-center gap-2 md:gap-4 shrink-0">
         {/* <div className="flex items-center gap-1 md:gap-3 text-on-surface-variant">
           <button className="hover:bg-surface-container p-1.5 md:p-2 rounded-full transition-colors">
             <Search />
@@ -56,7 +56,7 @@ export default function TopAppBar({ onMenuClick }: TopAppBarProps) {
 
         <div className="h-6 md:h-8 w-px bg-outline-variant/40 hidden sm:block"></div>
 
-        <div className="flex items-center gap-1 md:gap-3 cursor-pointer flex-shrink-0">
+        <div className="flex items-center gap-1 md:gap-3 cursor-pointer shrink-0">
           <Image
             alt="Admin Avatar"
             className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-outline-variant"
