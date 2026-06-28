@@ -28,7 +28,7 @@ export default function LoginPage() {
         setError('Erreur de connexion')
         console.error('Email ou mot de passe incorrect');
       } else {
-        console.log(result);
+        // console.log(result);
         // toast.success('Connexion réussie');
         router.push('/dashboard');
       }

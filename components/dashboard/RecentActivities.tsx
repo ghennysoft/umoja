@@ -29,7 +29,7 @@ export default function RecentActivities({ members, contributions, userRole }: R
       icon: DollarSign,
       iconColor: 'bg-blue-100 text-blue-600',
       title: 'Cotisation reçue',
-      description: `${c.amount.toFixed(2)} $ par ${c.member.firstName} ${c.member.lastName}`,
+      description: `${c.amount.toFixed(2)} Fc par ${c.member.firstName} ${c.member.lastName}`,
       time: new Date(c.createdAt).toLocaleDateString('fr-FR', {
         day: '2-digit',
         month: '2-digit',

@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 
-const steps = ['Informations Personnelles', 'Profil']
+const steps = ['Informations Personnelles', 'Profil', 'Authentification']
 
 export default function NewMemberPage() {
   const router = useRouter()
@@ -12,6 +13,8 @@ export default function NewMemberPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -33,10 +36,16 @@ export default function NewMemberPage() {
     phone: '',
     whatsapp: '',
     email: '',
+
     // Step 2
     hasDiploma: false,
     diplomaLevel: '',
     profession: '',
+    
+    // Step 3: Authentication
+    authEmail: '',
+    password: '',
+    confirmPassword: '',
   })
 
   // Validation functions
@@ -73,15 +82,39 @@ export default function NewMemberPage() {
     return Object.keys(newErrors).length === 0
   }
 
+  const validateStep3 = () => {
+    const newErrors: Record<string, string> = {}
+    
+    if (!formData.authEmail.trim()) {
+      newErrors.authEmail = "L'email est requis"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.authEmail)) {
+      newErrors.authEmail = 'Email invalide'
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'Le mot de passe est requis'
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Le mot de passe doit contenir au moins 6 caractères'
+    }
+    
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Les mots de passe ne correspondent pas'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   // Navigation handlers
   const handleNext = () => {
-    console.log('🟡 handleNext called, currentStep:', currentStep)
     
     let isValid = false
     if (currentStep === 0) {
       isValid = validateStep1()
     } else if (currentStep === 1) {
       isValid = validateStep2()
+    } else if (currentStep === 2) {
+      isValid = validateStep3()
     }
 
     if (isValid) {
@@ -120,7 +153,6 @@ export default function NewMemberPage() {
   // Submit handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('🔵 FORM SUBMITTED with data:', formData)
     
     // Final validation
     if (currentStep === 0) {
@@ -128,6 +160,9 @@ export default function NewMemberPage() {
     }
     if (currentStep === 1) {
       if (!validateStep2()) return
+    }
+    if (currentStep === 2) {
+      if (!validateStep3()) return
     }
 
     setIsSubmitting(true)
@@ -147,18 +182,21 @@ export default function NewMemberPage() {
         }
       })
 
-      console.log('🔵 Sending POST request to /api/members')
       const response = await axios.post('/api/members', submitData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
-      console.log('🔵 Response:', response.data)
-
       if (response.data.success) {
+        const response = await axios.post('/api/auth/users', {
+          name: formData.firstName+' '+formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          role: 'MEMBER',
+        })
         router.push('/members')
       }
     } catch (error: any) {
-      console.error('🔴 Error:', error)
+      // console.error('🔴 Error:', error)
       const message = error.response?.data?.message || error.message || 'Erreur lors de la création'
     } finally {
       setIsSubmitting(false)
@@ -498,28 +536,29 @@ export default function NewMemberPage() {
                 </label>
               </div>
 
-              {formData.hasDiploma && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-outline-variant/30">
-                  <div>
-                    <label className="block text-label-md font-medium text-on-surface mb-1">
-                      Niveau de diplôme <span className="text-error">*</span>
-                    </label>
-                    <select
-                      name="diplomaLevel"
-                      value={formData.diplomaLevel}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-2 bg-surface-container-low border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent
-                        ${errors.diplomaLevel ? 'border-error' : 'border-outline-variant'}`}
-                    >
-                      <option value="">Sélectionner le niveau</option>
-                      <option value="STATE_DIPLOMA">Diplôme d'État</option>
-                      <option value="GRADUATE">Graduât</option>
-                      <option value="LICENSE">Licence</option>
-                      <option value="MASTER">Master</option>
-                      <option value="DOCTORATE">Doctorat</option>
-                    </select>
-                    {errors.diplomaLevel && <p className="text-xs text-error mt-1">{errors.diplomaLevel}</p>}
-                  </div>
+                  {formData.hasDiploma && (
+                    <div>
+                      <label className="block text-label-md font-medium text-on-surface mb-1">
+                        Niveau de diplôme <span className="text-error">*</span>
+                      </label>
+                      <select
+                        name="diplomaLevel"
+                        value={formData.diplomaLevel}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-2 bg-surface-container-low border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent
+                          ${errors.diplomaLevel ? 'border-error' : 'border-outline-variant'}`}
+                      >
+                        <option value="">Sélectionner le niveau</option>
+                        <option value="STATE_DIPLOMA">Diplôme d'État</option>
+                        <option value="GRADUATE">Graduât</option>
+                        <option value="LICENSE">Licence</option>
+                        <option value="MASTER">Master</option>
+                        <option value="DOCTORATE">Doctorat</option>
+                      </select>
+                      {errors.diplomaLevel && <p className="text-xs text-error mt-1">{errors.diplomaLevel}</p>}
+                    </div>
+                  )}
 
                   <div>
                     <label className="block text-label-md font-medium text-on-surface mb-1">
@@ -535,7 +574,88 @@ export default function NewMemberPage() {
                     />
                   </div>
                 </div>
-              )}
+            </div>
+          </div>
+        )}
+
+        {/* Step 3: Authentication */}
+        {currentStep === 2 && (
+          <div className="space-y-6">
+            <h3 className="text-headline-md font-bold text-on-surface">Authentification</h3>
+            <p className="text-body-md text-on-surface-variant">Créez les identifiants de connexion de l'agent</p>
+
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label className="block text-label-md font-medium text-on-surface mb-1">
+                  Email <span className="text-error">*</span>
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4" />
+                  <input
+                    type="email"
+                    name="authEmail"
+                    value={formData.authEmail}
+                    onChange={handleInputChange}
+                    className={`w-full pl-10 pr-4 py-2 bg-surface-container-low border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent
+                      ${errors.authEmail ? 'border-error' : 'border-outline-variant'}`}
+                    placeholder="exemple@email.com"
+                  />
+                </div>
+                {errors.authEmail && <p className="text-xs text-error mt-1">{errors.authEmail}</p>}
+              </div>
+
+              <div>
+                <label className="block text-label-md font-medium text-on-surface mb-1">
+                  Mot de passe <span className="text-error">*</span>
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    className={`w-full pl-10 pr-12 py-2 bg-surface-container-low border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent
+                      ${errors.password ? 'border-error' : 'border-outline-variant'}`}
+                    placeholder="••••••••"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+                {errors.password && <p className="text-xs text-error mt-1">{errors.password}</p>}
+                <p className="text-xs text-on-surface-variant mt-1">Minimum 6 caractères</p>
+              </div>
+
+              <div>
+                <label className="block text-label-md font-medium text-on-surface mb-1">
+                  Confirmer le mot de passe <span className="text-error">*</span>
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4" />
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    className={`w-full pl-10 pr-12 py-2 bg-surface-container-low border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent
+                      ${errors.confirmPassword ? 'border-error' : 'border-outline-variant'}`}
+                    placeholder="••••••••"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
+                  >
+                    {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+                {errors.confirmPassword && <p className="text-xs text-error mt-1">{errors.confirmPassword}</p>}
+              </div>
             </div>
           </div>
         )}

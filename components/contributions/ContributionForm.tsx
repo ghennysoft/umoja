@@ -123,7 +123,6 @@ export default function ContributionFormSimple({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('🔵 Form submitted:', formData)
 
     // Validation simple
     if (!formData.memberId) {
@@ -139,9 +138,7 @@ export default function ContributionFormSimple({
 
     // Check if member exists
     try {
-      console.log('🔵 Checking member:', formData.memberId)
       const checkResponse = await axios.get(`/api/members/${formData.memberId}`)
-      console.log('🔵 Member check response:', checkResponse.data)
 
       if (!checkResponse.data.success) {
         setDialog({
@@ -157,13 +154,12 @@ export default function ContributionFormSimple({
       const memberData = checkResponse.data.data
       setDialog({
         show: true,
-        message: `Vous faites un paiement de ${amount} $ pour ${memberData.firstName} ${memberData.lastName}`,
+        message: `Vous faites un paiement de ${amount} Fc pour ${memberData.firstName} ${memberData.lastName}`,
         exists: true,
         member: memberData,
         amount: amount,
       })
     } catch (error: any) {
-      console.error('🔴 Error checking member:', error)
       setDialog({
         show: true,
         message: `Cet ID de membre n'existe pas`,
@@ -183,10 +179,7 @@ export default function ContributionFormSimple({
         userId: userId,
       }
 
-      console.log('🔵 Creating contribution:', data)
-
       const response = await axios.post('/api/contributions', data)
-      console.log('🔵 Contribution response:', response.data)
 
       if (response.data.success) {
         // Reset form
@@ -203,7 +196,6 @@ export default function ContributionFormSimple({
         }
       }
     } catch (error: any) {
-      console.error('🔴 Error:', error)
       const message = error.response?.data?.message || error.message || 'Erreur lors de l\'enregistrement'
     } finally {
       setIsSubmitting(false)

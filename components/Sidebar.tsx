@@ -31,6 +31,7 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
   const { data: session } = useSession();
   const pathname = usePathname()
   const isAdmin = session?.user?.role === 'ADMIN';
+  const isAgent = session?.user?.role === 'AGENT';
 
   const [userRole, setUserRole] = useState("");
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
   const isActive = (path: string) => pathname?.startsWith(path)
 
   const navLinks = isAdmin ? [
-    { icon: LayoutDashboard, label: 'Tableau de bord', href: '/dashboard', roles: ['ADMIN', 'AGENT', 'USER'] },
+    { icon: LayoutDashboard, label: 'Tableau de bord', href: '/dashboard', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
     { icon: Users, label: 'Membres', href: '/members', roles: ['ADMIN', 'AGENT'] },
     { icon: CreditCard, label: 'Cotisations', href: '/cotisations', roles: ['ADMIN', 'AGENT'] },
     { icon: Wrench, label: 'Agents', href: '/agents', roles: ['ADMIN'] },
@@ -56,13 +57,18 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
     // { icon: Calendar, label: 'Événements', href: '/evenements', roles: ['ADMIN'] },
     // { icon: FileText, label: 'Documents', href: '/documents', roles: ['ADMIN'] },
     // { icon: BarChart3, label: 'Rapports', href: '/rapports', roles: ['ADMIN'] },
-    // { icon: MessageSquare, label: 'Messages', href: '/messages', roles: ['ADMIN', 'AGENT', 'USER'] },
-    // { icon: Settings, label: 'Paramètres', href: '/parametres', roles: ['ADMIN', 'AGENT', 'USER'] },
-    // { icon: User, label: 'Mon Profil', href: '/profile', roles: ['ADMIN', 'AGENT', 'USER'] },
-  ] : [
-    { icon: LayoutDashboard, label: 'Tableau de bord', href: '/dashboard', roles: ['ADMIN', 'AGENT', 'USER'] },
+    // { icon: MessageSquare, label: 'Messages', href: '/messages', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
+    // { icon: Settings, label: 'Paramètres', href: '/parametres', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
+    { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
+  ] : isAgent ? [
+    { icon: LayoutDashboard, label: 'Tableau de bord', href: '/dashboard', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
     { icon: Users, label: 'Membres', href: '/members', roles: ['ADMIN', 'AGENT'] },
     { icon: CreditCard, label: 'Cotisations', href: '/cotisations', roles: ['ADMIN', 'AGENT'] },
+    { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
+  ] : [
+    { icon: LayoutDashboard, label: 'Tableau de bord', href: '/dashboard', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
+    { icon: CreditCard, label: 'Cotisations', href: '/cotisations', roles: ['ADMIN', 'AGENT'] },
+    { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
   ]  
 
   // Filtrer les liens selon le rôle
