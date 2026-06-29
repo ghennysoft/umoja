@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 // Step 1: Personal Information
 export const agentPersonalSchema = z.object({
+  ownerId: z.string().min(1, 'ownerId is required'),
   firstName: z.string().min(1, 'First name is required'),
   lastName: z.string().min(1, 'Last name is required'),
   postName: z.string().optional(),

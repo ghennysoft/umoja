@@ -104,6 +104,7 @@ export async function POST(request: NextRequest) {
     const member = await prisma.member.create({
       data: {
         memberId,
+        ownerId: validatedData.ownerId,
         firstName: validatedData.firstName,
         lastName: validatedData.lastName,
         postName: validatedData.postName,

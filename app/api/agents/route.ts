@@ -60,6 +60,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
@@ -83,12 +84,8 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log('Received data:', data)
-    console.log('Received files:', Object.keys(files))
-
     // Valider les données
     const validatedData = agentSchema.parse(data)
-    console.log('Validated data:', validatedData)
 
     // Gérer l'upload des fichiers
     const uploadDir = path.join(process.cwd(), 'public/uploads/agents')
@@ -122,6 +119,7 @@ export async function POST(request: NextRequest) {
     const agent = await prisma.agent.create({
       data: {
         agentId,
+        ownerId: validatedData.ownerId,
         firstName: validatedData.firstName,
         lastName: validatedData.lastName,
         postName: validatedData.postName || null,
@@ -151,15 +149,13 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    console.log('Agent created:', agent)
-
     return NextResponse.json({
       success: true,
       data: agent,
       message: 'Agent created successfully',
     })
   } catch (error: any) {
-    console.error('Error creating agent:', error)
+    // console.error('Error creating agent:', error)
     
     // Gérer les erreurs de validation Zod
     if (error.name === 'ZodError') {

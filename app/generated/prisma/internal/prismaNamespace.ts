@@ -895,6 +895,7 @@ export const MemberScalarFieldEnum = {
   profession: 'profession',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
   userId: 'userId'
 } as const
 

@@ -35,7 +35,6 @@ export default function NewMemberPage() {
     address: '',
     phone: '',
     whatsapp: '',
-    email: '',
 
     // Step 2
     hasDiploma: false,
@@ -43,7 +42,7 @@ export default function NewMemberPage() {
     profession: '',
     
     // Step 3: Authentication
-    authEmail: '',
+    email: '',
     password: '',
     confirmPassword: '',
   })
@@ -63,9 +62,6 @@ export default function NewMemberPage() {
     if (!formData.commune.trim()) newErrors.commune = 'La commune est requise'
     if (!formData.address.trim()) newErrors.address = 'L\'adresse est requise'
     if (!formData.phone.trim()) newErrors.phone = 'Le numéro de téléphone est requis'
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Email invalide'
-    }
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -85,10 +81,10 @@ export default function NewMemberPage() {
   const validateStep3 = () => {
     const newErrors: Record<string, string> = {}
     
-    if (!formData.authEmail.trim()) {
-      newErrors.authEmail = "L'email est requis"
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.authEmail)) {
-      newErrors.authEmail = 'Email invalide'
+    if (!formData.email.trim()) {
+      newErrors.email = "L'email est requis"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Email invalide'
     }
     
     if (!formData.password) {
@@ -182,17 +178,21 @@ export default function NewMemberPage() {
         }
       })
 
-      const response = await axios.post('/api/members', submitData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      
+      const response = await axios.post('/api/auth/users', {
+        name: formData.firstName+' '+formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        role: 'MEMBER',
       })
+      console.log(response.data); 
 
       if (response.data.success) {
-        const response = await axios.post('/api/auth/users', {
-          name: formData.firstName+' '+formData.lastName,
-          email: formData.email,
-          password: formData.password,
-          role: 'MEMBER',
+        submitData.append('ownerId', response.data.data.id)
+        const resp = await axios.post('/api/members', submitData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
         })
+        console.log(resp.data); 
         router.push('/members')
       }
     } catch (error: any) {
@@ -496,22 +496,6 @@ export default function NewMemberPage() {
                   placeholder="Entrer le numéro WhatsApp"
                 />
               </div>
-
-              <div className="md:col-span-2">
-                <label className="block text-label-md font-medium text-on-surface mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className={`w-full px-4 py-2 bg-surface-container-low border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent
-                    ${errors.email ? 'border-error' : 'border-outline-variant'}`}
-                  placeholder="Entrer l'adresse email"
-                />
-                {errors.email && <p className="text-xs text-error mt-1">{errors.email}</p>}
-              </div>
             </div>
           </div>
         )}
@@ -593,15 +577,15 @@ export default function NewMemberPage() {
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4" />
                   <input
                     type="email"
-                    name="authEmail"
-                    value={formData.authEmail}
+                    name="email"
+                    value={formData.email}
                     onChange={handleInputChange}
                     className={`w-full pl-10 pr-4 py-2 bg-surface-container-low border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent
-                      ${errors.authEmail ? 'border-error' : 'border-outline-variant'}`}
+                      ${errors.email ? 'border-error' : 'border-outline-variant'}`}
                     placeholder="exemple@email.com"
                   />
                 </div>
-                {errors.authEmail && <p className="text-xs text-error mt-1">{errors.authEmail}</p>}
+                {errors.email && <p className="text-xs text-error mt-1">{errors.email}</p>}
               </div>
 
               <div>

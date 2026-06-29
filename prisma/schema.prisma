@@ -95,7 +95,6 @@ model Member {
   whatsapp       String?
   email          String?
 
-  // Profile - CORRIGÉ : hasDiploma au lieu de hasDiplome
   hasDiploma   Boolean       @default(false)
   diplomaLevel DiplomaLevel?
   profession   String?
@@ -103,6 +102,7 @@ model Member {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  ownerId       String?
   userId        String?
   user          User?          @relation(fields: [userId], references: [id])
   contributions Contribution[]
