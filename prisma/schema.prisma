@@ -114,9 +114,43 @@ model Contribution {
   member    Member   @relation(fields: [memberId], references: [id])
   userId    String
   user      User     @relation(fields: [userId], references: [id])
-  amount    Float
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  
+  amount    Decimal            @db.Decimal(18, 2)
+  currency  String             @default("CDF")
+  status    ContributionStatus @default(PENDING)
+
+  // Référence unique envoyée à MaishaPay (originatingTransactionId)
+  transactionReference String             @unique
+
+  createdAt            DateTime           @default(now())
+  paidAt               DateTime?
+  transactions         Transaction[]
+}
+
+model Transaction {
+  id                        String             @id @default(cuid())
+  contributionId            String
+  contribution              Contribution       @relation(fields: [contributionId], references: [id])
+
+  transactionReference      String             @unique
+  maishaTransactionId       Int?               // "transactionId" renvoyé par MaishaPay
+  originatingTransactionId  String?            // ta référence
+
+  status                    ContributionStatus @default(PENDING)
+  statusCode                Int?
+  amount                    Decimal            @db.Decimal(18, 2)
+  fees                      Decimal?           @db.Decimal(18, 2)
+  total                     Decimal?           @db.Decimal(18, 2)
+  currency                  String
+  channel                   String             // MOBILEMONEY
+  provider                  String             // AIRTEL / ORANGE / MTN ...
+  walletID                  String
+
+  rawInitResponse           String?            // JSON.stringify de la réponse d'init
+  rawCallback               String?            // JSON.stringify du callback
+
+  createdAt                 DateTime           @default(now())
+  updatedAt                 DateTime           @updatedAt
 }
 
 model AuditLog {
@@ -163,4 +197,10 @@ enum IdType {
   PASSPORT
   DRIVER_LICENSE
   OTHER
+}
+
+enum ContributionStatus {
+  PENDING
+  SUCCESS
+  FAILED
 }

@@ -62,6 +62,11 @@ export type Member = Prisma.MemberModel
  */
 export type Contribution = Prisma.ContributionModel
 /**
+ * Model Transaction
+ * 
+ */
+export type Transaction = Prisma.TransactionModel
+/**
  * Model AuditLog
  * 
  */

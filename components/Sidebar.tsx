@@ -59,16 +59,16 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
     // { icon: BarChart3, label: 'Rapports', href: '/rapports', roles: ['ADMIN'] },
     // { icon: MessageSquare, label: 'Messages', href: '/messages', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
     // { icon: Settings, label: 'Paramètres', href: '/parametres', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
-    { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
+    // { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
   ] : isAgent ? [
     { icon: LayoutDashboard, label: 'Tableau de bord', href: '/dashboard', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
     { icon: Users, label: 'Membres', href: '/members', roles: ['ADMIN', 'AGENT'] },
     { icon: CreditCard, label: 'Cotisations', href: '/cotisations', roles: ['ADMIN', 'AGENT'] },
-    { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
+    // { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
   ] : [
     { icon: LayoutDashboard, label: 'Tableau de bord', href: '/dashboard', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
     { icon: CreditCard, label: 'Cotisations', href: '/cotisations', roles: ['ADMIN', 'AGENT'] },
-    { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
+    // { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
   ]  
 
   // Filtrer les liens selon le rôle

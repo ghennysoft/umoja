@@ -26,9 +26,7 @@ export default function LoginPage() {
       });
       if (result?.error) {
         setError('Erreur de connexion')
-        console.error('Email ou mot de passe incorrect');
       } else {
-        // console.log(result);
         // toast.success('Connexion réussie');
         router.push('/dashboard');
       }
@@ -40,7 +38,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="bg-surface-container-lowest rounded-2xl p-8 max-w-md w-full shadow-lg border border-outline-variant/20">
         {/* Logo */}
         <div className="text-center mb-8">

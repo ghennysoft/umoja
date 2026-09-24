@@ -55,3 +55,12 @@ export const IdType = {
 } as const
 
 export type IdType = (typeof IdType)[keyof typeof IdType]
+
+
+export const ContributionStatus = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED'
+} as const
+
+export type ContributionStatus = (typeof ContributionStatus)[keyof typeof ContributionStatus]

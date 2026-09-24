@@ -104,7 +104,7 @@ export default function UsersPage() {
           className="flex items-center gap-2 bg-secondary text-on-secondary px-5 py-2.5 rounded-lg font-medium hover:bg-secondary/90 transition-colors shadow-sm whitespace-nowrap"
         >
           <UserPlus className="w-4 h-4" />
-          Ajouter un utilisateur
+          Ajouter un administrateur
         </Link>
       </div>
 
@@ -150,14 +150,8 @@ export default function UsersPage() {
                 <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider hidden sm:table-cell">
                   Email
                 </th>
-                <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider hidden md:table-cell">
+                <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider md:table-cell">
                   Rôle
-                </th>
-                <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider hidden lg:table-cell">
-                  Activité
-                </th>
-                <th className="text-label-md text-on-surface-variant px-4 md:px-6 py-4 font-semibold uppercase tracking-wider text-right">
-                  Actions
                 </th>
               </tr>
             </thead>
@@ -196,7 +190,7 @@ export default function UsersPage() {
                         <span className="text-sm">{user.email}</span>
                       </div>
                     </td>
-                    <td className="px-4 md:px-6 py-4 hidden md:table-cell">
+                    <td className="px-4 md:px-6 py-4 md:table-cell">
                       <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ${roleColors[user.role]}`}>
                         {user.role === 'ADMIN' && <Shield className="w-3 h-3" />}
                         {user.role === 'AGENT' && <UserCog className="w-3 h-3" />}
@@ -211,7 +205,7 @@ export default function UsersPage() {
                         <span>🔧 {user._count.agents}</span>
                       </div>
                     </td>
-                    <td className="px-4 md:px-6 py-4 text-right">
+                    {/* <td className="px-4 md:px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-1">
                         <Link
                           href={`/users/${user.id}`}
@@ -219,7 +213,7 @@ export default function UsersPage() {
                         >
                           <Eye className="w-4 h-4" />
                         </Link>
-                        {/* <Link
+                        <Link
                           href={`/users/${user.id}/edit`}
                           className="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-surface-container-high transition-colors"
                         >
@@ -230,9 +224,9 @@ export default function UsersPage() {
                           className="text-on-surface-variant hover:text-error p-1 rounded-full hover:bg-surface-container-high transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
-                        </button> */}
+                        </button>
                       </div>
-                    </td>
+                    </td> */}
                   </tr>
                 ))
               )}

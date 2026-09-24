@@ -55,6 +55,7 @@ export const ModelName = {
   Agent: 'Agent',
   Member: 'Member',
   Contribution: 'Contribution',
+  Transaction: 'Transaction',
   AuditLog: 'AuditLog'
 } as const
 
@@ -164,11 +165,38 @@ export const ContributionScalarFieldEnum = {
   memberId: 'memberId',
   userId: 'userId',
   amount: 'amount',
+  currency: 'currency',
+  status: 'status',
+  transactionReference: 'transactionReference',
+  createdAt: 'createdAt',
+  paidAt: 'paidAt'
+} as const
+
+export type ContributionScalarFieldEnum = (typeof ContributionScalarFieldEnum)[keyof typeof ContributionScalarFieldEnum]
+
+
+export const TransactionScalarFieldEnum = {
+  id: 'id',
+  contributionId: 'contributionId',
+  transactionReference: 'transactionReference',
+  maishaTransactionId: 'maishaTransactionId',
+  originatingTransactionId: 'originatingTransactionId',
+  status: 'status',
+  statusCode: 'statusCode',
+  amount: 'amount',
+  fees: 'fees',
+  total: 'total',
+  currency: 'currency',
+  channel: 'channel',
+  provider: 'provider',
+  walletID: 'walletID',
+  rawInitResponse: 'rawInitResponse',
+  rawCallback: 'rawCallback',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type ContributionScalarFieldEnum = (typeof ContributionScalarFieldEnum)[keyof typeof ContributionScalarFieldEnum]
+export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
 
 
 export const AuditLogScalarFieldEnum = {
