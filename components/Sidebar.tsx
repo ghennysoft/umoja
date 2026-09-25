@@ -67,7 +67,7 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
     // { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
   ] : [
     { icon: LayoutDashboard, label: 'Tableau de bord', href: '/dashboard', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
-    { icon: CreditCard, label: 'Cotisations', href: '/cotisations', roles: ['ADMIN', 'AGENT'] },
+    { icon: CreditCard, label: 'Cotisations', href: '/cotisations', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
     // { icon: User, label: 'Mon Profil', href: '/#', roles: ['ADMIN', 'AGENT', 'MEMBER'] },
   ]  
 

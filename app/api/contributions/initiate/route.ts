@@ -18,6 +18,7 @@ import { collectMobileMoney, normalizeStatus } from "@/app/lib/maishapay";
  * }
  */
 const BodySchema = z.object({
+  userId: z.string().min(1),
   memberId: z.string().min(1),
   amount: z.number().positive(),
   currency: z.enum(["CDF", "USD", "XAF", "XOF", "EUR"]).default("CDF"),
@@ -30,7 +31,9 @@ export async function POST(req: NextRequest) {
   let body: z.infer<typeof BodySchema>;
   try {
     body = BodySchema.parse(await req.json());
+    console.log({body});
   } catch (e: any) {
+    console.log({e});
     return NextResponse.json(
       { error: "Payload invalide", details: e?.issues ?? String(e) },
       { status: 400 }
@@ -42,22 +45,33 @@ export async function POST(req: NextRequest) {
   if (!member) {
     return NextResponse.json({ error: "Membre introuvable" }, { status: 404 });
   }
+  console.log({member})
 
   // 3) Générer une référence unique
   //    Format lisible : COTIS-<suffixe membre>-<année>W<semaine>-<uuid court>
-  const transactionReference = `COTIS-${member.id.slice(-6)}
-  ).padStart(2, "0")}-${randomUUID().split("-")[0]}`;
+  const transactionReference =
+  `COTIS-${member.id.slice(-6)}-${randomUUID().split("-")[0]}`;
 
   // 5) Créer (ou réutiliser) la ligne Contribution en PENDING
   const contribution = await prisma.contribution.create({
-        data: {
-          memberId: body.memberId,
-          amount: body.amount,
-          currency: body.currency,
-          status: "PENDING",
-          transactionReference,
+    data: {
+      amount: body.amount,
+      currency: body.currency,
+      status: "PENDING",
+      transactionReference,
+      user: {
+        connect: {
+          id: body.userId,
         },
-      });
+      },
+      member: {
+        connect: {
+          id: body.memberId,
+        },
+      },
+    },
+  });
+  console.log(contribution)
 
   // 6) Appel MaishaPay
   const callbackUrl = `${process.env.APP_BASE_URL}/api/maishapay/callback`;

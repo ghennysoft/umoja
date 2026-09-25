@@ -43,7 +43,7 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <img src="/logo.png" alt="logo" width={150} />
+            <img src="/logo.png" alt="logo" width={300} />
           </div>
           {/* <h1 className="text-2xl font-bold text-on-surface">UMOJA YETU ASBL</h1> */}
           <p className="text-on-surface-variant mt-1">Connectez-vous à votre compte</p>

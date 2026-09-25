@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react';
-import Link from 'next/link'
 import axios from 'axios'
 import { HandCoins, Divide, CirclePlus, CircleMinus } from 'lucide-react'
 import ContributionForm from '@/components/contributions/ContributionForm'
+import ContributionMemberForm from '@/components/contributions/ContributionMemberForm';
 
 interface Contribution {
   id: string
@@ -53,7 +53,6 @@ export default function CotisationsPage() {
     averageAmount: 0,
   })
   const [loading, setLoading] = useState(true)
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [showForm, setShowForm] = useState(false)
   
   // Filters
@@ -133,9 +132,18 @@ export default function CotisationsPage() {
     </div>
 
     {/* Contribution Form */}
-    {showForm && (
+    {session?.user?.role!=="MEMBER" && showForm && (
         <div className="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/20">
         <ContributionForm 
+            onSuccess={handleFormSuccess}
+            onCancel={() => setShowForm(false)}
+            userId={session?.user?.id}
+        />
+        </div>
+    )}
+    {session?.user?.role==="MEMBER" && showForm && (
+        <div className="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/20">
+        <ContributionMemberForm 
             onSuccess={handleFormSuccess}
             onCancel={() => setShowForm(false)}
             userId={session?.user?.id}

@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
-import { memberSchema } from '@/schemas/member.schema'
-import { writeFile, mkdir, unlink } from 'fs/promises'
-import path from 'path'
 
 export async function GET(
   request: NextRequest,

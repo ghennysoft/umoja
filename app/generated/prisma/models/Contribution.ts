@@ -206,7 +206,7 @@ export type ContributionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type ContributionGroupByOutputType = {
   id: string
   memberId: string
-  userId: string
+  userId: string | null
   amount: runtime.Decimal
   currency: string
   status: $Enums.ContributionStatus
@@ -241,7 +241,7 @@ export type ContributionWhereInput = {
   NOT?: Prisma.ContributionWhereInput | Prisma.ContributionWhereInput[]
   id?: Prisma.StringFilter<"Contribution"> | string
   memberId?: Prisma.StringFilter<"Contribution"> | string
-  userId?: Prisma.StringFilter<"Contribution"> | string
+  userId?: Prisma.StringNullableFilter<"Contribution"> | string | null
   amount?: Prisma.DecimalFilter<"Contribution"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringFilter<"Contribution"> | string
   status?: Prisma.EnumContributionStatusFilter<"Contribution"> | $Enums.ContributionStatus
@@ -249,14 +249,14 @@ export type ContributionWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
   paidAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
   member?: Prisma.XOR<Prisma.MemberScalarRelationFilter, Prisma.MemberWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   transactions?: Prisma.TransactionListRelationFilter
 }
 
 export type ContributionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   memberId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -275,21 +275,21 @@ export type ContributionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ContributionWhereInput[]
   NOT?: Prisma.ContributionWhereInput | Prisma.ContributionWhereInput[]
   memberId?: Prisma.StringFilter<"Contribution"> | string
-  userId?: Prisma.StringFilter<"Contribution"> | string
+  userId?: Prisma.StringNullableFilter<"Contribution"> | string | null
   amount?: Prisma.DecimalFilter<"Contribution"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringFilter<"Contribution"> | string
   status?: Prisma.EnumContributionStatusFilter<"Contribution"> | $Enums.ContributionStatus
   createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
   paidAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
   member?: Prisma.XOR<Prisma.MemberScalarRelationFilter, Prisma.MemberWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   transactions?: Prisma.TransactionListRelationFilter
 }, "id" | "transactionReference">
 
 export type ContributionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   memberId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -309,7 +309,7 @@ export type ContributionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ContributionScalarWhereWithAggregatesInput | Prisma.ContributionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Contribution"> | string
   memberId?: Prisma.StringWithAggregatesFilter<"Contribution"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"Contribution"> | string
+  userId?: Prisma.StringNullableWithAggregatesFilter<"Contribution"> | string | null
   amount?: Prisma.DecimalWithAggregatesFilter<"Contribution"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringWithAggregatesFilter<"Contribution"> | string
   status?: Prisma.EnumContributionStatusWithAggregatesFilter<"Contribution"> | $Enums.ContributionStatus
@@ -327,14 +327,14 @@ export type ContributionCreateInput = {
   createdAt?: Date | string
   paidAt?: Date | string | null
   member: Prisma.MemberCreateNestedOneWithoutContributionsInput
-  user: Prisma.UserCreateNestedOneWithoutContributionsInput
+  user?: Prisma.UserCreateNestedOneWithoutContributionsInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutContributionInput
 }
 
 export type ContributionUncheckedCreateInput = {
   id?: string
   memberId: string
-  userId: string
+  userId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: string
   status?: $Enums.ContributionStatus
@@ -353,14 +353,14 @@ export type ContributionUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   member?: Prisma.MemberUpdateOneRequiredWithoutContributionsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutContributionsNestedInput
+  user?: Prisma.UserUpdateOneWithoutContributionsNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutContributionNestedInput
 }
 
 export type ContributionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   memberId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
@@ -373,7 +373,7 @@ export type ContributionUncheckedUpdateInput = {
 export type ContributionCreateManyInput = {
   id?: string
   memberId: string
-  userId: string
+  userId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: string
   status?: $Enums.ContributionStatus
@@ -395,7 +395,7 @@ export type ContributionUpdateManyMutationInput = {
 export type ContributionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   memberId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
@@ -629,7 +629,7 @@ export type ContributionScalarWhereInput = {
   NOT?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
   id?: Prisma.StringFilter<"Contribution"> | string
   memberId?: Prisma.StringFilter<"Contribution"> | string
-  userId?: Prisma.StringFilter<"Contribution"> | string
+  userId?: Prisma.StringNullableFilter<"Contribution"> | string | null
   amount?: Prisma.DecimalFilter<"Contribution"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringFilter<"Contribution"> | string
   status?: Prisma.EnumContributionStatusFilter<"Contribution"> | $Enums.ContributionStatus
@@ -646,13 +646,13 @@ export type ContributionCreateWithoutMemberInput = {
   transactionReference: string
   createdAt?: Date | string
   paidAt?: Date | string | null
-  user: Prisma.UserCreateNestedOneWithoutContributionsInput
+  user?: Prisma.UserCreateNestedOneWithoutContributionsInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutContributionInput
 }
 
 export type ContributionUncheckedCreateWithoutMemberInput = {
   id?: string
-  userId: string
+  userId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: string
   status?: $Enums.ContributionStatus
@@ -697,13 +697,13 @@ export type ContributionCreateWithoutTransactionsInput = {
   createdAt?: Date | string
   paidAt?: Date | string | null
   member: Prisma.MemberCreateNestedOneWithoutContributionsInput
-  user: Prisma.UserCreateNestedOneWithoutContributionsInput
+  user?: Prisma.UserCreateNestedOneWithoutContributionsInput
 }
 
 export type ContributionUncheckedCreateWithoutTransactionsInput = {
   id?: string
   memberId: string
-  userId: string
+  userId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: string
   status?: $Enums.ContributionStatus
@@ -737,13 +737,13 @@ export type ContributionUpdateWithoutTransactionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   member?: Prisma.MemberUpdateOneRequiredWithoutContributionsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutContributionsNestedInput
+  user?: Prisma.UserUpdateOneWithoutContributionsNestedInput
 }
 
 export type ContributionUncheckedUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   memberId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
@@ -800,7 +800,7 @@ export type ContributionUncheckedUpdateManyWithoutUserInput = {
 
 export type ContributionCreateManyMemberInput = {
   id?: string
-  userId: string
+  userId?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: string
   status?: $Enums.ContributionStatus
@@ -817,13 +817,13 @@ export type ContributionUpdateWithoutMemberInput = {
   transactionReference?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutContributionsNestedInput
+  user?: Prisma.UserUpdateOneWithoutContributionsNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutContributionNestedInput
 }
 
 export type ContributionUncheckedUpdateWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
@@ -835,7 +835,7 @@ export type ContributionUncheckedUpdateWithoutMemberInput = {
 
 export type ContributionUncheckedUpdateManyWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
@@ -886,7 +886,7 @@ export type ContributionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   createdAt?: boolean
   paidAt?: boolean
   member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Contribution$userArgs<ExtArgs>
   transactions?: boolean | Prisma.Contribution$transactionsArgs<ExtArgs>
   _count?: boolean | Prisma.ContributionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
@@ -902,7 +902,7 @@ export type ContributionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   createdAt?: boolean
   paidAt?: boolean
   member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Contribution$userArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
 
 export type ContributionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -916,7 +916,7 @@ export type ContributionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   createdAt?: boolean
   paidAt?: boolean
   member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Contribution$userArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
 
 export type ContributionSelectScalar = {
@@ -934,30 +934,30 @@ export type ContributionSelectScalar = {
 export type ContributionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "memberId" | "userId" | "amount" | "currency" | "status" | "transactionReference" | "createdAt" | "paidAt", ExtArgs["result"]["contribution"]>
 export type ContributionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Contribution$userArgs<ExtArgs>
   transactions?: boolean | Prisma.Contribution$transactionsArgs<ExtArgs>
   _count?: boolean | Prisma.ContributionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ContributionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Contribution$userArgs<ExtArgs>
 }
 export type ContributionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.Contribution$userArgs<ExtArgs>
 }
 
 export type $ContributionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Contribution"
   objects: {
     member: Prisma.$MemberPayload<ExtArgs>
-    user: Prisma.$UserPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs> | null
     transactions: Prisma.$TransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     memberId: string
-    userId: string
+    userId: string | null
     amount: runtime.Decimal
     currency: string
     status: $Enums.ContributionStatus
@@ -1359,7 +1359,7 @@ readonly fields: ContributionFieldRefs;
 export interface Prisma__ContributionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   member<T extends Prisma.MemberDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MemberDefaultArgs<ExtArgs>>): Prisma.Prisma__MemberClient<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.Contribution$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contribution$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   transactions<T extends Prisma.Contribution$transactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contribution$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1797,6 +1797,25 @@ export type ContributionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many Contributions to delete.
    */
   limit?: number
+}
+
+/**
+ * Contribution.user
+ */
+export type Contribution$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**
