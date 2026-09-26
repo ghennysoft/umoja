@@ -2,8 +2,19 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
 import { generateAgentId } from '@/app/lib/utils'
 import { agentSchema } from '@/schemas/agent.schema'
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { s3 } from '@/app/lib/cloudflare'
+
+
+async function uploadFile(file: Buffer, key: string, type: string) {
+  await s3.send(new PutObjectCommand({
+    Bucket: process.env.R2_BUCKET!,
+    Key: key,
+    Body: file,
+    ContentType: type,
+  }));
+  return `${process.env.R2_PUBLIC_URL}/${key}`;
+}
 
 
 export async function GET(request: NextRequest) {
@@ -88,32 +99,25 @@ export async function POST(request: NextRequest) {
     const validatedData = agentSchema.parse(data)
 
     // Gérer l'upload des fichiers
-    const uploadDir = path.join(process.cwd(), 'public/uploads/agents')
-    await mkdir(uploadDir, { recursive: true })
+    // const uploadDir = path.join(process.cwd(), 'public/uploads/agents')
+    // await mkdir(uploadDir, { recursive: true })
+    
+    // Générer l'ID de l'agent
+    const agentId = generateAgentId()
 
     let photoPath: string | undefined
     let idPhotoPath: string | undefined
 
     if (files.photo) {
-      const photoBuffer = Buffer.from(await files.photo.arrayBuffer())
-      const fileExtension = files.photo.name.split('.').pop()
-      const fileName = `photo-${Date.now()}.${fileExtension}`
-      const filePath = path.join(uploadDir, fileName)
-      await writeFile(filePath, photoBuffer)
-      photoPath = `/uploads/agents/${fileName}`
+      const buffer = Buffer.from(await files.photo.arrayBuffer());
+      photoPath = await uploadFile(buffer, `agent_photo/${data.agentId}.jpg`, files.photo.type);
     }
 
     if (files.idPhoto) {
-      const idPhotoBuffer = Buffer.from(await files.idPhoto.arrayBuffer())
-      const fileExtension = files.idPhoto.name.split('.').pop()
-      const fileName = `id-${Date.now()}.${fileExtension}`
-      const filePath = path.join(uploadDir, fileName)
-      await writeFile(filePath, idPhotoBuffer)
-      idPhotoPath = `/uploads/agents/${fileName}`
+      const buffer = Buffer.from(await files.idPhoto.arrayBuffer());
+      idPhotoPath = await uploadFile(buffer, `agent_id_photo/${data.agentId}.jpg`, files.idPhoto.type);
     }
 
-    // Générer l'ID de l'agent
-    const agentId = generateAgentId()
 
     // Créer l'agent dans la base de données
     const agent = await prisma.agent.create({

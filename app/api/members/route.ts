@@ -2,8 +2,19 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
 import { generateMemberId } from '@/app/lib/utils'
 import { memberSchema } from '@/schemas/member.schema'
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { s3 } from '@/app/lib/cloudflare'
+
+async function uploadFile(file: Buffer, key: string, type: string) {
+  await s3.send(new PutObjectCommand({
+    Bucket: process.env.R2_BUCKET!,
+    Key: key,
+    Body: file,
+    ContentType: type,
+  }));
+  return `${process.env.R2_PUBLIC_URL}/${key}`;
+}
+
 
 export async function GET(request: NextRequest) {
   try {
@@ -83,18 +94,11 @@ export async function POST(request: NextRequest) {
     // Validate data
     const validatedData = memberSchema.parse(data)
 
-    // Handle file uploads
-    const uploadDir = path.join(process.cwd(), 'public/uploads/members')
-    await mkdir(uploadDir, { recursive: true })
-
     let photoPath: string | undefined
 
     if (files.photo) {
       const photoBuffer = Buffer.from(await files.photo.arrayBuffer())
-      const fileName = `photo-${Date.now()}-${files.photo.name}`
-      const filePath = path.join(uploadDir, fileName)
-      await writeFile(filePath, photoBuffer)
-      photoPath = `/uploads/members/${fileName}`
+      photoPath = await uploadFile(photoBuffer, `member_photo/${data.memberId}.jpg`, files.photo.type);
     }
 
     // Generate member ID
