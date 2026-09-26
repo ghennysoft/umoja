@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
     body = BodySchema.parse(await req.json());
     console.log({body});
   } catch (e: any) {
-    console.log({e});
     return NextResponse.json(
       { error: "Payload invalide", details: e?.issues ?? String(e) },
       { status: 400 }
@@ -45,7 +44,6 @@ export async function POST(req: NextRequest) {
   if (!member) {
     return NextResponse.json({ error: "Membre introuvable" }, { status: 404 });
   }
-  console.log({member})
 
   // 3) Générer une référence unique
   //    Format lisible : COTIS-<suffixe membre>-<année>W<semaine>-<uuid court>
@@ -71,7 +69,6 @@ export async function POST(req: NextRequest) {
       },
     },
   });
-  console.log(contribution)
 
   // 6) Appel MaishaPay
   const callbackUrl = `${process.env.APP_BASE_URL}/api/maishapay/callback`;

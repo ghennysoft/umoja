@@ -7,10 +7,15 @@ import prisma from "@/app/lib/prisma";
  */
 export async function GET(
   _req: Request,
-  { params }: { params: { reference: string } }
+  { params }: { params: Promise<{ reference: string }> }
 ) {
+  const { reference } = await params;
+  if (!reference) {
+    return NextResponse.json({ error: "Référence manquant" }, { status: 400 });
+  }
+
   const tx = await prisma.transaction.findUnique({
-    where: { transactionReference: params.reference },
+    where: { transactionReference: reference },
     include: { contribution: true },
   });
 

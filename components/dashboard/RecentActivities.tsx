@@ -1,6 +1,7 @@
 'use client'
 
 import { Activity, User, DollarSign, Clock } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 
 interface RecentActivitiesProps {
   members: any[]
@@ -9,6 +10,8 @@ interface RecentActivitiesProps {
 }
 
 export default function RecentActivities({ members, contributions, userRole }: RecentActivitiesProps) {
+  const { data: session } = useSession();
+
   const activities = [
     ...members.map((m: any) => ({
       id: m.id,
@@ -29,7 +32,7 @@ export default function RecentActivities({ members, contributions, userRole }: R
       icon: DollarSign,
       iconColor: 'bg-blue-100 text-blue-600',
       title: 'Cotisation reçue',
-      description: `${c.amount.toFixed(2)} Fc par ${c.member.firstName} ${c.member.lastName}`,
+      description: `${c.amount} Fc par ${c.member.firstName} ${c.member.lastName}`,
       time: new Date(c.createdAt).toLocaleDateString('fr-FR', {
         day: '2-digit',
         month: '2-digit',
@@ -41,43 +44,48 @@ export default function RecentActivities({ members, contributions, userRole }: R
     .slice(0, 5)
 
   return (
-    <div className="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-sm border border-outline-variant/20">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <Activity className="w-5 h-5 text-secondary" />
-          <h3 className="text-headline-md text-on-surface">Activités récentes</h3>
-        </div>
-        {userRole === 'ADMIN' && (
-          <button className="text-sm text-secondary hover:underline">
-            Voir tout
-          </button>
-        )}
-      </div>
+    <>
+      {
+        session?.user?.role==="ADMIN" &&
+        <div className="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-sm border border-outline-variant/20">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Activity className="w-5 h-5 text-secondary" />
+              <h3 className="text-headline-md text-on-surface">Activités récentes</h3>
+            </div>
+            {userRole === 'ADMIN' && (
+              <button className="text-sm text-secondary hover:underline">
+                Voir tout
+              </button>
+            )}
+          </div>
 
-      <div className="space-y-4">
-        {activities.length === 0 ? (
-          <p className="text-center text-on-surface-variant py-4">Aucune activité récente</p>
-        ) : (
-          activities.map((activity) => {
-            const Icon = activity.icon
-            return (
-              <div key={activity.id} className="flex gap-3">
-                <div className={`w-8 h-8 rounded-full ${activity.iconColor} flex items-center justify-center shrink-0`}>
-                  <Icon className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-on-surface">{activity.title}</p>
-                  <p className="text-sm text-on-surface-variant">{activity.description}</p>
-                  <div className="flex items-center gap-1 text-xs text-on-surface-variant mt-0.5">
-                    <Clock className="w-3 h-3" />
-                    {activity.time}
+          <div className="space-y-4">
+            {activities.length === 0 ? (
+              <p className="text-center text-on-surface-variant py-4">Aucune activité récente</p>
+            ) : (
+              activities.map((activity) => {
+                const Icon = activity.icon
+                return (
+                  <div key={activity.id} className="flex gap-3">
+                    <div className={`w-8 h-8 rounded-full ${activity.iconColor} flex items-center justify-center shrink-0`}>
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-on-surface">{activity.title}</p>
+                      <p className="text-sm text-on-surface-variant">{activity.description}</p>
+                      <div className="flex items-center gap-1 text-xs text-on-surface-variant mt-0.5">
+                        <Clock className="w-3 h-3" />
+                        {activity.time}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            )
-          })
-        )}
-      </div>
-    </div>
+                )
+              })
+            )}
+          </div>
+        </div>
+      }
+    </>
   )
 }

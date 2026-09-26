@@ -88,6 +88,7 @@ export async function collectMobileMoney(input: CollectMobileMoneyInput) {
       callbackUrl: input.callbackUrl,
     },
   };
+  console.log({payload})
 
   const res = await fetch(`${BASE_URL}/collect/v2/store/mobileMoney`, {
     method: "POST",

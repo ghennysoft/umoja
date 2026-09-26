@@ -82,6 +82,7 @@ export default function CotisationsPage() {
         setGroupedData(groupedData)
         setSummary(summary)
       }
+      console.log(response.data.data)
     } catch (error) {
       console.error('Error fetching contributions:', error)
     } finally {
@@ -159,7 +160,7 @@ export default function CotisationsPage() {
             <HandCoins />
             </div>
             <div>
-            <h3 className="text-stat-number text-on-surface">{summary.totalAmount.toFixed(2)} Fc</h3>
+            <h3 className="text-stat-number text-on-surface">{summary.totalAmount} Fc</h3>
             <p className="text-label-md text-on-surface-variant">Montant total</p>
             </div>
         </div>
@@ -181,7 +182,7 @@ export default function CotisationsPage() {
             <Divide />
             </div>
             <div>
-            <h3 className="text-stat-number text-on-surface">{summary.averageAmount.toFixed(2)} Fc</h3>
+            <h3 className="text-stat-number text-on-surface">{summary.averageAmount} Fc</h3>
             <p className="text-label-md text-on-surface-variant">Moyenne par paiement</p>
             </div>
         </div>
@@ -263,7 +264,7 @@ export default function CotisationsPage() {
                 <p className="text-sm text-on-surface-variant">{group?.count} paiements</p>
                 </div>
                 <div className="text-right">
-                <p className="text-headline-md font-bold text-secondary">{group?.total?.toFixed(2)} Fc</p>
+                <p className="text-headline-md font-bold text-secondary">{group?.total} Fc</p>
                 </div>
             </div>
             {/* Group Details */}
@@ -296,7 +297,7 @@ export default function CotisationsPage() {
                       {formatDate(contribution?.createdAt) || ''}
                     </td>
                     <td className="px-4 py-3 text-right font-medium text-secondary">
-                      {contribution?.amount?.toFixed(2)} Fc
+                      {contribution?.amount} Fc
                     </td>
                   </tr>
                   ))}

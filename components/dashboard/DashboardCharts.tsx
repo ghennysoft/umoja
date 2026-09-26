@@ -16,6 +16,7 @@ import {
 } from 'chart.js'
 import { Line, Bar, Doughnut } from 'react-chartjs-2'
 import { TrendingUp, PieChart, BarChart3 } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 
 ChartJS.register(
   CategoryScale,
@@ -53,6 +54,8 @@ const typeColors: Record<string, string> = {
 }
 
 export default function DashboardCharts({ charts }: ChartsProps) {
+  const { data: session } = useSession();
+
   // Line Chart - Évolution des cotisations
   const lineData = {
     labels: charts.monthlyData.map(d => d.month),
@@ -95,7 +98,7 @@ export default function DashboardCharts({ charts }: ChartsProps) {
         displayColors: false,
         callbacks: {
           label: function (context: any) {
-            return context.parsed.y.toFixed(2) + ' $'
+            return context.parsed.y + ' $'
           },
         },
       },
@@ -206,27 +209,32 @@ export default function DashboardCharts({ charts }: ChartsProps) {
         </div>
       </div>
 
-      {/* Doughnut Chart */}
-      <div className="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-sm border border-outline-variant/20">
-        <div className="flex items-center gap-2 mb-4 md:mb-6">
-          <PieChart className="w-5 h-5 text-secondary" />
-          <h3 className="text-headline-md text-on-surface">Répartition par type</h3>
-        </div>
-        <div className="h-48 md:h-56 w-full relative">
-          <Doughnut data={doughnutData} options={doughnutOptions as any} />
-        </div>
-      </div>
+      {
+        session?.user?.role!=="MEMBER" &&
+        <>
+          {/* Doughnut Chart */}
+          <div className="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-sm border border-outline-variant/20">
+            <div className="flex items-center gap-2 mb-4 md:mb-6">
+              <PieChart className="w-5 h-5 text-secondary" />
+              <h3 className="text-headline-md text-on-surface">Répartition par type</h3>
+            </div>
+            <div className="h-48 md:h-56 w-full relative">
+              <Doughnut data={doughnutData} options={doughnutOptions as any} />
+            </div>
+          </div>
 
-      {/* Bar Chart - Genre */}
-      <div className="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-sm border border-outline-variant/20 lg:col-span-1">
-        <div className="flex items-center gap-2 mb-4 md:mb-6">
-          <BarChart3 className="w-5 h-5 text-secondary" />
-          <h3 className="text-headline-md text-on-surface">Répartition par genre</h3>
-        </div>
-        <div className="h-48 md:h-56 w-full relative">
-          <Bar data={barData} options={barOptions as any} />
-        </div>
-      </div>
+          {/* Bar Chart - Genre */}
+          <div className="bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-sm border border-outline-variant/20 lg:col-span-1">
+            <div className="flex items-center gap-2 mb-4 md:mb-6">
+              <BarChart3 className="w-5 h-5 text-secondary" />
+              <h3 className="text-headline-md text-on-surface">Répartition par genre</h3>
+            </div>
+            <div className="h-48 md:h-56 w-full relative">
+              <Bar data={barData} options={barOptions as any} />
+            </div>
+          </div>
+        </>
+      }
     </div>
   )
 }

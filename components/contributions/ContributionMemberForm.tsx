@@ -43,10 +43,8 @@ export default function ContributionMemberFormSimple({
     dialCode: "",
     nationalNumber: "",
   })
-  console.log(countryInfos);
   
   const operator = useOperator(countryInfos.nationalNumber);
-  console.log({operator});
 
   const [formData, setFormData] = useState({
     userId: session?.user?.id,
@@ -56,7 +54,6 @@ export default function ContributionMemberFormSimple({
     provider: '',
     walletID: '',
   })
-  console.log(formData);
 
   // Dialog state
   const [dialog, setDialog] = useState<{

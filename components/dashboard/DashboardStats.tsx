@@ -10,6 +10,7 @@ import {
   Calendar,
   DollarSign
 } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 
 interface StatsProps {
   stats: {
@@ -23,44 +24,81 @@ interface StatsProps {
 }
 
 export default function DashboardStats({ stats }: StatsProps) {
-  const cards = [
-    {
-      icon: Users,
-      label: 'Membres',
-      value: stats.totalMembers,
-      color: 'text-secondary bg-secondary/10',
-      change: '+12% ce mois',
-      positive: true,
-    },
-    {
-      icon: DollarSign,
-      label: 'Cotisations',
-      value: `${stats.totalContributions.toFixed(2)} Fc`,
-      color: 'text-blue-600 bg-blue-100',
-      change: `+${stats.monthlyContributions.toFixed(2)} Fc ce mois`,
-      positive: true,
-    },
-    {
-      icon: Wrench,
-      label: 'Agents',
-      value: stats.totalAgents,
-      color: 'text-orange-600 bg-orange-100',
-      change: 'Actifs sur le terrain',
-      positive: false,
-    },
-    {
-      icon: UserCog,
-      label: 'Utilisateurs',
-      value: stats.totalUsers,
-      color: 'text-purple-600 bg-purple-100',
-      change: `${stats.totalUsers} comptes actifs`,
-      positive: false,
-    },
-  ]
+  const { data: session } = useSession();
+  
+  let cards;
+  if(session?.user?.role==="ADMIN"){
+    cards = [
+      {
+        icon: Users,
+        label: 'Membres',
+        value: stats.totalMembers,
+        color: 'text-secondary bg-secondary/10',
+        change: '+12% ce mois',
+        positive: true,
+      },
+      {
+        icon: DollarSign,
+        label: 'Cotisations',
+        value: `${stats.totalContributions} Fc`,
+        color: 'text-blue-600 bg-blue-100',
+        change: `+${stats.monthlyContributions} Fc ce mois`,
+        positive: true,
+      },
+      {
+        icon: Wrench,
+        label: 'Agents',
+        value: stats.totalAgents,
+        color: 'text-orange-600 bg-orange-100',
+        change: 'Actifs sur le terrain',
+        positive: false,
+      },
+      {
+        icon: UserCog,
+        label: 'Utilisateurs',
+        value: stats.totalUsers,
+        color: 'text-purple-600 bg-purple-100',
+        change: `${stats.totalUsers} comptes actifs`,
+        positive: false,
+      },
+    ]
+  }
+  if(session?.user?.role==="AGENT"){
+    cards = [
+      {
+        icon: Users,
+        label: 'Membres',
+        value: stats.totalMembers,
+        color: 'text-secondary bg-secondary/10',
+        change: '+12% ce mois',
+        positive: true,
+      },
+      {
+        icon: DollarSign,
+        label: 'Cotisations',
+        value: `${stats.totalContributions} Fc`,
+        color: 'text-blue-600 bg-blue-100',
+        change: `+${stats.monthlyContributions} Fc ce mois`,
+        positive: true,
+      },
+    ]
+  }
+  if(session?.user?.role==="MEMBER"){
+    cards = [
+      {
+        icon: DollarSign,
+        label: 'Cotisations',
+        value: `${stats.totalContributions} Fc`,
+        color: 'text-blue-600 bg-blue-100',
+        change: `+${stats.monthlyContributions} Fc ce mois`,
+        positive: true,
+      },
+    ]
+  }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
-      {cards.map((card, index) => {
+      {cards?.map((card, index) => {
         const Icon = card.icon
         return (
           <div key={index} className="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/20">

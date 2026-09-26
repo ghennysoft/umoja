@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
 import { contributionSchema } from '@/schemas/contribution.schema'
+import { getServerSession } from 'next-auth'
 
 export async function GET(request: NextRequest) {
+  const data = getServerSession();
+  console.log(data);
+         
   try {
     const searchParams = request.nextUrl.searchParams
     const memberId = searchParams.get('memberId') || ''
@@ -11,7 +15,6 @@ export async function GET(request: NextRequest) {
     const groupBy = searchParams.get('groupBy') || 'day' // day, week, month
 
     let where: any = {}
-
     if (memberId) {
       where.memberId = memberId
     }
@@ -60,7 +63,7 @@ export async function GET(request: NextRequest) {
         if (!acc[key]) {
           acc[key] = { date: key, total: 0, count: 0, contributions: [] }
         }
-        acc[key].total += curr.amount
+        acc[key].total += Number(curr.amount)
         acc[key].count += 1
         acc[key].contributions.push(curr)
         return acc
@@ -74,7 +77,7 @@ export async function GET(request: NextRequest) {
         if (!acc[key]) {
           acc[key] = { week: key, year, weekNumber, total: 0, count: 0, contributions: [] }
         }
-        acc[key].total += curr.amount
+        acc[key].total += Number(curr.amount)
         acc[key].count += 1
         acc[key].contributions.push(curr)
         return acc
@@ -86,7 +89,7 @@ export async function GET(request: NextRequest) {
         if (!acc[key]) {
           acc[key] = { month: key, year: date.getFullYear(), monthNumber: date.getMonth() + 1, total: 0, count: 0, contributions: [] }
         }
-        acc[key].total += curr.amount
+        acc[key].total += Number(curr.amount)
         acc[key].count += 1
         acc[key].contributions.push(curr)
         return acc
@@ -94,7 +97,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Calculate totals
-    const totalAmount = contributions.reduce((sum, c) => sum + c.amount, 0)
+    const totalAmount = contributions.reduce((sum: number, c) => sum + Number(c.amount), 0)
     const totalCount = contributions.length
 
     return NextResponse.json({
@@ -158,11 +161,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Create contribution
+    const transactionReference = body.transactionReference ?? `CONTRIB-${Date.now()}`
+
     const contribution = await prisma.contribution.create({
       data: {
         memberId: validatedData.memberId,
-        userId: body.userId || 'system',
+        userId: body.userId,
         amount: validatedData.amount,
+        transactionReference,
       },
       include: {
         member: {
